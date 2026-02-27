@@ -1,0 +1,103 @@
+name: Red Hat Satellite
+description: Red Hat Satellite is a systems management product that helps deploy, configure, and maintain systems across physical, virtual, and cloud environments.
+image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+tags:
+- Systems Management
+- Configuration Management
+- Lifecycle Management
+- Patch Management
+- Subscription Management
+created: '2024'
+modified: '2024'
+url: https://www.redhat.com/en/technologies/management/satellite
+apis:
+- name: Red Hat Satellite REST API
+  description: The main REST API for Red Hat Satellite 6.x, providing programmatic access to all Satellite functions including host management, content management, provisioning, and configuration.
+  image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+  baseURL: https://satellite.example.com/api/v2
+  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
+  tags:
+  - REST API
+  - Systems Management
+  - Automation
+  properties:
+  - type: Documentation
+    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/index
+  - type: OpenAPI
+    url: https://satellite.example.com/apidoc/v2.json
+  - type: Authentication
+    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-api_guide-authentication
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Satellite Hammer CLI
+  description: Command-line interface tool for Red Hat Satellite that provides scriptable access to Satellite functions.
+  image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/hammer_cli_guide/index
+  tags:
+  - CLI
+  - Command Line
+  - Automation
+  properties:
+  - type: Documentation
+    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/hammer_cli_guide/index
+  - type: Installation Guide
+    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/hammer_cli_guide/installing_hammer
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Satellite Foreman API
+  description: Core Foreman API integrated into Red Hat Satellite for host lifecycle management, provisioning, and configuration management.
+  image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+  baseURL: https://satellite.example.com/api
+  humanURL: https://theforeman.org/api.html
+  tags:
+  - REST API
+  - Foreman
+  - Provisioning
+  properties:
+  - type: Documentation
+    url: https://satellite.example.com/apidoc
+  - type: API Explorer
+    url: https://satellite.example.com/apidoc/v2.html
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Satellite Katello API
+  description: Content management API for Red Hat Satellite handling repositories, content views, lifecycle environments, and subscriptions.
+  image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+  baseURL: https://satellite.example.com/katello/api
+  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
+  tags:
+  - REST API
+  - Content Management
+  - Subscriptions
+  properties:
+  - type: Documentation
+    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/index
+  - type: Content Management Guide
+    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/managing_content/index
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+common:
+- type: Portal
+  url: https://access.redhat.com/
+- type: Documentation
+  url: https://access.redhat.com/documentation/en-us/red_hat_satellite/
+- type: Support
+  url: https://access.redhat.com/support/
+- type: Status
+  url: https://status.redhat.com/
+- type: Blog
+  url: https://www.redhat.com/en/blog/channel/red-hat-satellite
+- type: GitHub
+  url: https://github.com/theforeman
+- type: Knowledge Base
+  url: https://access.redhat.com/solutions/
+- type: Community
+  url: https://access.redhat.com/community/
+maintainers:
+- name: Red Hat
+  email: satellite-subscriptions@redhat.com
+  url: https://www.redhat.com/en/technologies/management/satellite
