@@ -1,0 +1,2192 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Satellite REST API
+  description: >-
+    The Red Hat Satellite REST API provides programmatic access to Red Hat
+    Satellite server functionality including host management, content view
+    management, subscription management, lifecycle environments, and
+    provisioning. The API is built on the Foreman and Katello upstream projects
+    and follows RESTful conventions with JSON request and response bodies.
+  version: 6.18.0
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  license:
+    name: GPL-3.0
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+  x-logo:
+    url: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+externalDocs:
+  description: Red Hat Satellite API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
+servers:
+  - url: https://satellite.example.com
+    description: Red Hat Satellite Server
+security:
+  - basicAuth: []
+  - oAuth2: []
+tags:
+  - name: Hosts
+    description: >-
+      Manage hosts registered with Red Hat Satellite including physical,
+      virtual, and cloud instances.
+    externalDocs:
+      url: https://apidocs.theforeman.org/foreman/latest/apidoc/v2/hosts.html
+  - name: Content Views
+    description: >-
+      Manage content views which define curated sets of repositories and
+      packages available to hosts.
+    externalDocs:
+      url: https://apidocs.theforeman.org/katello/latest/apidoc/v2/content_views.html
+  - name: Subscriptions
+    description: >-
+      Manage Red Hat subscriptions and entitlements for organizations and
+      hosts.
+    externalDocs:
+      url: https://apidocs.theforeman.org/katello/latest/apidoc/v2/subscriptions.html
+  - name: Lifecycle Environments
+    description: >-
+      Manage lifecycle environments that define promotion paths for content
+      views from development through production.
+    externalDocs:
+      url: https://apidocs.theforeman.org/katello/latest/apidoc/v2/lifecycle_environments.html
+  - name: Organizations
+    description: >-
+      Manage organizations which provide multi-tenancy isolation for hosts,
+      content, and subscriptions.
+    externalDocs:
+      url: https://apidocs.theforeman.org/foreman/latest/apidoc/v2/organizations.html
+paths:
+  /api/v2/hosts:
+    get:
+      operationId: listHosts
+      summary: List all hosts
+      description: >-
+        Retrieve a paginated list of all hosts registered with the Satellite
+        server. Supports filtering by organization, location, host group, and
+        search queries.
+      tags:
+        - Hosts
+      parameters:
+        - $ref: '#/components/parameters/organizationIdQuery'
+        - $ref: '#/components/parameters/locationIdQuery'
+        - name: hostgroup_id
+          in: query
+          description: Filter hosts by host group identifier.
+          schema:
+            type: integer
+        - name: thin
+          in: query
+          description: Only return the ID and name of each host.
+          schema:
+            type: boolean
+            default: false
+        - name: include
+          in: query
+          description: 'Additional information to include (e.g., parameters, all_parameters).'
+          schema:
+            type: string
+            enum:
+              - parameters
+              - all_parameters
+        - $ref: '#/components/parameters/searchQuery'
+        - $ref: '#/components/parameters/orderQuery'
+        - $ref: '#/components/parameters/pageQuery'
+        - $ref: '#/components/parameters/perPageQuery'
+      responses:
+        '200':
+          description: Successful response containing a list of hosts.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    description: Total number of hosts matching the query.
+                  subtotal:
+                    type: integer
+                    description: Number of hosts after filtering.
+                  page:
+                    type: integer
+                    description: Current page number.
+                  per_page:
+                    type: integer
+                    description: Number of results per page.
+                  search:
+                    type:
+                      - string
+                      - 'null'
+                    description: Applied search filter.
+                  sort:
+                    type: object
+                    properties:
+                      by:
+                        type:
+                          - string
+                          - 'null'
+                      order:
+                        type:
+                          - string
+                          - 'null'
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Host'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createHost
+      summary: Create a host
+      description: >-
+        Register a new host with the Satellite server. The host can be managed
+        (provisioned and configured by Satellite) or unmanaged (inventory
+        only).
+      tags:
+        - Hosts
+      parameters:
+        - $ref: '#/components/parameters/organizationIdQuery'
+        - $ref: '#/components/parameters/locationIdQuery'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - host
+              properties:
+                host:
+                  $ref: '#/components/schemas/HostCreate'
+      responses:
+        '201':
+          description: Host created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v2/hosts/{id}:
+    get:
+      operationId: showHost
+      summary: Show a host
+      description: Retrieve details for a specific host by its identifier.
+      tags:
+        - Hosts
+      parameters:
+        - $ref: '#/components/parameters/hostId'
+      responses:
+        '200':
+          description: Successful response containing host details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateHost
+      summary: Update a host
+      description: Update the attributes of an existing host.
+      tags:
+        - Hosts
+      parameters:
+        - $ref: '#/components/parameters/hostId'
+        - $ref: '#/components/parameters/organizationIdQuery'
+        - $ref: '#/components/parameters/locationIdQuery'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - host
+              properties:
+                host:
+                  $ref: '#/components/schemas/HostUpdate'
+      responses:
+        '200':
+          description: Host updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Host'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteHost
+      summary: Delete a host
+      description: Remove a host from the Satellite server.
+      tags:
+        - Hosts
+      parameters:
+        - $ref: '#/components/parameters/hostId'
+      responses:
+        '200':
+          description: Host deleted successfully.
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v2/hosts/{id}/power:
+    put:
+      operationId: hostPowerAction
+      summary: Execute a power operation on a host
+      description: >-
+        Perform a power management action on a host such as powering on,
+        powering off, or rebooting. Requires a BMC or compute resource
+        association.
+      tags:
+        - Hosts
+      parameters:
+        - $ref: '#/components/parameters/hostId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - power_action
+              properties:
+                power_action:
+                  type: string
+                  description: Power action to perform.
+                  enum:
+                    - start
+                    - stop
+                    - reboot
+                    - status
+      responses:
+        '200':
+          description: Power action executed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  power:
+                    type: string
+                  id:
+                    type: integer
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /katello/api/v2/content_views:
+    get:
+      operationId: listContentViews
+      summary: List content views
+      description: >-
+        Retrieve a paginated list of content views for an organization.
+        Content views define curated collections of repositories whose
+        packages, errata, and other content are made available to hosts.
+      tags:
+        - Content Views
+      parameters:
+        - $ref: '#/components/parameters/organizationIdQuery'
+        - name: environment_id
+          in: query
+          description: Filter by lifecycle environment identifier.
+          schema:
+            type: integer
+        - name: nondefault
+          in: query
+          description: Filter out default content views.
+          schema:
+            type: boolean
+        - name: noncomposite
+          in: query
+          description: Filter out composite content views.
+          schema:
+            type: boolean
+        - name: composite
+          in: query
+          description: Filter only composite content views.
+          schema:
+            type: boolean
+        - name: name
+          in: query
+          description: Filter by content view name.
+          schema:
+            type: string
+        - name: label
+          in: query
+          description: Filter by content view label.
+          schema:
+            type: string
+        - name: include_generated
+          in: query
+          description: Include import/export generated content views.
+          schema:
+            type: boolean
+            default: false
+        - $ref: '#/components/parameters/searchQuery'
+        - $ref: '#/components/parameters/orderQuery'
+        - $ref: '#/components/parameters/pageQuery'
+        - $ref: '#/components/parameters/perPageQuery'
+      responses:
+        '200':
+          description: Successful response containing a list of content views.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  subtotal:
+                    type: integer
+                  page:
+                    type: integer
+                  per_page:
+                    type: integer
+                  search:
+                    type:
+                      - string
+                      - 'null'
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContentView'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createContentView
+      summary: Create a content view
+      description: >-
+        Create a new content view for an organization. Content views can be
+        standard (selecting individual repositories) or composite (combining
+        published versions of other content views).
+      tags:
+        - Content Views
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentViewCreate'
+      responses:
+        '201':
+          description: Content view created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentView'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /katello/api/v2/content_views/{id}:
+    get:
+      operationId: showContentView
+      summary: Show a content view
+      description: Retrieve details for a specific content view.
+      tags:
+        - Content Views
+      parameters:
+        - $ref: '#/components/parameters/contentViewId'
+      responses:
+        '200':
+          description: Successful response containing content view details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentView'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateContentView
+      summary: Update a content view
+      description: Update an existing content view's attributes.
+      tags:
+        - Content Views
+      parameters:
+        - $ref: '#/components/parameters/contentViewId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentViewUpdate'
+      responses:
+        '200':
+          description: Content view updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentView'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteContentView
+      summary: Delete a content view
+      description: >-
+        Delete a content view. The content view must not be associated with
+        any lifecycle environments or activation keys.
+      tags:
+        - Content Views
+      parameters:
+        - $ref: '#/components/parameters/contentViewId'
+      responses:
+        '200':
+          description: Content view deleted successfully.
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /katello/api/v2/content_views/{id}/publish:
+    post:
+      operationId: publishContentView
+      summary: Publish a content view
+      description: >-
+        Publish a new version of a content view. This creates a snapshot of
+        the current repository content and makes it available for promotion
+        to lifecycle environments.
+      tags:
+        - Content Views
+      parameters:
+        - $ref: '#/components/parameters/contentViewId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: Description for the new published version.
+                major:
+                  type: integer
+                  description: Override the major version number.
+                minor:
+                  type: integer
+                  description: Override the minor version number.
+                repos_units:
+                  type: array
+                  description: >-
+                    List of repository and unit pairs to include in the
+                    publish.
+                  items:
+                    type: object
+                    properties:
+                      label:
+                        type: string
+                      rpm_filenames:
+                        type: array
+                        items:
+                          type: string
+      responses:
+        '202':
+          description: >-
+            Content view publish task accepted. Returns a task object for
+            tracking the asynchronous publish operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForemanTask'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /katello/api/v2/content_view_versions/{id}/promote:
+    post:
+      operationId: promoteContentViewVersion
+      summary: Promote a content view version
+      description: >-
+        Promote a published content view version to a lifecycle environment.
+        This makes the content available to hosts in that environment.
+      tags:
+        - Content Views
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Content view version identifier.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - environment_ids
+              properties:
+                environment_ids:
+                  type: array
+                  description: >-
+                    Identifiers of the lifecycle environments to promote to.
+                  items:
+                    type: integer
+                description:
+                  type: string
+                  description: Description for the promotion.
+                force:
+                  type: boolean
+                  description: Force promotion even if validation fails.
+                  default: false
+      responses:
+        '202':
+          description: >-
+            Content view version promotion task accepted. Returns a task
+            object for tracking the asynchronous operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForemanTask'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /katello/api/v2/organizations/{organization_id}/subscriptions:
+    get:
+      operationId: listSubscriptions
+      summary: List organization subscriptions
+      description: >-
+        Retrieve a paginated list of subscriptions for an organization.
+        Subscriptions represent Red Hat product entitlements that can be
+        attached to hosts.
+      tags:
+        - Subscriptions
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          description: Organization identifier.
+          schema:
+            type: integer
+        - name: host_id
+          in: query
+          description: Filter subscriptions by host identifier.
+          schema:
+            type: string
+        - name: activation_key_id
+          in: query
+          description: Filter subscriptions by activation key identifier.
+          schema:
+            type: string
+        - name: name
+          in: query
+          description: Filter by subscription name.
+          schema:
+            type: string
+        - name: available_for
+          in: query
+          description: >-
+            Object type to show available subscriptions for (host or
+            activation_key).
+          schema:
+            type: string
+            enum:
+              - host
+              - activation_key
+        - name: match_host
+          in: query
+          description: >-
+            Ignore subscriptions not applicable to the specified host.
+          schema:
+            type: boolean
+        - name: match_installed
+          in: query
+          description: >-
+            Return only subscriptions matching installed products on the
+            host.
+          schema:
+            type: boolean
+        - name: no_overlap
+          in: query
+          description: >-
+            Exclude subscriptions that overlap with existing host
+            attachments.
+          schema:
+            type: boolean
+        - $ref: '#/components/parameters/searchQuery'
+        - $ref: '#/components/parameters/orderQuery'
+        - $ref: '#/components/parameters/pageQuery'
+        - $ref: '#/components/parameters/perPageQuery'
+      responses:
+        '200':
+          description: Successful response containing a list of subscriptions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  subtotal:
+                    type: integer
+                  page:
+                    type: integer
+                  per_page:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /katello/api/v2/organizations/{organization_id}/subscriptions/upload:
+    post:
+      operationId: uploadSubscriptionManifest
+      summary: Upload a subscription manifest
+      description: >-
+        Upload a Red Hat subscription manifest file to import subscriptions
+        into an organization.
+      tags:
+        - Subscriptions
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          description: Organization identifier.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - content
+              properties:
+                content:
+                  type: string
+                  format: binary
+                  description: Subscription manifest file (.zip).
+                repository_url:
+                  type: string
+                  description: Custom CDN URL for content.
+      responses:
+        '202':
+          description: Manifest upload task accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForemanTask'
+        '400':
+          description: Invalid manifest or upload error.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /katello/api/v2/organizations/{organization_id}/subscriptions/delete_manifest:
+    post:
+      operationId: deleteSubscriptionManifest
+      summary: Delete a subscription manifest
+      description: >-
+        Delete the subscription manifest from an organization, removing all
+        imported subscriptions.
+      tags:
+        - Subscriptions
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          description: Organization identifier.
+          schema:
+            type: integer
+      responses:
+        '202':
+          description: Manifest deletion task accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForemanTask'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /katello/api/v2/organizations/{organization_id}/subscriptions/refresh_manifest:
+    put:
+      operationId: refreshSubscriptionManifest
+      summary: Refresh a subscription manifest
+      description: >-
+        Refresh the subscription manifest for an organization to sync
+        changes from the Red Hat Customer Portal.
+      tags:
+        - Subscriptions
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          description: Organization identifier.
+          schema:
+            type: integer
+      responses:
+        '202':
+          description: Manifest refresh task accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForemanTask'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /katello/api/v2/organizations/{organization_id}/environments:
+    get:
+      operationId: listLifecycleEnvironments
+      summary: List lifecycle environments
+      description: >-
+        Retrieve a list of lifecycle environments for an organization.
+        Lifecycle environments define the content promotion path from
+        Library through development, testing, and production stages.
+      tags:
+        - Lifecycle Environments
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          description: Organization identifier.
+          schema:
+            type: integer
+        - name: library
+          in: query
+          description: Include the Library lifecycle environment.
+          schema:
+            type: boolean
+        - name: name
+          in: query
+          description: Filter by lifecycle environment name.
+          schema:
+            type: string
+        - name: label
+          in: query
+          description: Filter by lifecycle environment label.
+          schema:
+            type: string
+        - $ref: '#/components/parameters/searchQuery'
+        - $ref: '#/components/parameters/orderQuery'
+        - $ref: '#/components/parameters/pageQuery'
+        - $ref: '#/components/parameters/perPageQuery'
+      responses:
+        '200':
+          description: >-
+            Successful response containing a list of lifecycle
+            environments.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  subtotal:
+                    type: integer
+                  page:
+                    type: integer
+                  per_page:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LifecycleEnvironment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createLifecycleEnvironment
+      summary: Create a lifecycle environment
+      description: >-
+        Create a new lifecycle environment within an organization's content
+        promotion path.
+      tags:
+        - Lifecycle Environments
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          description: Organization identifier.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - prior_id
+              properties:
+                name:
+                  type: string
+                  description: Name of the lifecycle environment.
+                label:
+                  type: string
+                  description: >-
+                    Label for the lifecycle environment (auto-generated
+                    from name if omitted).
+                description:
+                  type: string
+                  description: Description of the lifecycle environment.
+                prior_id:
+                  type: integer
+                  description: >-
+                    Identifier of the prior lifecycle environment in the
+                    promotion path.
+      responses:
+        '201':
+          description: Lifecycle environment created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LifecycleEnvironment'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /katello/api/v2/organizations/{organization_id}/environments/paths:
+    get:
+      operationId: listLifecycleEnvironmentPaths
+      summary: List lifecycle environment paths
+      description: >-
+        Retrieve the lifecycle environment promotion paths for an
+        organization, showing the sequence of environments content views
+        are promoted through.
+      tags:
+        - Lifecycle Environments
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          description: Organization identifier.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: >-
+            Successful response containing lifecycle environment paths.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    environments:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/LifecycleEnvironment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v2/organizations:
+    get:
+      operationId: listOrganizations
+      summary: List organizations
+      description: >-
+        Retrieve a list of all organizations. Organizations provide
+        multi-tenancy isolation for content, hosts, and subscriptions.
+      tags:
+        - Organizations
+      parameters:
+        - $ref: '#/components/parameters/searchQuery'
+        - $ref: '#/components/parameters/orderQuery'
+        - $ref: '#/components/parameters/pageQuery'
+        - $ref: '#/components/parameters/perPageQuery'
+      responses:
+        '200':
+          description: Successful response containing a list of organizations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  subtotal:
+                    type: integer
+                  page:
+                    type: integer
+                  per_page:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Organization'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v2/organizations/{id}:
+    get:
+      operationId: showOrganization
+      summary: Show an organization
+      description: Retrieve details for a specific organization.
+      tags:
+        - Organizations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Organization identifier.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response containing organization details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication using Satellite username and password.
+    oAuth2:
+      type: oauth2
+      description: >-
+        OAuth 2.0 Personal Access Token authentication for Satellite
+        users.
+      flows:
+        implicit:
+          authorizationUrl: https://satellite.example.com/users/extlogin
+          scopes: {}
+  parameters:
+    hostId:
+      name: id
+      in: path
+      required: true
+      description: Host identifier (numeric ID or FQDN).
+      schema:
+        type: string
+    contentViewId:
+      name: id
+      in: path
+      required: true
+      description: Content view identifier.
+      schema:
+        type: integer
+    organizationIdQuery:
+      name: organization_id
+      in: query
+      description: Set the current organization context for the request.
+      schema:
+        type: integer
+    locationIdQuery:
+      name: location_id
+      in: query
+      description: Set the current location context for the request.
+      schema:
+        type: integer
+    searchQuery:
+      name: search
+      in: query
+      description: >-
+        Scoped search query string to filter results. Supports field-based
+        search syntax (e.g., "name ~ web*").
+      schema:
+        type: string
+    orderQuery:
+      name: order
+      in: query
+      description: >-
+        Sort field and direction (e.g., "name ASC" or "id DESC").
+      schema:
+        type: string
+    pageQuery:
+      name: page
+      in: query
+      description: Page number for paginated results (starting at 1).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    perPageQuery:
+      name: per_page
+      in: query
+      description: >-
+        Number of results per page. Use "all" to retrieve all results
+        without pagination.
+      schema:
+        oneOf:
+          - type: integer
+            minimum: 1
+          - type: string
+            enum:
+              - all
+        default: 20
+  schemas:
+    Host:
+      type: object
+      description: >-
+        A host registered with Red Hat Satellite representing a physical,
+        virtual, or cloud system.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the host.
+        name:
+          type: string
+          description: >-
+            Fully qualified domain name (FQDN) of the host.
+        ip:
+          type:
+            - string
+            - 'null'
+          description: Primary IPv4 address of the host.
+          format: ipv4
+        ip6:
+          type:
+            - string
+            - 'null'
+          description: Primary IPv6 address of the host.
+          format: ipv6
+        mac:
+          type:
+            - string
+            - 'null'
+          description: Primary MAC address of the host.
+        environment_id:
+          type:
+            - integer
+            - 'null'
+          description: Puppet environment identifier.
+        hostgroup_id:
+          type:
+            - integer
+            - 'null'
+          description: Host group identifier.
+        hostgroup_name:
+          type:
+            - string
+            - 'null'
+          description: Host group name.
+        hostgroup_title:
+          type:
+            - string
+            - 'null'
+          description: >-
+            Full host group title including parent groups.
+        operatingsystem_id:
+          type:
+            - integer
+            - 'null'
+          description: Operating system identifier.
+        operatingsystem_name:
+          type:
+            - string
+            - 'null'
+          description: Operating system name and version.
+        architecture_id:
+          type:
+            - integer
+            - 'null'
+          description: Architecture identifier.
+        architecture_name:
+          type:
+            - string
+            - 'null'
+          description: Architecture name (e.g., x86_64).
+        domain_id:
+          type:
+            - integer
+            - 'null'
+          description: DNS domain identifier.
+        domain_name:
+          type:
+            - string
+            - 'null'
+          description: DNS domain name.
+        subnet_id:
+          type:
+            - integer
+            - 'null'
+          description: IPv4 subnet identifier.
+        subnet_name:
+          type:
+            - string
+            - 'null'
+          description: IPv4 subnet name.
+        subnet6_id:
+          type:
+            - integer
+            - 'null'
+          description: IPv6 subnet identifier.
+        compute_resource_id:
+          type:
+            - integer
+            - 'null'
+          description: >-
+            Compute resource identifier. Null for bare metal hosts.
+        compute_resource_name:
+          type:
+            - string
+            - 'null'
+          description: Compute resource name.
+        compute_profile_id:
+          type:
+            - integer
+            - 'null'
+          description: Compute profile identifier.
+        medium_id:
+          type:
+            - integer
+            - 'null'
+          description: Installation medium identifier.
+        ptable_id:
+          type:
+            - integer
+            - 'null'
+          description: Partition table identifier.
+        model_id:
+          type:
+            - integer
+            - 'null'
+          description: Hardware model identifier.
+        model_name:
+          type:
+            - string
+            - 'null'
+          description: Hardware model name.
+        location_id:
+          type: integer
+          description: Location identifier.
+        location_name:
+          type: string
+          description: Location name.
+        organization_id:
+          type: integer
+          description: Organization identifier.
+        organization_name:
+          type: string
+          description: Organization name.
+        owner_id:
+          type:
+            - integer
+            - 'null'
+          description: Owner identifier.
+        owner_type:
+          type:
+            - string
+            - 'null'
+          description: Owner type (User or Usergroup).
+          enum:
+            - User
+            - Usergroup
+            - null
+        managed:
+          type: boolean
+          description: >-
+            Whether the host is managed by Satellite for provisioning and
+            configuration.
+        build:
+          type: boolean
+          description: Whether the host is in build mode.
+        enabled:
+          type: boolean
+          description: >-
+            Whether configuration management reports are evaluated for
+            this host.
+        comment:
+          type:
+            - string
+            - 'null'
+          description: Additional information about the host.
+        uuid:
+          type:
+            - string
+            - 'null'
+          description: Unique identifier from compute resource.
+        global_status:
+          type: integer
+          description: >-
+            Global status of the host (0=OK, 1=Warning, 2=Error).
+        global_status_label:
+          type: string
+          description: Human-readable global status label.
+          enum:
+            - OK
+            - Warning
+            - Error
+        content_facet_attributes:
+          type: object
+          description: >-
+            Content-related attributes from the Katello content facet.
+          properties:
+            id:
+              type: integer
+            content_view_id:
+              type: integer
+            content_view_name:
+              type: string
+            lifecycle_environment_id:
+              type: integer
+            lifecycle_environment_name:
+              type: string
+            content_source_id:
+              type:
+                - integer
+                - 'null'
+            errata_counts:
+              type: object
+              properties:
+                security:
+                  type: integer
+                bugfix:
+                  type: integer
+                enhancement:
+                  type: integer
+                total:
+                  type: integer
+            applicable_errata_count:
+              type: integer
+            upgradable_package_count:
+              type: integer
+        subscription_facet_attributes:
+          type: object
+          description: >-
+            Subscription-related attributes from the Katello subscription
+            facet.
+          properties:
+            id:
+              type: integer
+            uuid:
+              type: string
+              description: >-
+                Subscription manager UUID for the host.
+            registered_at:
+              type: string
+              format: date-time
+            last_checkin:
+              type:
+                - string
+                - 'null'
+              format: date-time
+            service_level:
+              type:
+                - string
+                - 'null'
+            release_version:
+              type:
+                - string
+                - 'null'
+            autoheal:
+              type: boolean
+            registered_through:
+              type:
+                - string
+                - 'null'
+        interfaces:
+          type: array
+          description: Network interfaces associated with the host.
+          items:
+            $ref: '#/components/schemas/HostInterface'
+        puppetclasses:
+          type: array
+          items:
+            type: object
+        all_puppetclasses:
+          type: array
+          items:
+            type: object
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the host was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the host was last updated.
+        installed_at:
+          type:
+            - string
+            - 'null'
+          format: date-time
+          description: Timestamp when the host OS was installed.
+        last_report:
+          type:
+            - string
+            - 'null'
+          format: date-time
+          description: >-
+            Timestamp of the last configuration management report.
+    HostCreate:
+      type: object
+      description: Parameters for creating a new host.
+      required:
+        - name
+        - organization_id
+        - location_id
+      properties:
+        name:
+          type: string
+          description: Hostname or FQDN.
+        location_id:
+          type: integer
+          description: Location identifier.
+        organization_id:
+          type: integer
+          description: Organization identifier.
+        ip:
+          type: string
+          description: IPv4 address (not required when using DHCP proxy).
+          format: ipv4
+        mac:
+          type: string
+          description: >-
+            MAC address (required for managed bare metal hosts).
+        architecture_id:
+          type: integer
+          description: Architecture identifier (required if managed).
+        domain_id:
+          type: integer
+          description: Domain identifier (required if managed).
+        subnet_id:
+          type: integer
+          description: Subnet identifier (required if managed).
+        operatingsystem_id:
+          type: integer
+          description: Operating system identifier (required if managed).
+        medium_id:
+          type: integer
+          description: >-
+            Installation medium identifier (required for non-image
+            provisioning if managed).
+        ptable_id:
+          type: integer
+          description: >-
+            Partition table identifier (required if managed and no
+            custom partition layout).
+        compute_resource_id:
+          type: integer
+          description: >-
+            Compute resource identifier. Null indicates bare metal.
+        compute_profile_id:
+          type: integer
+          description: Compute profile identifier.
+        hostgroup_id:
+          type: integer
+          description: Host group identifier.
+        root_pass:
+          type: string
+          description: Root password (required if managed unless inherited).
+          format: password
+        owner_id:
+          type: integer
+          description: Owner identifier.
+        owner_type:
+          type: string
+          description: Owner type.
+          enum:
+            - User
+            - Usergroup
+        build:
+          type: boolean
+          description: Enable build mode for provisioning.
+        managed:
+          type: boolean
+          description: >-
+            Whether the host should be managed by Satellite.
+        comment:
+          type: string
+          description: Additional information about the host.
+        content_facet_attributes:
+          type: object
+          properties:
+            content_view_id:
+              type: integer
+              description: Content view identifier.
+            lifecycle_environment_id:
+              type: integer
+              description: Lifecycle environment identifier.
+            content_source_id:
+              type: integer
+              description: Content source (Capsule) identifier.
+        interfaces_attributes:
+          type: array
+          description: Network interface configurations.
+          items:
+            $ref: '#/components/schemas/HostInterfaceCreate'
+    HostUpdate:
+      type: object
+      description: Parameters for updating an existing host.
+      properties:
+        name:
+          type: string
+        ip:
+          type: string
+          format: ipv4
+        mac:
+          type: string
+        architecture_id:
+          type: integer
+        domain_id:
+          type: integer
+        subnet_id:
+          type: integer
+        operatingsystem_id:
+          type: integer
+        hostgroup_id:
+          type: integer
+        location_id:
+          type: integer
+        organization_id:
+          type: integer
+        owner_id:
+          type: integer
+        owner_type:
+          type: string
+          enum:
+            - User
+            - Usergroup
+        build:
+          type: boolean
+        managed:
+          type: boolean
+        comment:
+          type: string
+        content_facet_attributes:
+          type: object
+          properties:
+            content_view_id:
+              type: integer
+            lifecycle_environment_id:
+              type: integer
+            content_source_id:
+              type: integer
+        interfaces_attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/HostInterfaceCreate'
+    HostInterface:
+      type: object
+      description: A network interface associated with a host.
+      properties:
+        id:
+          type: integer
+        mac:
+          type:
+            - string
+            - 'null'
+        ip:
+          type:
+            - string
+            - 'null'
+          format: ipv4
+        ip6:
+          type:
+            - string
+            - 'null'
+          format: ipv6
+        type:
+          type: string
+          enum:
+            - interface
+            - bmc
+            - bond
+            - bridge
+        name:
+          type:
+            - string
+            - 'null'
+        subnet_id:
+          type:
+            - integer
+            - 'null'
+        subnet6_id:
+          type:
+            - integer
+            - 'null'
+        domain_id:
+          type:
+            - integer
+            - 'null'
+        identifier:
+          type:
+            - string
+            - 'null'
+          description: Device identifier (e.g., eth0, ens192).
+        managed:
+          type: boolean
+        primary:
+          type: boolean
+        provision:
+          type: boolean
+        virtual:
+          type: boolean
+        tag:
+          type:
+            - string
+            - 'null'
+          description: VLAN tag.
+        mtu:
+          type:
+            - integer
+            - 'null'
+          description: Maximum transmission unit.
+        attached_to:
+          type:
+            - string
+            - 'null'
+          description: Parent interface identifier.
+    HostInterfaceCreate:
+      type: object
+      description: Parameters for creating or updating a host network interface.
+      properties:
+        id:
+          type: integer
+          description: >-
+            Interface identifier (for updating existing interfaces).
+        mac:
+          type: string
+          description: MAC address.
+        ip:
+          type: string
+          description: IPv4 address.
+          format: ipv4
+        ip6:
+          type: string
+          description: IPv6 address.
+          format: ipv6
+        type:
+          type: string
+          description: Interface type.
+          enum:
+            - interface
+            - bmc
+            - bond
+            - bridge
+        name:
+          type: string
+          description: DNS name.
+        subnet_id:
+          type: integer
+          description: IPv4 subnet identifier.
+        subnet6_id:
+          type: integer
+          description: IPv6 subnet identifier.
+        domain_id:
+          type: integer
+          description: Domain identifier.
+        identifier:
+          type: string
+          description: Device identifier (e.g., eth0).
+        managed:
+          type: boolean
+          description: Whether DNS and DHCP are managed for this interface.
+        primary:
+          type: boolean
+          description: Whether this is the primary interface for FQDN.
+        provision:
+          type: boolean
+          description: Whether this interface is used for provisioning.
+        virtual:
+          type: boolean
+          description: Whether this is a virtual interface (alias or VLAN).
+        tag:
+          type: string
+          description: VLAN tag.
+        mtu:
+          type: integer
+          description: Maximum transmission unit.
+        attached_to:
+          type: string
+          description: Parent interface identifier.
+        username:
+          type: string
+          description: BMC username (BMC interfaces only).
+        password:
+          type: string
+          description: BMC password (BMC interfaces only).
+          format: password
+        provider:
+          type: string
+          description: BMC provider (BMC interfaces only).
+          enum:
+            - IPMI
+            - Redfish
+            - SSH
+        mode:
+          type: string
+          description: Bond mode (bond interfaces only).
+          enum:
+            - balance-rr
+            - active-backup
+            - balance-xor
+            - broadcast
+            - '802.3ad'
+            - balance-tlb
+            - balance-alb
+        attached_devices:
+          type: array
+          description: >-
+            Slave or bridge member interface identifiers.
+          items:
+            type: string
+        bond_options:
+          type: string
+          description: Additional bond options (space-separated).
+    ContentView:
+      type: object
+      description: >-
+        A content view defining a curated set of repositories and content
+        available to hosts.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the content view.
+        name:
+          type: string
+          description: Name of the content view.
+        label:
+          type: string
+          description: >-
+            Unique label for the content view (auto-generated from name).
+        description:
+          type:
+            - string
+            - 'null'
+          description: Description of the content view.
+        organization_id:
+          type: integer
+          description: Organization this content view belongs to.
+        organization:
+          type: object
+          properties:
+            name:
+              type: string
+            label:
+              type: string
+            id:
+              type: integer
+        composite:
+          type: boolean
+          description: >-
+            Whether this is a composite content view combining other
+            content view versions.
+        rolling:
+          type: boolean
+          description: Whether this is a rolling content view.
+        auto_publish:
+          type: boolean
+          description: >-
+            Whether composite content views auto-publish when a component
+            is updated.
+        solve_dependencies:
+          type: boolean
+          description: >-
+            Whether RPM dependencies are resolved during publish.
+        import_only:
+          type: boolean
+          description: >-
+            Whether this content view is only for upstream imports.
+        generated_for:
+          type:
+            - string
+            - 'null'
+          description: >-
+            If generated, indicates the purpose (e.g., import or export).
+        default:
+          type: boolean
+          description: >-
+            Whether this is the default content view (every organization
+            has one).
+        repository_ids:
+          type: array
+          description: Identifiers of repositories in this content view.
+          items:
+            type: integer
+        repositories:
+          type: array
+          description: Repositories included in this content view.
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              label:
+                type: string
+              content_type:
+                type: string
+        component_ids:
+          type: array
+          description: >-
+            Content view version IDs for composite content views.
+          items:
+            type: integer
+        versions:
+          type: array
+          description: Published versions of this content view.
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              version:
+                type: string
+              published:
+                type: string
+                format: date-time
+              environment_ids:
+                type: array
+                items:
+                  type: integer
+        environments:
+          type: array
+          description: Lifecycle environments this content view is in.
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              label:
+                type: string
+        activation_keys:
+          type: array
+          description: Activation keys using this content view.
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+        next_version:
+          type: string
+          description: Next version number to be published.
+        last_published:
+          type:
+            - string
+            - 'null'
+          format: date-time
+          description: Timestamp of the last publish.
+        latest_version:
+          type:
+            - string
+            - 'null'
+          description: Latest published version number.
+        latest_version_id:
+          type:
+            - integer
+            - 'null'
+          description: Identifier of the latest published version.
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    ContentViewCreate:
+      type: object
+      description: Parameters for creating a new content view.
+      required:
+        - name
+        - organization_id
+      properties:
+        organization_id:
+          type: integer
+          description: Organization identifier.
+        name:
+          type: string
+          description: Name of the content view.
+        label:
+          type: string
+          description: >-
+            Content view label (auto-generated from name if omitted).
+        description:
+          type: string
+          description: Description of the content view.
+        composite:
+          type: boolean
+          description: Whether this is a composite content view.
+          default: false
+        rolling:
+          type: boolean
+          description: Whether this is a rolling content view.
+          default: false
+        auto_publish:
+          type: boolean
+          description: >-
+            Auto-publish composite view when a component updates.
+          default: false
+        solve_dependencies:
+          type: boolean
+          description: Resolve RPM dependencies during publish.
+          default: false
+        import_only:
+          type: boolean
+          description: Mark as import-only content view.
+          default: false
+        repository_ids:
+          type: array
+          description: Repository IDs to include.
+          items:
+            type: integer
+        component_ids:
+          type: array
+          description: >-
+            Content view version IDs for composite views.
+          items:
+            type: integer
+        environment_ids:
+          type: array
+          description: >-
+            Lifecycle environment IDs for rolling content views.
+          items:
+            type: integer
+    ContentViewUpdate:
+      type: object
+      description: Parameters for updating a content view.
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        auto_publish:
+          type: boolean
+        solve_dependencies:
+          type: boolean
+        repository_ids:
+          type: array
+          items:
+            type: integer
+        component_ids:
+          type: array
+          items:
+            type: integer
+        environment_ids:
+          type: array
+          items:
+            type: integer
+    Subscription:
+      type: object
+      description: >-
+        A Red Hat subscription providing product entitlements for an
+        organization.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the subscription.
+        cp_id:
+          type: string
+          description: Candlepin subscription identifier.
+        subscription_id:
+          type: integer
+          description: Subscription pool identifier.
+        name:
+          type: string
+          description: Subscription name (product name).
+        description:
+          type:
+            - string
+            - 'null'
+          description: Subscription description.
+        product_id:
+          type: string
+          description: Red Hat product identifier.
+        product_name:
+          type: string
+          description: Red Hat product name.
+        contract_number:
+          type:
+            - string
+            - 'null'
+          description: Contract number associated with the subscription.
+        account_number:
+          type:
+            - string
+            - 'null'
+          description: Customer account number.
+        quantity:
+          type: integer
+          description: Total quantity of entitlements in the subscription.
+        consumed:
+          type: integer
+          description: Number of entitlements currently consumed.
+        available:
+          type: integer
+          description: Number of entitlements available for attachment.
+        start_date:
+          type: string
+          format: date-time
+          description: Subscription start date.
+        end_date:
+          type: string
+          format: date-time
+          description: Subscription end date.
+        support_level:
+          type:
+            - string
+            - 'null'
+          description: Support level (e.g., Premium, Standard, Self-Support).
+        type:
+          type: string
+          description: Subscription type.
+        virt_only:
+          type: boolean
+          description: Whether this subscription is for virtual systems only.
+        virt_who:
+          type: boolean
+          description: Whether this subscription requires virt-who reporting.
+        multi_entitlement:
+          type: boolean
+          description: >-
+            Whether multiple entitlements can be attached to a single
+            host.
+        stacking_id:
+          type:
+            - string
+            - 'null'
+          description: Stacking identifier for stackable subscriptions.
+        upstream_pool_id:
+          type:
+            - string
+            - 'null'
+          description: Pool identifier from the upstream subscription source.
+        organization_id:
+          type: integer
+          description: Organization this subscription belongs to.
+        provided_products:
+          type: array
+          description: Products provided by this subscription.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    LifecycleEnvironment:
+      type: object
+      description: >-
+        A lifecycle environment defining a stage in the content promotion
+        path.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the lifecycle environment.
+        name:
+          type: string
+          description: Name of the lifecycle environment.
+        label:
+          type: string
+          description: Unique label for the lifecycle environment.
+        description:
+          type:
+            - string
+            - 'null'
+          description: Description of the lifecycle environment.
+        organization_id:
+          type: integer
+          description: Organization this environment belongs to.
+        organization:
+          type: object
+          properties:
+            name:
+              type: string
+            label:
+              type: string
+            id:
+              type: integer
+        library:
+          type: boolean
+          description: Whether this is the Library environment.
+        prior:
+          type: object
+          description: Prior environment in the promotion path.
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        successor:
+          type:
+            - object
+            - 'null'
+          description: Successor environment in the promotion path.
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        counts:
+          type: object
+          description: Content counts for this environment.
+          properties:
+            content_hosts:
+              type: integer
+            content_views:
+              type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Organization:
+      type: object
+      description: >-
+        An organization providing multi-tenancy isolation for content,
+        hosts, and subscriptions.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the organization.
+        name:
+          type: string
+          description: Organization name.
+        label:
+          type: string
+          description: Unique label for the organization.
+        title:
+          type: string
+          description: Organization title.
+        description:
+          type:
+            - string
+            - 'null'
+          description: Organization description.
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    ForemanTask:
+      type: object
+      description: >-
+        An asynchronous task object returned for long-running operations
+        such as publishing content views or uploading manifests.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique task identifier.
+        label:
+          type: string
+          description: Machine-readable task label.
+        pending:
+          type: boolean
+          description: Whether the task is still pending.
+        action:
+          type: string
+          description: Human-readable description of the task action.
+        username:
+          type: string
+          description: User who initiated the task.
+        state:
+          type: string
+          description: Current state of the task.
+          enum:
+            - planned
+            - running
+            - paused
+            - stopped
+        result:
+          type: string
+          description: Result of the task.
+          enum:
+            - pending
+            - success
+            - error
+            - warning
+        progress:
+          type: number
+          description: Task progress as a decimal (0.0 to 1.0).
+          minimum: 0
+          maximum: 1
+        started_at:
+          type:
+            - string
+            - 'null'
+          format: date-time
+        ended_at:
+          type:
+            - string
+            - 'null'
+          format: date-time
+        humanized:
+          type: object
+          properties:
+            action:
+              type: string
+            input:
+              type: array
+              items:
+                type: string
+            output:
+              type: string
+            errors:
+              type: array
+              items:
+                type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: >-
+                      Unable to authenticate user.
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Resource not found.
+    UnprocessableEntity:
+      description: >-
+        The request was well-formed but contained validation errors.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                  full_messages:
+                    type: array
+                    items:
+                      type: string

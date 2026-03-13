@@ -1,0 +1,668 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/red-hat-satellite/json-schema/red-hat-satellite-host-schema.json",
+  "title": "Red Hat Satellite Host",
+  "description": "A host registered with Red Hat Satellite representing a physical, virtual, or cloud system managed through the Satellite server. Hosts are the primary managed entities in Satellite, encompassing provisioning, configuration management, content management, and subscription management.",
+  "type": "object",
+  "required": [
+    "id",
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique numeric identifier for the host within the Satellite server."
+    },
+    "name": {
+      "type": "string",
+      "description": "Fully qualified domain name (FQDN) of the host.",
+      "examples": [
+        "webserver01.example.com",
+        "db-primary.prod.example.com"
+      ]
+    },
+    "ip": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "ipv4",
+      "description": "Primary IPv4 address of the host. Not required when using a DHCP proxy.",
+      "examples": [
+        "192.168.1.100"
+      ]
+    },
+    "ip6": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "ipv6",
+      "description": "Primary IPv6 address of the host.",
+      "examples": [
+        "2001:db8::1"
+      ]
+    },
+    "mac": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$",
+      "description": "Primary MAC address of the host. Required for managed bare metal hosts.",
+      "examples": [
+        "aa:bb:cc:dd:ee:ff"
+      ]
+    },
+    "environment_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Puppet environment identifier associated with the host."
+    },
+    "hostgroup_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Host group identifier. Host groups provide a template of default settings for hosts."
+    },
+    "hostgroup_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Name of the host group."
+    },
+    "hostgroup_title": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Full host group title including parent group hierarchy (e.g., 'Production/Web Servers')."
+    },
+    "operatingsystem_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Operating system identifier. Required for managed hosts."
+    },
+    "operatingsystem_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Operating system name and version string.",
+      "examples": [
+        "RHEL 9.2",
+        "CentOS Stream 9"
+      ]
+    },
+    "architecture_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "System architecture identifier. Required for managed hosts."
+    },
+    "architecture_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Architecture name.",
+      "examples": [
+        "x86_64",
+        "aarch64",
+        "s390x"
+      ]
+    },
+    "domain_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "DNS domain identifier. Required for managed hosts."
+    },
+    "domain_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "DNS domain name.",
+      "examples": [
+        "example.com"
+      ]
+    },
+    "subnet_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "IPv4 subnet identifier."
+    },
+    "subnet_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "IPv4 subnet name."
+    },
+    "subnet6_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "IPv6 subnet identifier."
+    },
+    "compute_resource_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Compute resource identifier. Null indicates a bare metal host."
+    },
+    "compute_resource_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Compute resource name (e.g., VMware vCenter, oVirt, AWS, Azure)."
+    },
+    "compute_profile_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Compute profile identifier defining virtual machine sizing."
+    },
+    "medium_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Installation medium identifier for OS provisioning."
+    },
+    "ptable_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Partition table identifier for disk layout during provisioning."
+    },
+    "model_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Hardware model identifier."
+    },
+    "model_name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Hardware model name.",
+      "examples": [
+        "PowerEdge R750",
+        "ProLiant DL380 Gen10"
+      ]
+    },
+    "location_id": {
+      "type": "integer",
+      "description": "Location identifier for organizational hierarchy."
+    },
+    "location_name": {
+      "type": "string",
+      "description": "Location name.",
+      "examples": [
+        "US-East-1",
+        "London DC"
+      ]
+    },
+    "organization_id": {
+      "type": "integer",
+      "description": "Organization identifier for multi-tenancy isolation."
+    },
+    "organization_name": {
+      "type": "string",
+      "description": "Organization name.",
+      "examples": [
+        "ACME Corp"
+      ]
+    },
+    "owner_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Owner identifier (user or user group)."
+    },
+    "owner_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "User",
+        "Usergroup",
+        null
+      ],
+      "description": "Type of the host owner."
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "Whether the host is managed by Satellite for provisioning and configuration management. Managed hosts have their DNS, DHCP, TFTP, and other infrastructure services controlled by Satellite.",
+      "default": true
+    },
+    "build": {
+      "type": "boolean",
+      "description": "Whether the host is currently in build mode awaiting provisioning.",
+      "default": false
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether configuration management reports are evaluated for this host.",
+      "default": true
+    },
+    "comment": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Free-form text field for additional information about the host."
+    },
+    "uuid": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Unique identifier from the compute resource (e.g., VMware BIOS UUID)."
+    },
+    "global_status": {
+      "type": "integer",
+      "description": "Numeric global status of the host. 0 = OK, 1 = Warning, 2 = Error.",
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "global_status_label": {
+      "type": "string",
+      "description": "Human-readable label for the global status.",
+      "enum": [
+        "OK",
+        "Warning",
+        "Error"
+      ]
+    },
+    "content_facet_attributes": {
+      "type": "object",
+      "description": "Content management attributes from the Katello content facet, describing the host's content view and lifecycle environment assignment.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Content facet identifier."
+        },
+        "content_view_id": {
+          "type": "integer",
+          "description": "Identifier of the content view assigned to the host."
+        },
+        "content_view_name": {
+          "type": "string",
+          "description": "Name of the assigned content view."
+        },
+        "lifecycle_environment_id": {
+          "type": "integer",
+          "description": "Identifier of the lifecycle environment the host is in."
+        },
+        "lifecycle_environment_name": {
+          "type": "string",
+          "description": "Name of the lifecycle environment."
+        },
+        "content_source_id": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Identifier of the Capsule server providing content to this host."
+        },
+        "errata_counts": {
+          "type": "object",
+          "description": "Count of applicable errata by type.",
+          "properties": {
+            "security": {
+              "type": "integer",
+              "description": "Number of applicable security errata."
+            },
+            "bugfix": {
+              "type": "integer",
+              "description": "Number of applicable bugfix errata."
+            },
+            "enhancement": {
+              "type": "integer",
+              "description": "Number of applicable enhancement errata."
+            },
+            "total": {
+              "type": "integer",
+              "description": "Total number of applicable errata."
+            }
+          }
+        },
+        "applicable_errata_count": {
+          "type": "integer",
+          "description": "Total count of errata applicable to this host."
+        },
+        "upgradable_package_count": {
+          "type": "integer",
+          "description": "Number of packages with available upgrades."
+        }
+      }
+    },
+    "subscription_facet_attributes": {
+      "type": "object",
+      "description": "Subscription management attributes from the Katello subscription facet, describing the host's registration and entitlement status.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Subscription facet identifier."
+        },
+        "uuid": {
+          "type": "string",
+          "description": "Subscription manager UUID (from rhsm or subscription-manager)."
+        },
+        "registered_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the host was registered with the subscription service."
+        },
+        "last_checkin": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "description": "Timestamp of the host's last check-in with the subscription service."
+        },
+        "service_level": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Service level agreement preference (e.g., Premium, Standard, Self-Support).",
+          "examples": [
+            "Premium",
+            "Standard",
+            "Self-Support"
+          ]
+        },
+        "release_version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Release version preference for the host.",
+          "examples": [
+            "9.2",
+            "8.8"
+          ]
+        },
+        "autoheal": {
+          "type": "boolean",
+          "description": "Whether the host automatically attaches subscriptions when entitlements are insufficient.",
+          "default": true
+        },
+        "registered_through": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Hostname of the Satellite or Capsule server the host registered through."
+        }
+      }
+    },
+    "interfaces": {
+      "type": "array",
+      "description": "Network interfaces associated with the host.",
+      "items": {
+        "$ref": "#/$defs/HostInterface"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the host record was created in Satellite."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the host record was last modified."
+    },
+    "installed_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "Timestamp when the operating system was installed on the host."
+    },
+    "last_report": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "description": "Timestamp of the last configuration management report received from the host."
+    }
+  },
+  "$defs": {
+    "HostInterface": {
+      "type": "object",
+      "title": "Host Network Interface",
+      "description": "A network interface associated with a Red Hat Satellite managed host.",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier for the interface."
+        },
+        "mac": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$",
+          "description": "MAC address of the interface."
+        },
+        "ip": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "ipv4",
+          "description": "IPv4 address assigned to the interface."
+        },
+        "ip6": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "ipv6",
+          "description": "IPv6 address assigned to the interface."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "interface",
+            "bmc",
+            "bond",
+            "bridge"
+          ],
+          "description": "Type of network interface."
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "DNS name for the interface."
+        },
+        "subnet_id": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "IPv4 subnet identifier."
+        },
+        "subnet6_id": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "IPv6 subnet identifier."
+        },
+        "domain_id": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "DNS domain identifier."
+        },
+        "identifier": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Operating system device identifier (e.g., eth0, ens192, bond0).",
+          "examples": [
+            "eth0",
+            "ens192",
+            "bond0",
+            "br0"
+          ]
+        },
+        "managed": {
+          "type": "boolean",
+          "description": "Whether DHCP and DNS are managed by Satellite for this interface."
+        },
+        "primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary interface used for FQDN construction."
+        },
+        "provision": {
+          "type": "boolean",
+          "description": "Whether this interface is used for TFTP and PXE provisioning."
+        },
+        "virtual": {
+          "type": "boolean",
+          "description": "Whether this is a virtual interface (alias or VLAN)."
+        },
+        "tag": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "VLAN tag for virtual interfaces."
+        },
+        "mtu": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "description": "Maximum transmission unit size in bytes."
+        },
+        "attached_to": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Parent interface identifier for virtual interfaces."
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": 42,
+      "name": "webserver01.prod.example.com",
+      "ip": "192.168.10.50",
+      "ip6": null,
+      "mac": "aa:bb:cc:dd:ee:01",
+      "hostgroup_id": 5,
+      "hostgroup_name": "Web Servers",
+      "hostgroup_title": "Production/Web Servers",
+      "operatingsystem_id": 3,
+      "operatingsystem_name": "RHEL 9.2",
+      "architecture_id": 1,
+      "architecture_name": "x86_64",
+      "domain_id": 1,
+      "domain_name": "prod.example.com",
+      "subnet_id": 2,
+      "subnet_name": "Production Network",
+      "location_id": 1,
+      "location_name": "US-East-1",
+      "organization_id": 1,
+      "organization_name": "ACME Corp",
+      "owner_id": 4,
+      "owner_type": "User",
+      "managed": true,
+      "build": false,
+      "enabled": true,
+      "comment": "Primary web server for production workloads",
+      "global_status": 0,
+      "global_status_label": "OK",
+      "content_facet_attributes": {
+        "id": 42,
+        "content_view_id": 7,
+        "content_view_name": "RHEL9-Production",
+        "lifecycle_environment_id": 3,
+        "lifecycle_environment_name": "Production",
+        "content_source_id": 1,
+        "errata_counts": {
+          "security": 2,
+          "bugfix": 5,
+          "enhancement": 1,
+          "total": 8
+        },
+        "applicable_errata_count": 8,
+        "upgradable_package_count": 12
+      },
+      "subscription_facet_attributes": {
+        "id": 42,
+        "uuid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "registered_at": "2025-06-15T10:30:00Z",
+        "last_checkin": "2026-03-02T14:22:00Z",
+        "service_level": "Premium",
+        "release_version": "9.2",
+        "autoheal": true,
+        "registered_through": "satellite.example.com"
+      },
+      "interfaces": [
+        {
+          "id": 101,
+          "mac": "aa:bb:cc:dd:ee:01",
+          "ip": "192.168.10.50",
+          "ip6": null,
+          "type": "interface",
+          "name": "webserver01.prod.example.com",
+          "subnet_id": 2,
+          "domain_id": 1,
+          "identifier": "ens192",
+          "managed": true,
+          "primary": true,
+          "provision": true,
+          "virtual": false,
+          "tag": null,
+          "mtu": 1500,
+          "attached_to": null
+        }
+      ],
+      "created_at": "2025-06-15T10:28:00Z",
+      "updated_at": "2026-03-02T14:22:00Z",
+      "installed_at": "2025-06-15T10:45:00Z",
+      "last_report": "2026-03-02T14:20:00Z"
+    }
+  ]
+}

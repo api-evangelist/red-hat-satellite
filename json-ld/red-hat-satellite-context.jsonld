@@ -1,0 +1,542 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "satellite": "https://access.redhat.com/documentation/en-us/red_hat_satellite/6.18/ns#",
+    "foreman": "https://theforeman.org/ns#",
+    "katello": "https://github.com/Katello/katello/ns#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Host": {
+      "@id": "satellite:Host",
+      "@context": {
+        "id": {
+          "@id": "satellite:hostId",
+          "@type": "xsd:integer"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "ip": {
+          "@id": "satellite:ipv4Address",
+          "@type": "xsd:string"
+        },
+        "ip6": {
+          "@id": "satellite:ipv6Address",
+          "@type": "xsd:string"
+        },
+        "mac": {
+          "@id": "satellite:macAddress",
+          "@type": "xsd:string"
+        },
+        "hostgroup_id": {
+          "@id": "satellite:hostGroupId",
+          "@type": "xsd:integer"
+        },
+        "hostgroup_name": {
+          "@id": "satellite:hostGroupName",
+          "@type": "xsd:string"
+        },
+        "hostgroup_title": {
+          "@id": "satellite:hostGroupTitle",
+          "@type": "xsd:string"
+        },
+        "operatingsystem_id": {
+          "@id": "satellite:operatingSystemId",
+          "@type": "xsd:integer"
+        },
+        "operatingsystem_name": {
+          "@id": "schema:operatingSystem",
+          "@type": "xsd:string"
+        },
+        "architecture_id": {
+          "@id": "satellite:architectureId",
+          "@type": "xsd:integer"
+        },
+        "architecture_name": {
+          "@id": "satellite:architectureName",
+          "@type": "xsd:string"
+        },
+        "domain_id": {
+          "@id": "satellite:domainId",
+          "@type": "xsd:integer"
+        },
+        "domain_name": {
+          "@id": "satellite:domainName",
+          "@type": "xsd:string"
+        },
+        "subnet_id": {
+          "@id": "satellite:subnetId",
+          "@type": "xsd:integer"
+        },
+        "subnet_name": {
+          "@id": "satellite:subnetName",
+          "@type": "xsd:string"
+        },
+        "compute_resource_id": {
+          "@id": "satellite:computeResourceId",
+          "@type": "xsd:integer"
+        },
+        "compute_resource_name": {
+          "@id": "satellite:computeResourceName",
+          "@type": "xsd:string"
+        },
+        "location_id": {
+          "@id": "satellite:locationId",
+          "@type": "xsd:integer"
+        },
+        "location_name": {
+          "@id": "schema:location",
+          "@type": "xsd:string"
+        },
+        "organization_id": {
+          "@id": "satellite:organizationId",
+          "@type": "xsd:integer"
+        },
+        "organization_name": {
+          "@id": "schema:memberOf",
+          "@type": "xsd:string"
+        },
+        "owner_id": {
+          "@id": "satellite:ownerId",
+          "@type": "xsd:integer"
+        },
+        "owner_type": {
+          "@id": "satellite:ownerType",
+          "@type": "xsd:string"
+        },
+        "managed": {
+          "@id": "satellite:isManaged",
+          "@type": "xsd:boolean"
+        },
+        "build": {
+          "@id": "satellite:isBuildMode",
+          "@type": "xsd:boolean"
+        },
+        "enabled": {
+          "@id": "satellite:isEnabled",
+          "@type": "xsd:boolean"
+        },
+        "comment": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "global_status": {
+          "@id": "satellite:globalStatus",
+          "@type": "xsd:integer"
+        },
+        "global_status_label": {
+          "@id": "satellite:globalStatusLabel",
+          "@type": "xsd:string"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "installed_at": {
+          "@id": "satellite:installedAt",
+          "@type": "xsd:dateTime"
+        },
+        "last_report": {
+          "@id": "satellite:lastReport",
+          "@type": "xsd:dateTime"
+        },
+        "content_facet_attributes": {
+          "@id": "satellite:contentFacet",
+          "@type": "@id"
+        },
+        "subscription_facet_attributes": {
+          "@id": "satellite:subscriptionFacet",
+          "@type": "@id"
+        },
+        "interfaces": {
+          "@id": "satellite:networkInterfaces",
+          "@container": "@list"
+        }
+      }
+    },
+
+    "ContentView": {
+      "@id": "katello:ContentView",
+      "@context": {
+        "id": {
+          "@id": "katello:contentViewId",
+          "@type": "xsd:integer"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "label": {
+          "@id": "katello:label",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "organization_id": {
+          "@id": "satellite:organizationId",
+          "@type": "xsd:integer"
+        },
+        "composite": {
+          "@id": "katello:isComposite",
+          "@type": "xsd:boolean"
+        },
+        "rolling": {
+          "@id": "katello:isRolling",
+          "@type": "xsd:boolean"
+        },
+        "auto_publish": {
+          "@id": "katello:autoPublish",
+          "@type": "xsd:boolean"
+        },
+        "solve_dependencies": {
+          "@id": "katello:solveDependencies",
+          "@type": "xsd:boolean"
+        },
+        "import_only": {
+          "@id": "katello:importOnly",
+          "@type": "xsd:boolean"
+        },
+        "default": {
+          "@id": "katello:isDefault",
+          "@type": "xsd:boolean"
+        },
+        "repository_ids": {
+          "@id": "katello:repositoryIds",
+          "@container": "@list"
+        },
+        "component_ids": {
+          "@id": "katello:componentIds",
+          "@container": "@list"
+        },
+        "versions": {
+          "@id": "katello:versions",
+          "@container": "@list"
+        },
+        "environments": {
+          "@id": "katello:lifecycleEnvironments",
+          "@container": "@list"
+        },
+        "next_version": {
+          "@id": "katello:nextVersion",
+          "@type": "xsd:string"
+        },
+        "last_published": {
+          "@id": "katello:lastPublished",
+          "@type": "xsd:dateTime"
+        },
+        "latest_version": {
+          "@id": "katello:latestVersion",
+          "@type": "xsd:string"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Subscription": {
+      "@id": "katello:Subscription",
+      "@context": {
+        "id": {
+          "@id": "katello:subscriptionId",
+          "@type": "xsd:integer"
+        },
+        "cp_id": {
+          "@id": "katello:candlepinId",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "product_id": {
+          "@id": "katello:productId",
+          "@type": "xsd:string"
+        },
+        "product_name": {
+          "@id": "katello:productName",
+          "@type": "xsd:string"
+        },
+        "contract_number": {
+          "@id": "katello:contractNumber",
+          "@type": "xsd:string"
+        },
+        "account_number": {
+          "@id": "katello:accountNumber",
+          "@type": "xsd:string"
+        },
+        "quantity": {
+          "@id": "katello:totalQuantity",
+          "@type": "xsd:integer"
+        },
+        "consumed": {
+          "@id": "katello:consumedQuantity",
+          "@type": "xsd:integer"
+        },
+        "available": {
+          "@id": "katello:availableQuantity",
+          "@type": "xsd:integer"
+        },
+        "start_date": {
+          "@id": "schema:validFrom",
+          "@type": "xsd:dateTime"
+        },
+        "end_date": {
+          "@id": "schema:validThrough",
+          "@type": "xsd:dateTime"
+        },
+        "support_level": {
+          "@id": "katello:supportLevel",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "katello:subscriptionType",
+          "@type": "xsd:string"
+        },
+        "virt_only": {
+          "@id": "katello:virtualOnly",
+          "@type": "xsd:boolean"
+        },
+        "multi_entitlement": {
+          "@id": "katello:multiEntitlement",
+          "@type": "xsd:boolean"
+        },
+        "organization_id": {
+          "@id": "satellite:organizationId",
+          "@type": "xsd:integer"
+        },
+        "provided_products": {
+          "@id": "katello:providedProducts",
+          "@container": "@list"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "LifecycleEnvironment": {
+      "@id": "katello:LifecycleEnvironment",
+      "@context": {
+        "id": {
+          "@id": "katello:lifecycleEnvironmentId",
+          "@type": "xsd:integer"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "label": {
+          "@id": "katello:label",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "organization_id": {
+          "@id": "satellite:organizationId",
+          "@type": "xsd:integer"
+        },
+        "library": {
+          "@id": "katello:isLibrary",
+          "@type": "xsd:boolean"
+        },
+        "prior": {
+          "@id": "katello:priorEnvironment",
+          "@type": "@id"
+        },
+        "successor": {
+          "@id": "katello:successorEnvironment",
+          "@type": "@id"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Organization": {
+      "@id": "satellite:Organization",
+      "@context": {
+        "id": {
+          "@id": "satellite:organizationId",
+          "@type": "xsd:integer"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "label": {
+          "@id": "satellite:label",
+          "@type": "xsd:string"
+        },
+        "title": {
+          "@id": "satellite:title",
+          "@type": "xsd:string"
+        },
+        "description": {
+          "@id": "schema:description",
+          "@type": "xsd:string"
+        },
+        "created_at": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated_at": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "HostInterface": {
+      "@id": "satellite:HostInterface",
+      "@context": {
+        "id": {
+          "@id": "satellite:interfaceId",
+          "@type": "xsd:integer"
+        },
+        "mac": {
+          "@id": "satellite:macAddress",
+          "@type": "xsd:string"
+        },
+        "ip": {
+          "@id": "satellite:ipv4Address",
+          "@type": "xsd:string"
+        },
+        "ip6": {
+          "@id": "satellite:ipv6Address",
+          "@type": "xsd:string"
+        },
+        "type": {
+          "@id": "satellite:interfaceType",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "schema:name",
+          "@type": "xsd:string"
+        },
+        "identifier": {
+          "@id": "satellite:deviceIdentifier",
+          "@type": "xsd:string"
+        },
+        "managed": {
+          "@id": "satellite:isManaged",
+          "@type": "xsd:boolean"
+        },
+        "primary": {
+          "@id": "satellite:isPrimary",
+          "@type": "xsd:boolean"
+        },
+        "provision": {
+          "@id": "satellite:isProvision",
+          "@type": "xsd:boolean"
+        },
+        "virtual": {
+          "@id": "satellite:isVirtual",
+          "@type": "xsd:boolean"
+        },
+        "mtu": {
+          "@id": "satellite:mtu",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "ContentFacet": {
+      "@id": "katello:ContentFacet",
+      "@context": {
+        "content_view_id": {
+          "@id": "katello:contentViewId",
+          "@type": "xsd:integer"
+        },
+        "content_view_name": {
+          "@id": "katello:contentViewName",
+          "@type": "xsd:string"
+        },
+        "lifecycle_environment_id": {
+          "@id": "katello:lifecycleEnvironmentId",
+          "@type": "xsd:integer"
+        },
+        "lifecycle_environment_name": {
+          "@id": "katello:lifecycleEnvironmentName",
+          "@type": "xsd:string"
+        },
+        "content_source_id": {
+          "@id": "katello:contentSourceId",
+          "@type": "xsd:integer"
+        },
+        "applicable_errata_count": {
+          "@id": "katello:applicableErrataCount",
+          "@type": "xsd:integer"
+        },
+        "upgradable_package_count": {
+          "@id": "katello:upgradablePackageCount",
+          "@type": "xsd:integer"
+        }
+      }
+    },
+
+    "SubscriptionFacet": {
+      "@id": "katello:SubscriptionFacet",
+      "@context": {
+        "uuid": {
+          "@id": "katello:subscriptionManagerUuid",
+          "@type": "xsd:string"
+        },
+        "registered_at": {
+          "@id": "katello:registeredAt",
+          "@type": "xsd:dateTime"
+        },
+        "last_checkin": {
+          "@id": "katello:lastCheckin",
+          "@type": "xsd:dateTime"
+        },
+        "service_level": {
+          "@id": "katello:serviceLevel",
+          "@type": "xsd:string"
+        },
+        "release_version": {
+          "@id": "katello:releaseVersion",
+          "@type": "xsd:string"
+        },
+        "autoheal": {
+          "@id": "katello:autoheal",
+          "@type": "xsd:boolean"
+        },
+        "registered_through": {
+          "@id": "katello:registeredThrough",
+          "@type": "xsd:string"
+        }
+      }
+    }
+  }
+}

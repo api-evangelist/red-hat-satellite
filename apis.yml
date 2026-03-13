@@ -8,7 +8,7 @@ tags:
 - Patch Management
 - Subscription Management
 created: '2024'
-modified: '2024'
+modified: '2026-03-03'
 url: https://www.redhat.com/en/technologies/management/satellite
 apis:
 - name: Red Hat Satellite REST API
@@ -22,32 +22,44 @@ apis:
   - Automation
   properties:
   - type: Documentation
-    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
   - type: OpenAPI
     url: https://satellite.example.com/apidoc/v2.json
+  - type: OpenAPI
+    url: openapi/red-hat-satellite-api.yml
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-schema.json
+  - type: JSONLDContext
+    url: json-ld/red-hat-satellite-context.jsonld
   - type: Authentication
     url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-api_guide-authentication
+  - type: GettingStartedGuide
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/introduction-to-satellite-api
+  - type: APIReferenceLatest
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
   contact:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Satellite Hammer CLI
-  description: Command-line interface tool for Red Hat Satellite that provides scriptable access to Satellite functions.
+  description: Command-line interface tool for Red Hat Satellite that provides scriptable access to Satellite functions including host management, content views, and provisioning.
   image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
-  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/hammer_cli_guide/index
+  humanURL: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_hammer_cli_tool/index
   tags:
   - CLI
   - Command Line
   - Automation
   properties:
   - type: Documentation
-    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/hammer_cli_guide/index
-  - type: Installation Guide
-    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/hammer_cli_guide/installing_hammer
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_hammer_cli_tool/index
+  - type: CheatSheet
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html/using_the_hammer_cli_tool/hammer-cheat-sheet
+  - type: Authentication
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html/using_the_hammer_cli_tool/hammer-authentication
   contact:
   - type: Support
     url: https://access.redhat.com/support
 - name: Red Hat Satellite Foreman API
-  description: Core Foreman API integrated into Red Hat Satellite for host lifecycle management, provisioning, and configuration management.
+  description: Core Foreman API integrated into Red Hat Satellite for host lifecycle management, provisioning, and configuration management. This is the upstream project API that powers Satellite's core functionality including the web UI, users, organizations, and security.
   image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
   baseURL: https://satellite.example.com/api
   humanURL: https://theforeman.org/api.html
@@ -55,36 +67,78 @@ apis:
   - REST API
   - Foreman
   - Provisioning
+  - Host Management
   properties:
   - type: Documentation
-    url: https://satellite.example.com/apidoc
-  - type: API Explorer
-    url: https://satellite.example.com/apidoc/v2.html
+    url: https://apidocs.theforeman.org/
+  - type: APIReferenceLatest
+    url: https://apidocs.theforeman.org/foreman/latest/apidoc/v2.html
+  - type: GitHubOrganization
+    url: https://github.com/theforeman
+  - type: SourceCode
+    url: https://github.com/theforeman/foreman
+  - type: APIDocsRepository
+    url: https://github.com/theforeman/apidocs
   contact:
   - type: Support
     url: https://access.redhat.com/support
+  - type: Community
+    url: https://community.theforeman.org/
 - name: Red Hat Satellite Katello API
-  description: Content management API for Red Hat Satellite handling repositories, content views, lifecycle environments, and subscriptions.
+  description: Content management API for Red Hat Satellite handling repositories, content views, lifecycle environments, subscriptions, and errata. Katello is the upstream plugin that provides Satellite's content and subscription management capabilities.
   image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
   baseURL: https://satellite.example.com/katello/api
-  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
+  humanURL: https://theforeman.org/plugins/katello/
   tags:
   - REST API
   - Content Management
   - Subscriptions
+  - Lifecycle Environments
+  - Repositories
   properties:
   - type: Documentation
-    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/index
-  - type: Content Management Guide
-    url: https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/managing_content/index
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+  - type: APIReferenceLatest
+    url: https://apidocs.theforeman.org/katello/latest/apidoc/v2.html
+  - type: ContentManagementGuide
+    url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/managing_content/index
+  - type: SourceCode
+    url: https://github.com/Katello/katello
+  - type: GitHubOrganization
+    url: https://github.com/Katello
   contact:
   - type: Support
     url: https://access.redhat.com/support
+- name: Red Hat Satellite Ansible Collection
+  description: The redhat.satellite Ansible collection provides modules, roles, and plugins for automating Red Hat Satellite configuration and management through the Satellite API. Based on the theforeman.foreman community collection.
+  image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+  humanURL: https://catalog.redhat.com/en/software/collection/redhat/satellite
+  tags:
+  - Ansible
+  - Automation
+  - Configuration Management
+  - Infrastructure as Code
+  properties:
+  - type: Documentation
+    url: https://redhatsatellite.github.io/satellite-ansible-collection/develop/README.html
+  - type: SourceCode
+    url: https://github.com/RedHatSatellite/satellite-ansible-collection
+  - type: AutomationHubListing
+    url: https://catalog.redhat.com/en/software/collection/redhat/satellite
+  - type: CommunityUpstream
+    url: https://github.com/theforeman/foreman-ansible-modules
+  - type: Blog
+    url: https://www.redhat.com/en/blog/automating-red-hat-satellite-with-ansible
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+  - type: Issues
+    url: https://bugzilla.redhat.com
 common:
 - type: Portal
   url: https://access.redhat.com/
 - type: Documentation
-  url: https://access.redhat.com/documentation/en-us/red_hat_satellite/
+  url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16
 - type: Support
   url: https://access.redhat.com/support/
 - type: Status
@@ -97,7 +151,21 @@ common:
   url: https://access.redhat.com/solutions/
 - type: Community
   url: https://access.redhat.com/community/
+- type: ForemanCommunity
+  url: https://community.theforeman.org/
+- type: ReleaseNotes
+  url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html-single/release_notes/index
+- type: ProductLifecycle
+  url: https://access.redhat.com/support/policy/updates/satellite
+- type: ReleaseDates
+  url: https://access.redhat.com/articles/1365633
+- type: ProvisioningGuide
+  url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html/provisioning_hosts/index
+- type: ManagingHostsGuide
+  url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/managing_content/index
+- type: APIDocumentation
+  url: https://apidocs.theforeman.org/
 maintainers:
-- name: Red Hat
-  email: satellite-subscriptions@redhat.com
-  url: https://www.redhat.com/en/technologies/management/satellite
+- name: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
