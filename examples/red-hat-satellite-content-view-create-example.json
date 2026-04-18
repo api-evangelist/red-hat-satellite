@@ -1,0 +1,14 @@
+{
+  "organization_id": "500123",
+  "name": "Example Title",
+  "label": "Example Title",
+  "description": "A sample description.",
+  "composite": true,
+  "rolling": true,
+  "auto_publish": true,
+  "solve_dependencies": true,
+  "import_only": true,
+  "repository_ids": [],
+  "component_ids": [],
+  "environment_ids": []
+}

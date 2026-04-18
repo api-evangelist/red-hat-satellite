@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "HostInterface",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "mac": {
+      "type": "['string', 'null']"
+    },
+    "ip": {
+      "type": "['string', 'null']"
+    },
+    "ip6": {
+      "type": "['string', 'null']"
+    },
+    "type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "['string', 'null']"
+    },
+    "subnet_id": {
+      "type": "['integer', 'null']"
+    },
+    "subnet6_id": {
+      "type": "['integer', 'null']"
+    },
+    "domain_id": {
+      "type": "['integer', 'null']"
+    },
+    "identifier": {
+      "type": "['string', 'null']"
+    },
+    "managed": {
+      "type": "boolean"
+    },
+    "primary": {
+      "type": "boolean"
+    },
+    "provision": {
+      "type": "boolean"
+    },
+    "virtual": {
+      "type": "boolean"
+    },
+    "tag": {
+      "type": "['string', 'null']"
+    },
+    "mtu": {
+      "type": "['integer', 'null']"
+    },
+    "attached_to": {
+      "type": "['string', 'null']"
+    }
+  }
+}

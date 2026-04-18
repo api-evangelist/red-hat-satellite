@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ForemanTask",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "pending": {
+      "type": "boolean"
+    },
+    "action": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "result": {
+      "type": "string"
+    },
+    "progress": {
+      "type": "number"
+    },
+    "started_at": {
+      "type": "['string', 'null']"
+    },
+    "ended_at": {
+      "type": "['string', 'null']"
+    },
+    "humanized": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "cp_id": {
+      "type": "string"
+    },
+    "subscription_id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "['string', 'null']"
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "product_name": {
+      "type": "string"
+    },
+    "contract_number": {
+      "type": "['string', 'null']"
+    },
+    "account_number": {
+      "type": "['string', 'null']"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "consumed": {
+      "type": "integer"
+    },
+    "available": {
+      "type": "integer"
+    },
+    "start_date": {
+      "type": "string"
+    },
+    "end_date": {
+      "type": "string"
+    },
+    "support_level": {
+      "type": "['string', 'null']"
+    },
+    "type": {
+      "type": "string"
+    },
+    "virt_only": {
+      "type": "boolean"
+    },
+    "virt_who": {
+      "type": "boolean"
+    },
+    "multi_entitlement": {
+      "type": "boolean"
+    },
+    "stacking_id": {
+      "type": "['string', 'null']"
+    },
+    "upstream_pool_id": {
+      "type": "['string', 'null']"
+    },
+    "organization_id": {
+      "type": "integer"
+    },
+    "provided_products": {
+      "type": "array"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

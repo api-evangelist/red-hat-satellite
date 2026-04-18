@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContentViewCreate",
+  "type": "object",
+  "description": "Parameters for creating a new content view.",
+  "properties": {
+    "organization_id": {
+      "type": "integer",
+      "description": "Organization identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the content view."
+    },
+    "label": {
+      "type": "string",
+      "description": "Content view label (auto-generated from name if omitted)."
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the content view."
+    },
+    "composite": {
+      "type": "boolean",
+      "description": "Whether this is a composite content view."
+    },
+    "rolling": {
+      "type": "boolean",
+      "description": "Whether this is a rolling content view."
+    },
+    "auto_publish": {
+      "type": "boolean",
+      "description": "Auto-publish composite view when a component updates."
+    },
+    "solve_dependencies": {
+      "type": "boolean",
+      "description": "Resolve RPM dependencies during publish."
+    },
+    "import_only": {
+      "type": "boolean",
+      "description": "Mark as import-only content view."
+    },
+    "repository_ids": {
+      "type": "array",
+      "description": "Repository IDs to include."
+    },
+    "component_ids": {
+      "type": "array",
+      "description": "Content view version IDs for composite views."
+    },
+    "environment_ids": {
+      "type": "array",
+      "description": "Lifecycle environment IDs for rolling content views."
+    }
+  }
+}

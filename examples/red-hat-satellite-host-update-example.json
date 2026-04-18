@@ -1,0 +1,19 @@
+{
+  "name": "Example Title",
+  "ip": "example_value",
+  "mac": "example_value",
+  "architecture_id": "500123",
+  "domain_id": "500123",
+  "subnet_id": "500123",
+  "operatingsystem_id": "500123",
+  "hostgroup_id": "500123",
+  "location_id": "500123",
+  "organization_id": "500123",
+  "owner_id": "500123",
+  "owner_type": "example_value",
+  "build": true,
+  "managed": true,
+  "comment": "example_value",
+  "content_facet_attributes": "example_value",
+  "interfaces_attributes": []
+}

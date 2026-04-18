@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Organization",
+  "type": "object",
+  "description": "An organization providing multi-tenancy isolation for content, hosts, and subscriptions.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the organization."
+    },
+    "name": {
+      "type": "string",
+      "description": "Organization name."
+    },
+    "label": {
+      "type": "string",
+      "description": "Unique label for the organization."
+    },
+    "title": {
+      "type": "string",
+      "description": "Organization title."
+    },
+    "description": {
+      "type": "['string', 'null']",
+      "description": "Organization description."
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

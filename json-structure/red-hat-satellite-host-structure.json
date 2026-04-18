@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "Host",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "ip": {
+      "type": "['string', 'null']"
+    },
+    "ip6": {
+      "type": "['string', 'null']"
+    },
+    "mac": {
+      "type": "['string', 'null']"
+    },
+    "environment_id": {
+      "type": "['integer', 'null']"
+    },
+    "hostgroup_id": {
+      "type": "['integer', 'null']"
+    },
+    "hostgroup_name": {
+      "type": "['string', 'null']"
+    },
+    "hostgroup_title": {
+      "type": "['string', 'null']"
+    },
+    "operatingsystem_id": {
+      "type": "['integer', 'null']"
+    },
+    "operatingsystem_name": {
+      "type": "['string', 'null']"
+    },
+    "architecture_id": {
+      "type": "['integer', 'null']"
+    },
+    "architecture_name": {
+      "type": "['string', 'null']"
+    },
+    "domain_id": {
+      "type": "['integer', 'null']"
+    },
+    "domain_name": {
+      "type": "['string', 'null']"
+    },
+    "subnet_id": {
+      "type": "['integer', 'null']"
+    },
+    "subnet_name": {
+      "type": "['string', 'null']"
+    },
+    "subnet6_id": {
+      "type": "['integer', 'null']"
+    },
+    "compute_resource_id": {
+      "type": "['integer', 'null']"
+    },
+    "compute_resource_name": {
+      "type": "['string', 'null']"
+    },
+    "compute_profile_id": {
+      "type": "['integer', 'null']"
+    },
+    "medium_id": {
+      "type": "['integer', 'null']"
+    },
+    "ptable_id": {
+      "type": "['integer', 'null']"
+    },
+    "model_id": {
+      "type": "['integer', 'null']"
+    },
+    "model_name": {
+      "type": "['string', 'null']"
+    },
+    "location_id": {
+      "type": "integer"
+    },
+    "location_name": {
+      "type": "string"
+    },
+    "organization_id": {
+      "type": "integer"
+    },
+    "organization_name": {
+      "type": "string"
+    },
+    "owner_id": {
+      "type": "['integer', 'null']"
+    },
+    "owner_type": {
+      "type": "['string', 'null']"
+    },
+    "managed": {
+      "type": "boolean"
+    },
+    "build": {
+      "type": "boolean"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "comment": {
+      "type": "['string', 'null']"
+    },
+    "uuid": {
+      "type": "['string', 'null']"
+    },
+    "global_status": {
+      "type": "integer"
+    },
+    "global_status_label": {
+      "type": "string"
+    },
+    "content_facet_attributes": {
+      "type": "object"
+    },
+    "subscription_facet_attributes": {
+      "type": "object"
+    },
+    "interfaces": {
+      "type": "array"
+    },
+    "puppetclasses": {
+      "type": "array"
+    },
+    "all_puppetclasses": {
+      "type": "array"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "installed_at": {
+      "type": "['string', 'null']"
+    },
+    "last_report": {
+      "type": "['string', 'null']"
+    }
+  }
+}

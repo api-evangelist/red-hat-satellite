@@ -1,0 +1,9 @@
+{
+  "name": "Example Title",
+  "description": "A sample description.",
+  "auto_publish": true,
+  "solve_dependencies": true,
+  "repository_ids": [],
+  "component_ids": [],
+  "environment_ids": []
+}

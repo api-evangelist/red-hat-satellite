@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Subscription",
+  "type": "object",
+  "description": "A Red Hat subscription providing product entitlements for an organization.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the subscription."
+    },
+    "cp_id": {
+      "type": "string",
+      "description": "Candlepin subscription identifier."
+    },
+    "subscription_id": {
+      "type": "integer",
+      "description": "Subscription pool identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Subscription name (product name)."
+    },
+    "description": {
+      "type": "['string', 'null']",
+      "description": "Subscription description."
+    },
+    "product_id": {
+      "type": "string",
+      "description": "Red Hat product identifier."
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Red Hat product name."
+    },
+    "contract_number": {
+      "type": "['string', 'null']",
+      "description": "Contract number associated with the subscription."
+    },
+    "account_number": {
+      "type": "['string', 'null']",
+      "description": "Customer account number."
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "Total quantity of entitlements in the subscription."
+    },
+    "consumed": {
+      "type": "integer",
+      "description": "Number of entitlements currently consumed."
+    },
+    "available": {
+      "type": "integer",
+      "description": "Number of entitlements available for attachment."
+    },
+    "start_date": {
+      "type": "string",
+      "description": "Subscription start date."
+    },
+    "end_date": {
+      "type": "string",
+      "description": "Subscription end date."
+    },
+    "support_level": {
+      "type": "['string', 'null']",
+      "description": "Support level (e.g., Premium, Standard, Self-Support)."
+    },
+    "type": {
+      "type": "string",
+      "description": "Subscription type."
+    },
+    "virt_only": {
+      "type": "boolean",
+      "description": "Whether this subscription is for virtual systems only."
+    },
+    "virt_who": {
+      "type": "boolean",
+      "description": "Whether this subscription requires virt-who reporting."
+    },
+    "multi_entitlement": {
+      "type": "boolean",
+      "description": "Whether multiple entitlements can be attached to a single host."
+    },
+    "stacking_id": {
+      "type": "['string', 'null']",
+      "description": "Stacking identifier for stackable subscriptions."
+    },
+    "upstream_pool_id": {
+      "type": "['string', 'null']",
+      "description": "Pool identifier from the upstream subscription source."
+    },
+    "organization_id": {
+      "type": "integer",
+      "description": "Organization this subscription belongs to."
+    },
+    "provided_products": {
+      "type": "array",
+      "description": "Products provided by this subscription."
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ForemanTask",
+  "type": "object",
+  "description": "An asynchronous task object returned for long-running operations such as publishing content views or uploading manifests.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique task identifier."
+    },
+    "label": {
+      "type": "string",
+      "description": "Machine-readable task label."
+    },
+    "pending": {
+      "type": "boolean",
+      "description": "Whether the task is still pending."
+    },
+    "action": {
+      "type": "string",
+      "description": "Human-readable description of the task action."
+    },
+    "username": {
+      "type": "string",
+      "description": "User who initiated the task."
+    },
+    "state": {
+      "type": "string",
+      "description": "Current state of the task."
+    },
+    "result": {
+      "type": "string",
+      "description": "Result of the task."
+    },
+    "progress": {
+      "type": "number",
+      "description": "Task progress as a decimal (0.0 to 1.0)."
+    },
+    "started_at": {
+      "type": "['string', 'null']"
+    },
+    "ended_at": {
+      "type": "['string', 'null']"
+    },
+    "humanized": {
+      "type": "object"
+    }
+  }
+}

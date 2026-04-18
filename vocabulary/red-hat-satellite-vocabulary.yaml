@@ -1,0 +1,12 @@
+name: red-hat-satellite API Vocabulary
+provider: red-hat-satellite
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 22
+schemas: 12
+tags:
+- Content Views
+- Hosts
+- Lifecycle Environments
+- Organizations
+- Subscriptions

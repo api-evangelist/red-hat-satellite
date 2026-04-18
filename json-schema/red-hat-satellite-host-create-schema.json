@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HostCreate",
+  "type": "object",
+  "description": "Parameters for creating a new host.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Hostname or FQDN."
+    },
+    "location_id": {
+      "type": "integer",
+      "description": "Location identifier."
+    },
+    "organization_id": {
+      "type": "integer",
+      "description": "Organization identifier."
+    },
+    "ip": {
+      "type": "string",
+      "description": "IPv4 address (not required when using DHCP proxy)."
+    },
+    "mac": {
+      "type": "string",
+      "description": "MAC address (required for managed bare metal hosts)."
+    },
+    "architecture_id": {
+      "type": "integer",
+      "description": "Architecture identifier (required if managed)."
+    },
+    "domain_id": {
+      "type": "integer",
+      "description": "Domain identifier (required if managed)."
+    },
+    "subnet_id": {
+      "type": "integer",
+      "description": "Subnet identifier (required if managed)."
+    },
+    "operatingsystem_id": {
+      "type": "integer",
+      "description": "Operating system identifier (required if managed)."
+    },
+    "medium_id": {
+      "type": "integer",
+      "description": "Installation medium identifier (required for non-image provisioning if managed)."
+    },
+    "ptable_id": {
+      "type": "integer",
+      "description": "Partition table identifier (required if managed and no custom partition layout)."
+    },
+    "compute_resource_id": {
+      "type": "integer",
+      "description": "Compute resource identifier. Null indicates bare metal."
+    },
+    "compute_profile_id": {
+      "type": "integer",
+      "description": "Compute profile identifier."
+    },
+    "hostgroup_id": {
+      "type": "integer",
+      "description": "Host group identifier."
+    },
+    "root_pass": {
+      "type": "string",
+      "description": "Root password (required if managed unless inherited)."
+    },
+    "owner_id": {
+      "type": "integer",
+      "description": "Owner identifier."
+    },
+    "owner_type": {
+      "type": "string",
+      "description": "Owner type."
+    },
+    "build": {
+      "type": "boolean",
+      "description": "Enable build mode for provisioning."
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "Whether the host should be managed by Satellite."
+    },
+    "comment": {
+      "type": "string",
+      "description": "Additional information about the host."
+    },
+    "content_facet_attributes": {
+      "type": "object"
+    },
+    "interfaces_attributes": {
+      "type": "array",
+      "description": "Network interface configurations."
+    }
+  }
+}

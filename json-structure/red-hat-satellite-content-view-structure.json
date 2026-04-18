@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ContentView",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "['string', 'null']"
+    },
+    "organization_id": {
+      "type": "integer"
+    },
+    "organization": {
+      "type": "object"
+    },
+    "composite": {
+      "type": "boolean"
+    },
+    "rolling": {
+      "type": "boolean"
+    },
+    "auto_publish": {
+      "type": "boolean"
+    },
+    "solve_dependencies": {
+      "type": "boolean"
+    },
+    "import_only": {
+      "type": "boolean"
+    },
+    "generated_for": {
+      "type": "['string', 'null']"
+    },
+    "default": {
+      "type": "boolean"
+    },
+    "repository_ids": {
+      "type": "array"
+    },
+    "repositories": {
+      "type": "array"
+    },
+    "component_ids": {
+      "type": "array"
+    },
+    "versions": {
+      "type": "array"
+    },
+    "environments": {
+      "type": "array"
+    },
+    "activation_keys": {
+      "type": "array"
+    },
+    "next_version": {
+      "type": "string"
+    },
+    "last_published": {
+      "type": "['string', 'null']"
+    },
+    "latest_version": {
+      "type": "['string', 'null']"
+    },
+    "latest_version_id": {
+      "type": "['integer', 'null']"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

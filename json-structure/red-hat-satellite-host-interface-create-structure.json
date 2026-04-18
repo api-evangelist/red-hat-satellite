@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "HostInterfaceCreate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "mac": {
+      "type": "string"
+    },
+    "ip": {
+      "type": "string"
+    },
+    "ip6": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "subnet_id": {
+      "type": "integer"
+    },
+    "subnet6_id": {
+      "type": "integer"
+    },
+    "domain_id": {
+      "type": "integer"
+    },
+    "identifier": {
+      "type": "string"
+    },
+    "managed": {
+      "type": "boolean"
+    },
+    "primary": {
+      "type": "boolean"
+    },
+    "provision": {
+      "type": "boolean"
+    },
+    "virtual": {
+      "type": "boolean"
+    },
+    "tag": {
+      "type": "string"
+    },
+    "mtu": {
+      "type": "integer"
+    },
+    "attached_to": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "attached_devices": {
+      "type": "array"
+    },
+    "bond_options": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LifecycleEnvironment",
+  "type": "object",
+  "description": "A lifecycle environment defining a stage in the content promotion path.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the lifecycle environment."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the lifecycle environment."
+    },
+    "label": {
+      "type": "string",
+      "description": "Unique label for the lifecycle environment."
+    },
+    "description": {
+      "type": "['string', 'null']",
+      "description": "Description of the lifecycle environment."
+    },
+    "organization_id": {
+      "type": "integer",
+      "description": "Organization this environment belongs to."
+    },
+    "organization": {
+      "type": "object"
+    },
+    "library": {
+      "type": "boolean",
+      "description": "Whether this is the Library environment."
+    },
+    "prior": {
+      "type": "object",
+      "description": "Prior environment in the promotion path."
+    },
+    "successor": {
+      "type": "['object', 'null']",
+      "description": "Successor environment in the promotion path."
+    },
+    "counts": {
+      "type": "object",
+      "description": "Content counts for this environment."
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ContentViewCreate",
+  "type": "object",
+  "properties": {
+    "organization_id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "composite": {
+      "type": "boolean"
+    },
+    "rolling": {
+      "type": "boolean"
+    },
+    "auto_publish": {
+      "type": "boolean"
+    },
+    "solve_dependencies": {
+      "type": "boolean"
+    },
+    "import_only": {
+      "type": "boolean"
+    },
+    "repository_ids": {
+      "type": "array"
+    },
+    "component_ids": {
+      "type": "array"
+    },
+    "environment_ids": {
+      "type": "array"
+    }
+  }
+}

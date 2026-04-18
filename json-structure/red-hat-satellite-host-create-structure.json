@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "HostCreate",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "location_id": {
+      "type": "integer"
+    },
+    "organization_id": {
+      "type": "integer"
+    },
+    "ip": {
+      "type": "string"
+    },
+    "mac": {
+      "type": "string"
+    },
+    "architecture_id": {
+      "type": "integer"
+    },
+    "domain_id": {
+      "type": "integer"
+    },
+    "subnet_id": {
+      "type": "integer"
+    },
+    "operatingsystem_id": {
+      "type": "integer"
+    },
+    "medium_id": {
+      "type": "integer"
+    },
+    "ptable_id": {
+      "type": "integer"
+    },
+    "compute_resource_id": {
+      "type": "integer"
+    },
+    "compute_profile_id": {
+      "type": "integer"
+    },
+    "hostgroup_id": {
+      "type": "integer"
+    },
+    "root_pass": {
+      "type": "string"
+    },
+    "owner_id": {
+      "type": "integer"
+    },
+    "owner_type": {
+      "type": "string"
+    },
+    "build": {
+      "type": "boolean"
+    },
+    "managed": {
+      "type": "boolean"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "content_facet_attributes": {
+      "type": "object"
+    },
+    "interfaces_attributes": {
+      "type": "array"
+    }
+  }
+}

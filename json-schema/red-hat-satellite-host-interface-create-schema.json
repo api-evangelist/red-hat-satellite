@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HostInterfaceCreate",
+  "type": "object",
+  "description": "Parameters for creating or updating a host network interface.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Interface identifier (for updating existing interfaces)."
+    },
+    "mac": {
+      "type": "string",
+      "description": "MAC address."
+    },
+    "ip": {
+      "type": "string",
+      "description": "IPv4 address."
+    },
+    "ip6": {
+      "type": "string",
+      "description": "IPv6 address."
+    },
+    "type": {
+      "type": "string",
+      "description": "Interface type."
+    },
+    "name": {
+      "type": "string",
+      "description": "DNS name."
+    },
+    "subnet_id": {
+      "type": "integer",
+      "description": "IPv4 subnet identifier."
+    },
+    "subnet6_id": {
+      "type": "integer",
+      "description": "IPv6 subnet identifier."
+    },
+    "domain_id": {
+      "type": "integer",
+      "description": "Domain identifier."
+    },
+    "identifier": {
+      "type": "string",
+      "description": "Device identifier (e.g., eth0)."
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "Whether DNS and DHCP are managed for this interface."
+    },
+    "primary": {
+      "type": "boolean",
+      "description": "Whether this is the primary interface for FQDN."
+    },
+    "provision": {
+      "type": "boolean",
+      "description": "Whether this interface is used for provisioning."
+    },
+    "virtual": {
+      "type": "boolean",
+      "description": "Whether this is a virtual interface (alias or VLAN)."
+    },
+    "tag": {
+      "type": "string",
+      "description": "VLAN tag."
+    },
+    "mtu": {
+      "type": "integer",
+      "description": "Maximum transmission unit."
+    },
+    "attached_to": {
+      "type": "string",
+      "description": "Parent interface identifier."
+    },
+    "username": {
+      "type": "string",
+      "description": "BMC username (BMC interfaces only)."
+    },
+    "password": {
+      "type": "string",
+      "description": "BMC password (BMC interfaces only)."
+    },
+    "provider": {
+      "type": "string",
+      "description": "BMC provider (BMC interfaces only)."
+    },
+    "mode": {
+      "type": "string",
+      "description": "Bond mode (bond interfaces only)."
+    },
+    "attached_devices": {
+      "type": "array",
+      "description": "Slave or bridge member interface identifiers."
+    },
+    "bond_options": {
+      "type": "string",
+      "description": "Additional bond options (space-separated)."
+    }
+  }
+}
