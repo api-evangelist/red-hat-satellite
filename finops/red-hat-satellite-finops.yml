@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,161 +9,58 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Red Hat Satellite
 providerId: red-hat-satellite
-publisherName: Red Hat Satellite
-serviceCategory: API
+publisherName: Red Hat, Inc.
+serviceCategory: System Management
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Configuration Management
-  - Lifecycle Management
-  - Patch Management
-  - Subscription Management
-  - Systems Management
+  - System Management
+  - Provisioning
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Red Hat Satellite API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: FOCUS-aligned FinOps shape for Red Hat Satellite. Pricing is contact-sales, typically
+  sized by managed-host count; meters here reflect the assumed host-based subscription, not a
+  fetched billing surface.
+sources:
+  - https://www.redhat.com/en/technologies/management/satellite
+notes: No public Satellite price list; meter list reflects the typical managed-host subscription
+  shape rather than a fetched billing API.
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
+  pricingCategory: Subscription
+  billingFrequency: Annual
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
-    - Tax
-    - Credit
-    - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Red Hat Satellite
-  ServiceCategory: Developer Tools / API
-  ProviderName: Red Hat Satellite
-  PublisherName: Red Hat Satellite
-  InvoiceIssuerName: Red Hat Satellite
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceCategory: System Management
+  ProviderName: Red Hat
+  PublisherName: Red Hat, Inc.
+  InvoiceIssuerName: Red Hat, Inc.
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: managed_host_subscription
+    description: Annual Satellite subscription line per managed RHEL host
+    unit: host-year
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Red Hat Satellite REST API
-    baseURL: https://satellite.example.com/api/v2
-    tags:
-      - Automation
-      - REST API
-      - Systems Management
-    serviceName: Red Hat Satellite REST API
-    serviceCategory: API
-  - name: Red Hat Satellite Hammer CLI
-    baseURL: ''
-    tags:
-      - Automation
-      - CLI
-      - Command Line
-    serviceName: Red Hat Satellite Hammer CLI
-    serviceCategory: API
-  - name: Red Hat Satellite Foreman API
-    baseURL: https://satellite.example.com/api
-    tags:
-      - Foreman
-      - Host Management
-      - Provisioning
-      - REST API
-    serviceName: Red Hat Satellite Foreman API
-    serviceCategory: API
-  - name: Red Hat Satellite Katello API
-    baseURL: https://satellite.example.com/katello/api
-    tags:
-      - Content Management
-      - Lifecycle Environments
-      - Repositories
-      - REST API
-      - Subscriptions
-    serviceName: Red Hat Satellite Katello API
-    serviceCategory: API
-  - name: Red Hat Satellite Ansible Collection
-    baseURL: ''
-    tags:
-      - Ansible
-      - Automation
-      - Configuration Management
-      - Infrastructure as Code
-    serviceName: Red Hat Satellite Ansible Collection
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - support_level
+      - host_type
+principles:
+  - name: Visibility
+    description: Satellite itself is the inventory tool — use its host registration data to
+      reconcile entitlement counts against the active subscription.
+  - name: Allocation
+    description: Allocate Satellite subscription cost to the platform team that operates the
+      Satellite server; managed-host counts can be attributed to consuming business units via
+      host group / organization metadata.
+  - name: Optimization
+    description: Reclaim entitlements from decommissioned hosts via Satellite's host-unregister
+      flow; consolidate Satellite organizations to reduce server footprint.
+  - name: Accountability
+    description: Platform / infrastructure operations owns the Satellite subscription; consuming
+      app teams own their managed-host counts.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
