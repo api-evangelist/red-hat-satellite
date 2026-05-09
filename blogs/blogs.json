@@ -1,0 +1,19 @@
+{
+  "repo": "red-hat-satellite",
+  "feeds": [
+    {
+      "source": "https://www.redhat.com/en/blog/channel/red-hat-satellite",
+      "feed_url": "https://www.redhat.com/rss.xml",
+      "title": "Red Hat",
+      "saved": 7
+    },
+    {
+      "source": "https://www.redhat.com/en/blog/automating-red-hat-satellite-with-ansible",
+      "feed_url": "https://www.redhat.com/rss.xml",
+      "title": "Red Hat",
+      "saved": 0
+    }
+  ],
+  "fetched": "2026-05-09T20:17:51Z",
+  "post_count": 7
+}
