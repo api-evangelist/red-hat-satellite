@@ -1,0 +1,255 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Red Hat Satellite REST API — Subscriptions
+  description: 'Red Hat Satellite REST API — Subscriptions. 4 operations. Lead operation: List Organization Subscriptions.
+    Self-contained Naftiko capability covering one Red Hat Satellite business surface.'
+  tags:
+  - Red Hat Satellite
+  - Subscriptions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    RED_HAT_SATELLITE_API_KEY: RED_HAT_SATELLITE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: red-hat-satellite-subscriptions
+    baseUri: https://satellite.example.com
+    description: Red Hat Satellite REST API — Subscriptions business capability. Self-contained, no shared references.
+    resources:
+    - name: katello-api-v2-organizations-organization_id-subscriptions
+      path: /katello/api/v2/organizations/{organization_id}/subscriptions
+      operations:
+      - name: listsubscriptions
+        method: GET
+        description: List Organization Subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_id
+          in: path
+          type: integer
+          description: Organization identifier.
+          required: true
+        - name: host_id
+          in: query
+          type: string
+          description: Filter subscriptions by host identifier.
+        - name: activation_key_id
+          in: query
+          type: string
+          description: Filter subscriptions by activation key identifier.
+        - name: name
+          in: query
+          type: string
+          description: Filter by subscription name.
+        - name: available_for
+          in: query
+          type: string
+          description: Object type to show available subscriptions for (host or activation_key).
+        - name: match_host
+          in: query
+          type: boolean
+          description: Ignore subscriptions not applicable to the specified host.
+        - name: match_installed
+          in: query
+          type: boolean
+          description: Return only subscriptions matching installed products on the host.
+        - name: no_overlap
+          in: query
+          type: boolean
+          description: Exclude subscriptions that overlap with existing host attachments.
+    - name: katello-api-v2-organizations-organization_id-subscriptions-delete_manifest
+      path: /katello/api/v2/organizations/{organization_id}/subscriptions/delete_manifest
+      operations:
+      - name: deletesubscriptionmanifest
+        method: POST
+        description: Delete a Subscription Manifest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_id
+          in: path
+          type: integer
+          description: Organization identifier.
+          required: true
+    - name: katello-api-v2-organizations-organization_id-subscriptions-refresh_manifest
+      path: /katello/api/v2/organizations/{organization_id}/subscriptions/refresh_manifest
+      operations:
+      - name: refreshsubscriptionmanifest
+        method: PUT
+        description: Refresh a Subscription Manifest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_id
+          in: path
+          type: integer
+          description: Organization identifier.
+          required: true
+    - name: katello-api-v2-organizations-organization_id-subscriptions-upload
+      path: /katello/api/v2/organizations/{organization_id}/subscriptions/upload
+      operations:
+      - name: uploadsubscriptionmanifest
+        method: POST
+        description: Upload a Subscription Manifest
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: organization_id
+          in: path
+          type: integer
+          description: Organization identifier.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.RED_HAT_SATELLITE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: red-hat-satellite-subscriptions-rest
+    port: 8080
+    description: REST adapter for Red Hat Satellite REST API — Subscriptions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/katello/api/v2/organizations/{organization-id}/subscriptions
+      name: katello-api-v2-organizations-organization-id-subscriptions
+      description: REST surface for katello-api-v2-organizations-organization_id-subscriptions.
+      operations:
+      - method: GET
+        name: listsubscriptions
+        description: List Organization Subscriptions
+        call: red-hat-satellite-subscriptions.listsubscriptions
+        with:
+          organization_id: rest.organization_id
+          host_id: rest.host_id
+          activation_key_id: rest.activation_key_id
+          name: rest.name
+          available_for: rest.available_for
+          match_host: rest.match_host
+          match_installed: rest.match_installed
+          no_overlap: rest.no_overlap
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/katello/api/v2/organizations/{organization-id}/subscriptions/delete-manifest
+      name: katello-api-v2-organizations-organization-id-subscriptions-delete-manifest
+      description: REST surface for katello-api-v2-organizations-organization_id-subscriptions-delete_manifest.
+      operations:
+      - method: POST
+        name: deletesubscriptionmanifest
+        description: Delete a Subscription Manifest
+        call: red-hat-satellite-subscriptions.deletesubscriptionmanifest
+        with:
+          organization_id: rest.organization_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/katello/api/v2/organizations/{organization-id}/subscriptions/refresh-manifest
+      name: katello-api-v2-organizations-organization-id-subscriptions-refresh-manifest
+      description: REST surface for katello-api-v2-organizations-organization_id-subscriptions-refresh_manifest.
+      operations:
+      - method: PUT
+        name: refreshsubscriptionmanifest
+        description: Refresh a Subscription Manifest
+        call: red-hat-satellite-subscriptions.refreshsubscriptionmanifest
+        with:
+          organization_id: rest.organization_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/katello/api/v2/organizations/{organization-id}/subscriptions/upload
+      name: katello-api-v2-organizations-organization-id-subscriptions-upload
+      description: REST surface for katello-api-v2-organizations-organization_id-subscriptions-upload.
+      operations:
+      - method: POST
+        name: uploadsubscriptionmanifest
+        description: Upload a Subscription Manifest
+        call: red-hat-satellite-subscriptions.uploadsubscriptionmanifest
+        with:
+          organization_id: rest.organization_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: red-hat-satellite-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Red Hat Satellite REST API — Subscriptions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-organization-subscriptions
+      description: List Organization Subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: red-hat-satellite-subscriptions.listsubscriptions
+      with:
+        organization_id: tools.organization_id
+        host_id: tools.host_id
+        activation_key_id: tools.activation_key_id
+        name: tools.name
+        available_for: tools.available_for
+        match_host: tools.match_host
+        match_installed: tools.match_installed
+        no_overlap: tools.no_overlap
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-subscription-manifest
+      description: Delete a Subscription Manifest
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: red-hat-satellite-subscriptions.deletesubscriptionmanifest
+      with:
+        organization_id: tools.organization_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: refresh-subscription-manifest
+      description: Refresh a Subscription Manifest
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: red-hat-satellite-subscriptions.refreshsubscriptionmanifest
+      with:
+        organization_id: tools.organization_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upload-subscription-manifest
+      description: Upload a Subscription Manifest
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: red-hat-satellite-subscriptions.uploadsubscriptionmanifest
+      with:
+        organization_id: tools.organization_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
