@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HostCreate",
+  "title": "HostCreate",
+  "type": "object",
+  "description": "Parameters for creating a new host.",
+  "required": [
+    "name",
+    "organization_id",
+    "location_id"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Hostname or FQDN.",
+      "example": "Example Title"
+    },
+    "location_id": {
+      "type": "integer",
+      "description": "Location identifier.",
+      "example": "500123"
+    },
+    "organization_id": {
+      "type": "integer",
+      "description": "Organization identifier.",
+      "example": "500123"
+    },
+    "ip": {
+      "type": "string",
+      "description": "IPv4 address (not required when using DHCP proxy).",
+      "format": "ipv4",
+      "example": "example_value"
+    },
+    "mac": {
+      "type": "string",
+      "description": "MAC address (required for managed bare metal hosts).",
+      "example": "example_value"
+    },
+    "architecture_id": {
+      "type": "integer",
+      "description": "Architecture identifier (required if managed).",
+      "example": "500123"
+    },
+    "domain_id": {
+      "type": "integer",
+      "description": "Domain identifier (required if managed).",
+      "example": "500123"
+    },
+    "subnet_id": {
+      "type": "integer",
+      "description": "Subnet identifier (required if managed).",
+      "example": "500123"
+    },
+    "operatingsystem_id": {
+      "type": "integer",
+      "description": "Operating system identifier (required if managed).",
+      "example": "500123"
+    },
+    "medium_id": {
+      "type": "integer",
+      "description": "Installation medium identifier (required for non-image provisioning if managed).",
+      "example": "500123"
+    },
+    "ptable_id": {
+      "type": "integer",
+      "description": "Partition table identifier (required if managed and no custom partition layout).",
+      "example": "500123"
+    },
+    "compute_resource_id": {
+      "type": "integer",
+      "description": "Compute resource identifier. Null indicates bare metal.",
+      "example": "500123"
+    },
+    "compute_profile_id": {
+      "type": "integer",
+      "description": "Compute profile identifier.",
+      "example": "500123"
+    },
+    "hostgroup_id": {
+      "type": "integer",
+      "description": "Host group identifier.",
+      "example": "500123"
+    },
+    "root_pass": {
+      "type": "string",
+      "description": "Root password (required if managed unless inherited).",
+      "format": "password",
+      "example": "example_value"
+    },
+    "owner_id": {
+      "type": "integer",
+      "description": "Owner identifier.",
+      "example": "500123"
+    },
+    "owner_type": {
+      "type": "string",
+      "description": "Owner type.",
+      "enum": [
+        "User",
+        "Usergroup"
+      ],
+      "example": "User"
+    },
+    "build": {
+      "type": "boolean",
+      "description": "Enable build mode for provisioning.",
+      "example": true
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "Whether the host should be managed by Satellite.",
+      "example": true
+    },
+    "comment": {
+      "type": "string",
+      "description": "Additional information about the host.",
+      "example": "example_value"
+    },
+    "content_facet_attributes": {
+      "type": "object",
+      "properties": {
+        "content_view_id": {
+          "type": "integer",
+          "description": "Content view identifier."
+        },
+        "lifecycle_environment_id": {
+          "type": "integer",
+          "description": "Lifecycle environment identifier."
+        },
+        "content_source_id": {
+          "type": "integer",
+          "description": "Content source (Capsule) identifier."
+        }
+      },
+      "example": "example_value"
+    },
+    "interfaces_attributes": {
+      "type": "array",
+      "description": "Network interface configurations.",
+      "items": {
+        "$ref": "#/components/schemas/HostInterfaceCreate"
+      },
+      "example": []
+    }
+  }
+}

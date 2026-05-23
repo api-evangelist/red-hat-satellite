@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LifecycleEnvironment",
+  "title": "LifecycleEnvironment",
+  "type": "object",
+  "description": "A lifecycle environment defining a stage in the content promotion path.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the lifecycle environment.",
+      "example": "abc123"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the lifecycle environment.",
+      "example": "Example Title"
+    },
+    "label": {
+      "type": "string",
+      "description": "Unique label for the lifecycle environment.",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Description of the lifecycle environment.",
+      "example": "A sample description."
+    },
+    "organization_id": {
+      "type": "integer",
+      "description": "Organization this environment belongs to.",
+      "example": "500123"
+    },
+    "organization": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        }
+      },
+      "example": "example_value"
+    },
+    "library": {
+      "type": "boolean",
+      "description": "Whether this is the Library environment.",
+      "example": true
+    },
+    "prior": {
+      "type": "object",
+      "description": "Prior environment in the promotion path.",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "example": "example_value"
+    },
+    "successor": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Successor environment in the promotion path.",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "example": "example_value"
+    },
+    "counts": {
+      "type": "object",
+      "description": "Content counts for this environment.",
+      "properties": {
+        "content_hosts": {
+          "type": "integer"
+        },
+        "content_views": {
+          "type": "integer"
+        }
+      },
+      "example": "example_value"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-01-15T10:30:00Z"
+    }
+  }
+}

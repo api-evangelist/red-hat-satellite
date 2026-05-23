@@ -1,0 +1,36 @@
+{
+  "operationId": "refreshSubscriptionManifest",
+  "method": "PUT",
+  "path": "/katello/api/v2/organizations/{organization_id}/subscriptions/refresh_manifest",
+  "summary": "Refresh a Subscription Manifest",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "202",
+      "contentType": "application/json",
+      "name": "Refreshsubscriptionmanifest202Example",
+      "example": {
+        "id": "abc123",
+        "label": "Example Title",
+        "pending": true,
+        "action": "example_value",
+        "username": "example_value",
+        "state": "planned",
+        "result": "pending",
+        "progress": 42.5,
+        "started_at": "2026-01-15T10:30:00Z",
+        "ended_at": "2026-01-15T10:30:00Z",
+        "humanized": {
+          "action": "example_value",
+          "input": [
+            "example_value"
+          ],
+          "output": "example_value",
+          "errors": [
+            "example_value"
+          ]
+        }
+      }
+    }
+  ]
+}

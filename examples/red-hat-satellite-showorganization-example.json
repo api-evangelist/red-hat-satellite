@@ -1,0 +1,23 @@
+{
+  "operationId": "showOrganization",
+  "method": "GET",
+  "path": "/api/v2/organizations/{id}",
+  "summary": "Show an Organization",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Showorganization200Example",
+      "example": {
+        "id": "abc123",
+        "name": "Example Title",
+        "label": "Example Title",
+        "title": "Example Title",
+        "description": "A sample description.",
+        "created_at": "2026-01-15T10:30:00Z",
+        "updated_at": "2026-01-15T10:30:00Z"
+      }
+    }
+  ]
+}

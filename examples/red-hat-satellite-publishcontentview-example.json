@@ -1,0 +1,54 @@
+{
+  "operationId": "publishContentView",
+  "method": "POST",
+  "path": "/katello/api/v2/content_views/{id}/publish",
+  "summary": "Publish a Content View",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "PublishcontentviewRequestExample",
+      "example": {
+        "description": "A sample description.",
+        "major": 10,
+        "minor": 10,
+        "repos_units": [
+          {
+            "label": "Example Title",
+            "rpm_filenames": [
+              "example_value"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "202",
+      "contentType": "application/json",
+      "name": "Publishcontentview202Example",
+      "example": {
+        "id": "abc123",
+        "label": "Example Title",
+        "pending": true,
+        "action": "example_value",
+        "username": "example_value",
+        "state": "planned",
+        "result": "pending",
+        "progress": 42.5,
+        "started_at": "2026-01-15T10:30:00Z",
+        "ended_at": "2026-01-15T10:30:00Z",
+        "humanized": {
+          "action": "example_value",
+          "input": [
+            "example_value"
+          ],
+          "output": "example_value",
+          "errors": [
+            "example_value"
+          ]
+        }
+      }
+    }
+  ]
+}

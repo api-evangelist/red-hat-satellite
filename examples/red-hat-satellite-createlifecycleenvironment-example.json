@@ -1,0 +1,49 @@
+{
+  "operationId": "createLifecycleEnvironment",
+  "method": "POST",
+  "path": "/katello/api/v2/organizations/{organization_id}/environments",
+  "summary": "Create a Lifecycle Environment",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CreatelifecycleenvironmentRequestExample",
+      "example": {
+        "name": "Example Title",
+        "label": "Example Title",
+        "description": "A sample description.",
+        "prior_id": "500123"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Createlifecycleenvironment201Example",
+      "example": {
+        "id": "abc123",
+        "name": "Example Title",
+        "label": "Example Title",
+        "description": "A sample description.",
+        "organization_id": "500123",
+        "organization": {
+          "name": "Example Title",
+          "label": "Example Title",
+          "id": "abc123"
+        },
+        "library": true,
+        "prior": {
+          "id": "abc123",
+          "name": "Example Title"
+        },
+        "successor": "example_value",
+        "counts": {
+          "content_hosts": 10,
+          "content_views": 10
+        },
+        "created_at": "2026-01-15T10:30:00Z",
+        "updated_at": "2026-01-15T10:30:00Z"
+      }
+    }
+  ]
+}

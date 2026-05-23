@@ -1,0 +1,15 @@
+name: Red Hat Satellite Domain Vocabulary
+provider: Red Hat Satellite
+providerId: red-hat-satellite
+description: Tag-derived vocabulary for the Red Hat Satellite API surface; sourced from openapi/ tags.
+terms:
+- term: Hosts
+  description: Manage hosts registered with Red Hat Satellite including physical, virtual, and cloud instances.
+- term: Content Views
+  description: Manage content views which define curated sets of repositories and packages available to hosts.
+- term: Subscriptions
+  description: Manage Red Hat subscriptions and entitlements for organizations and hosts.
+- term: Lifecycle Environments
+  description: Manage lifecycle environments that define promotion paths for content views from development through production.
+- term: Organizations
+  description: Manage organizations which provide multi-tenancy isolation for hosts, content, and subscriptions.

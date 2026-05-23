@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContentViewCreate",
+  "title": "ContentViewCreate",
+  "type": "object",
+  "description": "Parameters for creating a new content view.",
+  "required": [
+    "name",
+    "organization_id"
+  ],
+  "properties": {
+    "organization_id": {
+      "type": "integer",
+      "description": "Organization identifier.",
+      "example": "500123"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the content view.",
+      "example": "Example Title"
+    },
+    "label": {
+      "type": "string",
+      "description": "Content view label (auto-generated from name if omitted).",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the content view.",
+      "example": "A sample description."
+    },
+    "composite": {
+      "type": "boolean",
+      "description": "Whether this is a composite content view.",
+      "default": false,
+      "example": true
+    },
+    "rolling": {
+      "type": "boolean",
+      "description": "Whether this is a rolling content view.",
+      "default": false,
+      "example": true
+    },
+    "auto_publish": {
+      "type": "boolean",
+      "description": "Auto-publish composite view when a component updates.",
+      "default": false,
+      "example": true
+    },
+    "solve_dependencies": {
+      "type": "boolean",
+      "description": "Resolve RPM dependencies during publish.",
+      "default": false,
+      "example": true
+    },
+    "import_only": {
+      "type": "boolean",
+      "description": "Mark as import-only content view.",
+      "default": false,
+      "example": true
+    },
+    "repository_ids": {
+      "type": "array",
+      "description": "Repository IDs to include.",
+      "items": {
+        "type": "integer"
+      },
+      "example": []
+    },
+    "component_ids": {
+      "type": "array",
+      "description": "Content view version IDs for composite views.",
+      "items": {
+        "type": "integer"
+      },
+      "example": []
+    },
+    "environment_ids": {
+      "type": "array",
+      "description": "Lifecycle environment IDs for rolling content views.",
+      "items": {
+        "type": "integer"
+      },
+      "example": []
+    }
+  }
+}

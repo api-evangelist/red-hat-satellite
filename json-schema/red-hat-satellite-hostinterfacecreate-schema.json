@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HostInterfaceCreate",
+  "title": "HostInterfaceCreate",
+  "type": "object",
+  "description": "Parameters for creating or updating a host network interface.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Interface identifier (for updating existing interfaces).",
+      "example": "abc123"
+    },
+    "mac": {
+      "type": "string",
+      "description": "MAC address.",
+      "example": "example_value"
+    },
+    "ip": {
+      "type": "string",
+      "description": "IPv4 address.",
+      "format": "ipv4",
+      "example": "example_value"
+    },
+    "ip6": {
+      "type": "string",
+      "description": "IPv6 address.",
+      "format": "ipv6",
+      "example": "example_value"
+    },
+    "type": {
+      "type": "string",
+      "description": "Interface type.",
+      "enum": [
+        "interface",
+        "bmc",
+        "bond",
+        "bridge"
+      ],
+      "example": "interface"
+    },
+    "name": {
+      "type": "string",
+      "description": "DNS name.",
+      "example": "Example Title"
+    },
+    "subnet_id": {
+      "type": "integer",
+      "description": "IPv4 subnet identifier.",
+      "example": "500123"
+    },
+    "subnet6_id": {
+      "type": "integer",
+      "description": "IPv6 subnet identifier.",
+      "example": "500123"
+    },
+    "domain_id": {
+      "type": "integer",
+      "description": "Domain identifier.",
+      "example": "500123"
+    },
+    "identifier": {
+      "type": "string",
+      "description": "Device identifier (e.g., eth0).",
+      "example": "example_value"
+    },
+    "managed": {
+      "type": "boolean",
+      "description": "Whether DNS and DHCP are managed for this interface.",
+      "example": true
+    },
+    "primary": {
+      "type": "boolean",
+      "description": "Whether this is the primary interface for FQDN.",
+      "example": true
+    },
+    "provision": {
+      "type": "boolean",
+      "description": "Whether this interface is used for provisioning.",
+      "example": true
+    },
+    "virtual": {
+      "type": "boolean",
+      "description": "Whether this is a virtual interface (alias or VLAN).",
+      "example": true
+    },
+    "tag": {
+      "type": "string",
+      "description": "VLAN tag.",
+      "example": "example_value"
+    },
+    "mtu": {
+      "type": "integer",
+      "description": "Maximum transmission unit.",
+      "example": 10
+    },
+    "attached_to": {
+      "type": "string",
+      "description": "Parent interface identifier.",
+      "example": "example_value"
+    },
+    "username": {
+      "type": "string",
+      "description": "BMC username (BMC interfaces only).",
+      "example": "example_value"
+    },
+    "password": {
+      "type": "string",
+      "description": "BMC password (BMC interfaces only).",
+      "format": "password",
+      "example": "example_value"
+    },
+    "provider": {
+      "type": "string",
+      "description": "BMC provider (BMC interfaces only).",
+      "enum": [
+        "IPMI",
+        "Redfish",
+        "SSH"
+      ],
+      "example": "IPMI"
+    },
+    "mode": {
+      "type": "string",
+      "description": "Bond mode (bond interfaces only).",
+      "enum": [
+        "balance-rr",
+        "active-backup",
+        "balance-xor",
+        "broadcast",
+        "802.3ad",
+        "balance-tlb",
+        "balance-alb"
+      ],
+      "example": "balance-rr"
+    },
+    "attached_devices": {
+      "type": "array",
+      "description": "Slave or bridge member interface identifiers.",
+      "items": {
+        "type": "string"
+      },
+      "example": []
+    },
+    "bond_options": {
+      "type": "string",
+      "description": "Additional bond options (space-separated).",
+      "example": "example_value"
+    }
+  }
+}

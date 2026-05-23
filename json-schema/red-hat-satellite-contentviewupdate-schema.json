@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ContentViewUpdate",
+  "title": "ContentViewUpdate",
+  "type": "object",
+  "description": "Parameters for updating a content view.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "Example Title"
+    },
+    "description": {
+      "type": "string",
+      "example": "A sample description."
+    },
+    "auto_publish": {
+      "type": "boolean",
+      "example": true
+    },
+    "solve_dependencies": {
+      "type": "boolean",
+      "example": true
+    },
+    "repository_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": []
+    },
+    "component_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": []
+    },
+    "environment_ids": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "example": []
+    }
+  }
+}

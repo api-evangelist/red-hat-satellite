@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ForemanTask",
+  "title": "ForemanTask",
+  "type": "object",
+  "description": "An asynchronous task object returned for long-running operations such as publishing content views or uploading manifests.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique task identifier.",
+      "example": "abc123"
+    },
+    "label": {
+      "type": "string",
+      "description": "Machine-readable task label.",
+      "example": "Example Title"
+    },
+    "pending": {
+      "type": "boolean",
+      "description": "Whether the task is still pending.",
+      "example": true
+    },
+    "action": {
+      "type": "string",
+      "description": "Human-readable description of the task action.",
+      "example": "example_value"
+    },
+    "username": {
+      "type": "string",
+      "description": "User who initiated the task.",
+      "example": "example_value"
+    },
+    "state": {
+      "type": "string",
+      "description": "Current state of the task.",
+      "enum": [
+        "planned",
+        "running",
+        "paused",
+        "stopped"
+      ],
+      "example": "planned"
+    },
+    "result": {
+      "type": "string",
+      "description": "Result of the task.",
+      "enum": [
+        "pending",
+        "success",
+        "error",
+        "warning"
+      ],
+      "example": "pending"
+    },
+    "progress": {
+      "type": "number",
+      "description": "Task progress as a decimal (0.0 to 1.0).",
+      "minimum": 0,
+      "maximum": 1,
+      "example": 42.5
+    },
+    "started_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "ended_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "humanized": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "input": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "output": {
+          "type": "string"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

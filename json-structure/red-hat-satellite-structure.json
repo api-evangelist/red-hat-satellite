@@ -1,0 +1,289 @@
+{
+  "provider": "Red Hat Satellite",
+  "providerId": "red-hat-satellite",
+  "kind": "json-structure",
+  "description": "Structural overview of the Red Hat Satellite API surface; extracted from openapi/.",
+  "schemaCount": 12,
+  "operationCount": 22,
+  "schemas": [
+    {
+      "name": "Host",
+      "type": "object",
+      "propertyCount": 47,
+      "required": []
+    },
+    {
+      "name": "HostCreate",
+      "type": "object",
+      "propertyCount": 22,
+      "required": [
+        "name",
+        "organization_id",
+        "location_id"
+      ]
+    },
+    {
+      "name": "HostUpdate",
+      "type": "object",
+      "propertyCount": 17,
+      "required": []
+    },
+    {
+      "name": "HostInterface",
+      "type": "object",
+      "propertyCount": 17,
+      "required": []
+    },
+    {
+      "name": "HostInterfaceCreate",
+      "type": "object",
+      "propertyCount": 23,
+      "required": []
+    },
+    {
+      "name": "ContentView",
+      "type": "object",
+      "propertyCount": 25,
+      "required": []
+    },
+    {
+      "name": "ContentViewCreate",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "name",
+        "organization_id"
+      ]
+    },
+    {
+      "name": "ContentViewUpdate",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Subscription",
+      "type": "object",
+      "propertyCount": 25,
+      "required": []
+    },
+    {
+      "name": "LifecycleEnvironment",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "Organization",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ForemanTask",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/api/v2/hosts",
+      "operationId": "listHosts",
+      "summary": "List All Hosts",
+      "tags": [
+        "Hosts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/hosts",
+      "operationId": "createHost",
+      "summary": "Create a Host",
+      "tags": [
+        "Hosts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/hosts/{id}",
+      "operationId": "showHost",
+      "summary": "Show a Host",
+      "tags": [
+        "Hosts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/hosts/{id}",
+      "operationId": "updateHost",
+      "summary": "Update a Host",
+      "tags": [
+        "Hosts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/hosts/{id}",
+      "operationId": "deleteHost",
+      "summary": "Delete a Host",
+      "tags": [
+        "Hosts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/hosts/{id}/power",
+      "operationId": "hostPowerAction",
+      "summary": "Execute a Power Operation on a Host",
+      "tags": [
+        "Hosts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/katello/api/v2/content_views",
+      "operationId": "listContentViews",
+      "summary": "List Content Views",
+      "tags": [
+        "Content Views"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/katello/api/v2/content_views",
+      "operationId": "createContentView",
+      "summary": "Create a Content View",
+      "tags": [
+        "Content Views"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/katello/api/v2/content_views/{id}",
+      "operationId": "showContentView",
+      "summary": "Show a Content View",
+      "tags": [
+        "Content Views"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/katello/api/v2/content_views/{id}",
+      "operationId": "updateContentView",
+      "summary": "Update a Content View",
+      "tags": [
+        "Content Views"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/katello/api/v2/content_views/{id}",
+      "operationId": "deleteContentView",
+      "summary": "Delete a Content View",
+      "tags": [
+        "Content Views"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/katello/api/v2/content_views/{id}/publish",
+      "operationId": "publishContentView",
+      "summary": "Publish a Content View",
+      "tags": [
+        "Content Views"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/katello/api/v2/content_view_versions/{id}/promote",
+      "operationId": "promoteContentViewVersion",
+      "summary": "Promote a Content View Version",
+      "tags": [
+        "Content Views"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/katello/api/v2/organizations/{organization_id}/subscriptions",
+      "operationId": "listSubscriptions",
+      "summary": "List Organization Subscriptions",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/katello/api/v2/organizations/{organization_id}/subscriptions/upload",
+      "operationId": "uploadSubscriptionManifest",
+      "summary": "Upload a Subscription Manifest",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/katello/api/v2/organizations/{organization_id}/subscriptions/delete_manifest",
+      "operationId": "deleteSubscriptionManifest",
+      "summary": "Delete a Subscription Manifest",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/katello/api/v2/organizations/{organization_id}/subscriptions/refresh_manifest",
+      "operationId": "refreshSubscriptionManifest",
+      "summary": "Refresh a Subscription Manifest",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/katello/api/v2/organizations/{organization_id}/environments",
+      "operationId": "listLifecycleEnvironments",
+      "summary": "List Lifecycle Environments",
+      "tags": [
+        "Lifecycle Environments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/katello/api/v2/organizations/{organization_id}/environments",
+      "operationId": "createLifecycleEnvironment",
+      "summary": "Create a Lifecycle Environment",
+      "tags": [
+        "Lifecycle Environments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/katello/api/v2/organizations/{organization_id}/environments/paths",
+      "operationId": "listLifecycleEnvironmentPaths",
+      "summary": "List Lifecycle Environment Paths",
+      "tags": [
+        "Lifecycle Environments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/organizations",
+      "operationId": "listOrganizations",
+      "summary": "List Organizations",
+      "tags": [
+        "Organizations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/organizations/{id}",
+      "operationId": "showOrganization",
+      "summary": "Show an Organization",
+      "tags": [
+        "Organizations"
+      ]
+    }
+  ]
+}

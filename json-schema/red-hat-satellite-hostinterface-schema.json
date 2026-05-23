@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HostInterface",
+  "title": "HostInterface",
+  "type": "object",
+  "description": "A network interface associated with a host.",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "example": "abc123"
+    },
+    "mac": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "example": "example_value"
+    },
+    "ip": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "ipv4",
+      "example": "example_value"
+    },
+    "ip6": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "ipv6",
+      "example": "example_value"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "interface",
+        "bmc",
+        "bond",
+        "bridge"
+      ],
+      "example": "interface"
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "example": "Example Title"
+    },
+    "subnet_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "example": "500123"
+    },
+    "subnet6_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "example": "500123"
+    },
+    "domain_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "example": "500123"
+    },
+    "identifier": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Device identifier (e.g., eth0, ens192).",
+      "example": "example_value"
+    },
+    "managed": {
+      "type": "boolean",
+      "example": true
+    },
+    "primary": {
+      "type": "boolean",
+      "example": true
+    },
+    "provision": {
+      "type": "boolean",
+      "example": true
+    },
+    "virtual": {
+      "type": "boolean",
+      "example": true
+    },
+    "tag": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "VLAN tag.",
+      "example": "example_value"
+    },
+    "mtu": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Maximum transmission unit.",
+      "example": "example_value"
+    },
+    "attached_to": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Parent interface identifier.",
+      "example": "example_value"
+    }
+  }
+}

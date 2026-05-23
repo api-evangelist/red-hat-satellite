@@ -1,0 +1,26 @@
+{
+  "operationId": "hostPowerAction",
+  "method": "PUT",
+  "path": "/api/v2/hosts/{id}/power",
+  "summary": "Execute a Power Operation on a Host",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "HostpoweractionRequestExample",
+      "example": {
+        "power_action": "start"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Hostpoweraction200Example",
+      "example": {
+        "power": "example_value",
+        "id": "abc123"
+      }
+    }
+  ]
+}
