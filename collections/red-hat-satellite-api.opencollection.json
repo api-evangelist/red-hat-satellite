@@ -1,0 +1,772 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Satellite REST API",
+    "version": "6.18.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hosts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/hosts",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current organization context for the request."
+              },
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current location context for the request."
+              },
+              {
+                "name": "hostgroup_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter hosts by host group identifier."
+              },
+              {
+                "name": "thin",
+                "value": "true",
+                "type": "query",
+                "description": "Only return the ID and name of each host."
+              },
+              {
+                "name": "include",
+                "value": "parameters",
+                "type": "query",
+                "description": "Additional information to include (e.g., parameters, all_parameters)."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (starting at 1)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all hosts registered with the Satellite server. Supports filtering by organization, location, host group, and search queries."
+        },
+        {
+          "info": {
+            "name": "Create a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/api/v2/hosts",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current organization context for the request."
+              },
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current location context for the request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new host with the Satellite server. The host can be managed (provisioned and configured by Satellite) or unmanaged (inventory only)."
+        },
+        {
+          "info": {
+            "name": "Show a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/hosts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Host identifier (numeric ID or FQDN)."
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific host by its identifier."
+        },
+        {
+          "info": {
+            "name": "Update a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://satellite.example.com/api/v2/hosts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Host identifier (numeric ID or FQDN)."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current organization context for the request."
+              },
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current location context for the request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the attributes of an existing host."
+        },
+        {
+          "info": {
+            "name": "Delete a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://satellite.example.com/api/v2/hosts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Host identifier (numeric ID or FQDN)."
+              }
+            ]
+          },
+          "docs": "Remove a host from the Satellite server."
+        },
+        {
+          "info": {
+            "name": "Execute a Power Operation on a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://satellite.example.com/api/v2/hosts/:id/power",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Host identifier (numeric ID or FQDN)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform a power management action on a host such as powering on, powering off, or rebooting. Requires a BMC or compute resource association."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Content Views",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Content Views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/content_views",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current organization context for the request."
+              },
+              {
+                "name": "environment_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by lifecycle environment identifier."
+              },
+              {
+                "name": "nondefault",
+                "value": "true",
+                "type": "query",
+                "description": "Filter out default content views."
+              },
+              {
+                "name": "noncomposite",
+                "value": "true",
+                "type": "query",
+                "description": "Filter out composite content views."
+              },
+              {
+                "name": "composite",
+                "value": "true",
+                "type": "query",
+                "description": "Filter only composite content views."
+              },
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by content view name."
+              },
+              {
+                "name": "label",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by content view label."
+              },
+              {
+                "name": "include_generated",
+                "value": "true",
+                "type": "query",
+                "description": "Include import/export generated content views."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (starting at 1)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of content views for an organization. Content views define curated collections of repositories whose packages, errata, and other content are made available to hosts."
+        },
+        {
+          "info": {
+            "name": "Create a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/content_views",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new content view for an organization. Content views can be standard (selecting individual repositories) or composite (combining published versions of other content views)."
+        },
+        {
+          "info": {
+            "name": "Show a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/content_views/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Content view identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific content view."
+        },
+        {
+          "info": {
+            "name": "Update a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://satellite.example.com/katello/api/v2/content_views/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Content view identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing content view's attributes."
+        },
+        {
+          "info": {
+            "name": "Delete a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://satellite.example.com/katello/api/v2/content_views/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Content view identifier."
+              }
+            ]
+          },
+          "docs": "Delete a content view. The content view must not be associated with any lifecycle environments or activation keys."
+        },
+        {
+          "info": {
+            "name": "Publish a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/content_views/:id/publish",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Content view identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publish a new version of a content view. This creates a snapshot of the current repository content and makes it available for promotion to lifecycle environments."
+        },
+        {
+          "info": {
+            "name": "Promote a Content View Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/content_view_versions/:id/promote",
+            "params": [
+              {
+                "name": "id",
+                "value": "abc123",
+                "type": "path",
+                "description": "Content view version identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Promote a published content view version to a lifecycle environment. This makes the content available to hosts in that environment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organization Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/subscriptions",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              },
+              {
+                "name": "host_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter subscriptions by host identifier."
+              },
+              {
+                "name": "activation_key_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter subscriptions by activation key identifier."
+              },
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by subscription name."
+              },
+              {
+                "name": "available_for",
+                "value": "host",
+                "type": "query",
+                "description": "Object type to show available subscriptions for (host or activation_key)."
+              },
+              {
+                "name": "match_host",
+                "value": "true",
+                "type": "query",
+                "description": "Ignore subscriptions not applicable to the specified host."
+              },
+              {
+                "name": "match_installed",
+                "value": "true",
+                "type": "query",
+                "description": "Return only subscriptions matching installed products on the host."
+              },
+              {
+                "name": "no_overlap",
+                "value": "true",
+                "type": "query",
+                "description": "Exclude subscriptions that overlap with existing host attachments."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (starting at 1)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of subscriptions for an organization. Subscriptions represent Red Hat product entitlements that can be attached to hosts."
+        },
+        {
+          "info": {
+            "name": "Upload a Subscription Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/subscriptions/upload",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "content",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "repository_url",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a Red Hat subscription manifest file to import subscriptions into an organization."
+        },
+        {
+          "info": {
+            "name": "Delete a Subscription Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/subscriptions/delete_manifest",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ]
+          },
+          "docs": "Delete the subscription manifest from an organization, removing all imported subscriptions."
+        },
+        {
+          "info": {
+            "name": "Refresh a Subscription Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/subscriptions/refresh_manifest",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ]
+          },
+          "docs": "Refresh the subscription manifest for an organization to sync changes from the Red Hat Customer Portal."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lifecycle Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Lifecycle Environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/environments",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              },
+              {
+                "name": "library",
+                "value": "true",
+                "type": "query",
+                "description": "Include the Library lifecycle environment."
+              },
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by lifecycle environment name."
+              },
+              {
+                "name": "label",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by lifecycle environment label."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (starting at 1)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of lifecycle environments for an organization. Lifecycle environments define the content promotion path from Library through development, testing, and production stages."
+        },
+        {
+          "info": {
+            "name": "Create a Lifecycle Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/environments",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new lifecycle environment within an organization's content promotion path."
+        },
+        {
+          "info": {
+            "name": "List Lifecycle Environment Paths",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/environments/paths",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve the lifecycle environment promotion paths for an organization, showing the sequence of environments content views are promoted through."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/organizations",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (starting at 1)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all organizations. Organizations provide multi-tenancy isolation for content, hosts, and subscriptions."
+        },
+        {
+          "info": {
+            "name": "Show an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/organizations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "abc123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

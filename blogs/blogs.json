@@ -2,11 +2,11 @@
   "repo": "red-hat-satellite",
   "feeds": [
     {
-      "source": "https://www.redhat.com/rss.xml",
-      "feed_url": "https://www.redhat.com/rss.xml",
+      "source": "https://www.redhat.com/en/blog/channel/red-hat-satellite",
+      "feed_url": "https://www.redhat.com/en/blog/channel/red-hat-satellite",
       "title": "",
       "saved": 0,
-      "method": "feed"
+      "method": "none"
     },
     {
       "source": "https://github.com/theforeman/foreman-ansible-modules",
@@ -19,10 +19,10 @@
       "source": "https://status.redhat.com/",
       "feed_url": "https://status.redhat.com/history.atom",
       "title": "",
-      "saved": 2,
+      "saved": 5,
       "method": "discovered"
     }
   ],
-  "fetched": "2026-06-01T23:35:02Z",
-  "post_count": 9
+  "post_count": 14,
+  "fetched": "2026-06-14T20:42:17Z"
 }
