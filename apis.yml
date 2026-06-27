@@ -82,29 +82,29 @@ apis:
         url: json-structure/red-hat-satellite-organization-structure.json
       - type: JSONStructure
         url: json-structure/red-hat-satellite-foreman-task-structure.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-host-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-host-create-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-host-update-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-host-interface-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-host-interface-create-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-content-view-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-content-view-create-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-content-view-update-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-subscription-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-lifecycle-environment-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-organization-example.json
-      - type: Example
+      - type: Examples
         url: examples/red-hat-satellite-foreman-task-example.json
       - type: JSONLD
         url: json-ld/red-hat-satellite-context.jsonld
