@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/red-hat-satellite-api.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - implicit
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication using Satellite username and password.
+  sources:
+  - openapi/red-hat-satellite-api.yml
+- name: oAuth2
+  type: oauth2
+  flows:
+  - flow: implicit
+    authorizationUrl: https://satellite.example.com/users/extlogin
+    scopes: 0
+  description: OAuth 2.0 Personal Access Token authentication for Satellite users.
+  sources:
+  - openapi/red-hat-satellite-api.yml

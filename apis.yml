@@ -227,6 +227,12 @@ apis:
       - type: Support
         url: https://access.redhat.com/support
 common:
+  - type: TrustCenter
+    url: security/red-hat-satellite-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/red-hat-satellite-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/red-hat-satellite-domain-security.yml
   - type: Authentication
     url: authentication/red-hat-satellite-authentication.yml
   - type: OAuthScopes
