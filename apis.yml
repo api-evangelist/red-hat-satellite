@@ -227,6 +227,10 @@ apis:
       - type: Support
         url: https://access.redhat.com/support
 common:
+  - type: Authentication
+    url: authentication/red-hat-satellite-authentication.yml
+  - type: OAuthScopes
+    url: scopes/red-hat-satellite-scopes.yml
   - type: Portal
     url: https://access.redhat.com/
   - type: Documentation

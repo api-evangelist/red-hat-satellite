@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/red-hat-satellite-api.yml
+docs: https://docs.redhat.com/en/documentation/red_hat_satellite/6.11/html/api_guide/chap-red_hat_satellite-api_guide-authenticating_api_calls
+note: >-
+  Red Hat Satellite does not use OAuth 2.0 scopes; the REST API authenticates via
+  HTTP basic auth, Personal Access Tokens, SSO sessions, or legacy 1-legged OAuth
+  1.0a, with authorization governed by Foreman role-based permissions (roles and
+  filters) rather than scopes
+  (https://docs.redhat.com/en/documentation/red_hat_satellite/6.11/html/api_guide/chap-red_hat_satellite-api_guide-authenticating_api_calls).
+schemes:
+- name: oAuth2
+  source: openapi/red-hat-satellite-api.yml
+  flows:
+  - flow: implicit
+    authorizationUrl: https://satellite.example.com/users/extlogin
+  description: OAuth 2.0 Personal Access Token authentication for Satellite users.
+scopes: []
