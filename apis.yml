@@ -227,6 +227,8 @@ apis:
       - type: Support
         url: https://access.redhat.com/support
 common:
+  - type: AgenticAccess
+    url: agentic-access/red-hat-satellite-agentic-access.yml
   - type: TrustCenter
     url: security/red-hat-satellite-trust-center.yml
   - type: VulnerabilityDisclosure
