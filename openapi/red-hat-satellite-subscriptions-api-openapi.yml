@@ -1,0 +1,588 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Satellite REST Content Views Subscriptions API
+  description: The Red Hat Satellite REST API provides programmatic access to Red Hat Satellite server functionality including host management, content view management, subscription management, lifecycle environments, and provisioning. The API is built on the Foreman and Katello upstream projects and follows RESTful conventions with JSON request and response bodies.
+  version: 6.18.0
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  license:
+    name: GPL-3.0
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+  x-logo:
+    url: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+servers:
+- url: https://satellite.example.com
+  description: Red Hat Satellite Server
+security:
+- basicAuth: []
+- oAuth2: []
+tags:
+- name: Subscriptions
+  description: Manage Red Hat subscriptions and entitlements for organizations and hosts.
+  externalDocs:
+    url: https://apidocs.theforeman.org/katello/latest/apidoc/v2/subscriptions.html
+paths:
+  /katello/api/v2/organizations/{organization_id}/subscriptions:
+    get:
+      operationId: listSubscriptions
+      summary: List Organization Subscriptions
+      description: Retrieve a paginated list of subscriptions for an organization. Subscriptions represent Red Hat product entitlements that can be attached to hosts.
+      tags:
+      - Subscriptions
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        description: Organization identifier.
+        schema:
+          type: integer
+        example: '500123'
+      - name: host_id
+        in: query
+        description: Filter subscriptions by host identifier.
+        schema:
+          type: string
+        example: '500123'
+      - name: activation_key_id
+        in: query
+        description: Filter subscriptions by activation key identifier.
+        schema:
+          type: string
+        example: '500123'
+      - name: name
+        in: query
+        description: Filter by subscription name.
+        schema:
+          type: string
+        example: Example Title
+      - name: available_for
+        in: query
+        description: Object type to show available subscriptions for (host or activation_key).
+        schema:
+          type: string
+          enum:
+          - host
+          - activation_key
+        example: host
+      - name: match_host
+        in: query
+        description: Ignore subscriptions not applicable to the specified host.
+        schema:
+          type: boolean
+        example: true
+      - name: match_installed
+        in: query
+        description: Return only subscriptions matching installed products on the host.
+        schema:
+          type: boolean
+        example: true
+      - name: no_overlap
+        in: query
+        description: Exclude subscriptions that overlap with existing host attachments.
+        schema:
+          type: boolean
+        example: true
+      - $ref: '#/components/parameters/searchQuery'
+      - $ref: '#/components/parameters/orderQuery'
+      - $ref: '#/components/parameters/pageQuery'
+      - $ref: '#/components/parameters/perPageQuery'
+      responses:
+        '200':
+          description: Successful response containing a list of subscriptions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  subtotal:
+                    type: integer
+                  page:
+                    type: integer
+                  per_page:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
+              examples:
+                Listsubscriptions200Example:
+                  summary: Default listSubscriptions 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    results:
+                    - id: abc123
+                      cp_id: '500123'
+                      subscription_id: '500123'
+                      name: Example Title
+                      description: A sample description.
+                      product_id: '500123'
+                      product_name: example_value
+                      contract_number: example_value
+                      account_number: example_value
+                      quantity: 10
+                      consumed: 10
+                      available: 10
+                      start_date: '2026-01-15T10:30:00Z'
+                      end_date: '2026-01-15T10:30:00Z'
+                      support_level: example_value
+                      type: example_value
+                      virt_only: true
+                      virt_who: true
+                      multi_entitlement: true
+                      stacking_id: '500123'
+                      upstream_pool_id: '500123'
+                      organization_id: '500123'
+                      provided_products:
+                      - {}
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /katello/api/v2/organizations/{organization_id}/subscriptions/upload:
+    post:
+      operationId: uploadSubscriptionManifest
+      summary: Upload a Subscription Manifest
+      description: Upload a Red Hat subscription manifest file to import subscriptions into an organization.
+      tags:
+      - Subscriptions
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        description: Organization identifier.
+        schema:
+          type: integer
+        example: '500123'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - content
+              properties:
+                content:
+                  type: string
+                  format: binary
+                  description: Subscription manifest file (.zip).
+                repository_url:
+                  type: string
+                  description: Custom CDN URL for content.
+            examples:
+              UploadsubscriptionmanifestRequestExample:
+                summary: Default uploadSubscriptionManifest request
+                x-microcks-default: true
+                value:
+                  content: example_value
+                  repository_url: https://www.example.com
+      responses:
+        '202':
+          description: Manifest upload task accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForemanTask'
+              examples:
+                Uploadsubscriptionmanifest202Example:
+                  summary: Default uploadSubscriptionManifest 202 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    label: Example Title
+                    pending: true
+                    action: example_value
+                    username: example_value
+                    state: planned
+                    result: pending
+                    progress: 42.5
+                    started_at: '2026-01-15T10:30:00Z'
+                    ended_at: '2026-01-15T10:30:00Z'
+                    humanized:
+                      action: example_value
+                      input:
+                      - example_value
+                      output: example_value
+                      errors:
+                      - example_value
+        '400':
+          description: Invalid manifest or upload error.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /katello/api/v2/organizations/{organization_id}/subscriptions/delete_manifest:
+    post:
+      operationId: deleteSubscriptionManifest
+      summary: Delete a Subscription Manifest
+      description: Delete the subscription manifest from an organization, removing all imported subscriptions.
+      tags:
+      - Subscriptions
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        description: Organization identifier.
+        schema:
+          type: integer
+        example: '500123'
+      responses:
+        '202':
+          description: Manifest deletion task accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForemanTask'
+              examples:
+                Deletesubscriptionmanifest202Example:
+                  summary: Default deleteSubscriptionManifest 202 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    label: Example Title
+                    pending: true
+                    action: example_value
+                    username: example_value
+                    state: planned
+                    result: pending
+                    progress: 42.5
+                    started_at: '2026-01-15T10:30:00Z'
+                    ended_at: '2026-01-15T10:30:00Z'
+                    humanized:
+                      action: example_value
+                      input:
+                      - example_value
+                      output: example_value
+                      errors:
+                      - example_value
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /katello/api/v2/organizations/{organization_id}/subscriptions/refresh_manifest:
+    put:
+      operationId: refreshSubscriptionManifest
+      summary: Refresh a Subscription Manifest
+      description: Refresh the subscription manifest for an organization to sync changes from the Red Hat Customer Portal.
+      tags:
+      - Subscriptions
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        description: Organization identifier.
+        schema:
+          type: integer
+        example: '500123'
+      responses:
+        '202':
+          description: Manifest refresh task accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForemanTask'
+              examples:
+                Refreshsubscriptionmanifest202Example:
+                  summary: Default refreshSubscriptionManifest 202 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    label: Example Title
+                    pending: true
+                    action: example_value
+                    username: example_value
+                    state: planned
+                    result: pending
+                    progress: 42.5
+                    started_at: '2026-01-15T10:30:00Z'
+                    ended_at: '2026-01-15T10:30:00Z'
+                    humanized:
+                      action: example_value
+                      input:
+                      - example_value
+                      output: example_value
+                      errors:
+                      - example_value
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Subscription:
+      type: object
+      description: A Red Hat subscription providing product entitlements for an organization.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the subscription.
+          example: abc123
+        cp_id:
+          type: string
+          description: Candlepin subscription identifier.
+          example: '500123'
+        subscription_id:
+          type: integer
+          description: Subscription pool identifier.
+          example: '500123'
+        name:
+          type: string
+          description: Subscription name (product name).
+          example: Example Title
+        description:
+          type:
+          - string
+          - 'null'
+          description: Subscription description.
+          example: A sample description.
+        product_id:
+          type: string
+          description: Red Hat product identifier.
+          example: '500123'
+        product_name:
+          type: string
+          description: Red Hat product name.
+          example: example_value
+        contract_number:
+          type:
+          - string
+          - 'null'
+          description: Contract number associated with the subscription.
+          example: example_value
+        account_number:
+          type:
+          - string
+          - 'null'
+          description: Customer account number.
+          example: example_value
+        quantity:
+          type: integer
+          description: Total quantity of entitlements in the subscription.
+          example: 10
+        consumed:
+          type: integer
+          description: Number of entitlements currently consumed.
+          example: 10
+        available:
+          type: integer
+          description: Number of entitlements available for attachment.
+          example: 10
+        start_date:
+          type: string
+          format: date-time
+          description: Subscription start date.
+          example: '2026-01-15T10:30:00Z'
+        end_date:
+          type: string
+          format: date-time
+          description: Subscription end date.
+          example: '2026-01-15T10:30:00Z'
+        support_level:
+          type:
+          - string
+          - 'null'
+          description: Support level (e.g., Premium, Standard, Self-Support).
+          example: example_value
+        type:
+          type: string
+          description: Subscription type.
+          example: example_value
+        virt_only:
+          type: boolean
+          description: Whether this subscription is for virtual systems only.
+          example: true
+        virt_who:
+          type: boolean
+          description: Whether this subscription requires virt-who reporting.
+          example: true
+        multi_entitlement:
+          type: boolean
+          description: Whether multiple entitlements can be attached to a single host.
+          example: true
+        stacking_id:
+          type:
+          - string
+          - 'null'
+          description: Stacking identifier for stackable subscriptions.
+          example: '500123'
+        upstream_pool_id:
+          type:
+          - string
+          - 'null'
+          description: Pool identifier from the upstream subscription source.
+          example: '500123'
+        organization_id:
+          type: integer
+          description: Organization this subscription belongs to.
+          example: '500123'
+        provided_products:
+          type: array
+          description: Products provided by this subscription.
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+          example: []
+        created_at:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    ForemanTask:
+      type: object
+      description: An asynchronous task object returned for long-running operations such as publishing content views or uploading manifests.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique task identifier.
+          example: abc123
+        label:
+          type: string
+          description: Machine-readable task label.
+          example: Example Title
+        pending:
+          type: boolean
+          description: Whether the task is still pending.
+          example: true
+        action:
+          type: string
+          description: Human-readable description of the task action.
+          example: example_value
+        username:
+          type: string
+          description: User who initiated the task.
+          example: example_value
+        state:
+          type: string
+          description: Current state of the task.
+          enum:
+          - planned
+          - running
+          - paused
+          - stopped
+          example: planned
+        result:
+          type: string
+          description: Result of the task.
+          enum:
+          - pending
+          - success
+          - error
+          - warning
+          example: pending
+        progress:
+          type: number
+          description: Task progress as a decimal (0.0 to 1.0).
+          minimum: 0
+          maximum: 1
+          example: 42.5
+        started_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        ended_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        humanized:
+          type: object
+          properties:
+            action:
+              type: string
+            input:
+              type: array
+              items:
+                type: string
+            output:
+              type: string
+            errors:
+              type: array
+              items:
+                type: string
+          example: example_value
+  parameters:
+    pageQuery:
+      name: page
+      in: query
+      description: Page number for paginated results (starting at 1).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    perPageQuery:
+      name: per_page
+      in: query
+      description: Number of results per page. Use "all" to retrieve all results without pagination.
+      schema:
+        oneOf:
+        - type: integer
+          minimum: 1
+        - type: string
+          enum:
+          - all
+        default: 20
+    orderQuery:
+      name: order
+      in: query
+      description: Sort field and direction (e.g., "name ASC" or "id DESC").
+      schema:
+        type: string
+    searchQuery:
+      name: search
+      in: query
+      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to authenticate user.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using Satellite username and password.
+    oAuth2:
+      type: oauth2
+      description: OAuth 2.0 Personal Access Token authentication for Satellite users.
+      flows:
+        implicit:
+          authorizationUrl: https://satellite.example.com/users/extlogin
+          scopes: {}
+externalDocs:
+  description: Red Hat Satellite API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index

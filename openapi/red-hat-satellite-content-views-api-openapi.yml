@@ -1,0 +1,1051 @@
+openapi: 3.1.0
+info:
+  title: Red Hat Satellite REST Content Views API
+  description: The Red Hat Satellite REST API provides programmatic access to Red Hat Satellite server functionality including host management, content view management, subscription management, lifecycle environments, and provisioning. The API is built on the Foreman and Katello upstream projects and follows RESTful conventions with JSON request and response bodies.
+  version: 6.18.0
+  contact:
+    name: Red Hat Support
+    url: https://access.redhat.com/support
+  license:
+    name: GPL-3.0
+    url: https://www.gnu.org/licenses/gpl-3.0.html
+  x-logo:
+    url: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+servers:
+- url: https://satellite.example.com
+  description: Red Hat Satellite Server
+security:
+- basicAuth: []
+- oAuth2: []
+tags:
+- name: Content Views
+  description: Manage content views which define curated sets of repositories and packages available to hosts.
+  externalDocs:
+    url: https://apidocs.theforeman.org/katello/latest/apidoc/v2/content_views.html
+paths:
+  /katello/api/v2/content_views:
+    get:
+      operationId: listContentViews
+      summary: List Content Views
+      description: Retrieve a paginated list of content views for an organization. Content views define curated collections of repositories whose packages, errata, and other content are made available to hosts.
+      tags:
+      - Content Views
+      parameters:
+      - $ref: '#/components/parameters/organizationIdQuery'
+      - name: environment_id
+        in: query
+        description: Filter by lifecycle environment identifier.
+        schema:
+          type: integer
+        example: '500123'
+      - name: nondefault
+        in: query
+        description: Filter out default content views.
+        schema:
+          type: boolean
+        example: true
+      - name: noncomposite
+        in: query
+        description: Filter out composite content views.
+        schema:
+          type: boolean
+        example: true
+      - name: composite
+        in: query
+        description: Filter only composite content views.
+        schema:
+          type: boolean
+        example: true
+      - name: name
+        in: query
+        description: Filter by content view name.
+        schema:
+          type: string
+        example: Example Title
+      - name: label
+        in: query
+        description: Filter by content view label.
+        schema:
+          type: string
+        example: Example Title
+      - name: include_generated
+        in: query
+        description: Include import/export generated content views.
+        schema:
+          type: boolean
+          default: false
+        example: true
+      - $ref: '#/components/parameters/searchQuery'
+      - $ref: '#/components/parameters/orderQuery'
+      - $ref: '#/components/parameters/pageQuery'
+      - $ref: '#/components/parameters/perPageQuery'
+      responses:
+        '200':
+          description: Successful response containing a list of content views.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  subtotal:
+                    type: integer
+                  page:
+                    type: integer
+                  per_page:
+                    type: integer
+                  search:
+                    type:
+                    - string
+                    - 'null'
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContentView'
+              examples:
+                Listcontentviews200Example:
+                  summary: Default listContentViews 200 response
+                  x-microcks-default: true
+                  value:
+                    total: 10
+                    subtotal: 10
+                    page: 10
+                    per_page: 10
+                    search: example_value
+                    results:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                      description: A sample description.
+                      organization_id: '500123'
+                      organization:
+                        name: Example Title
+                        label: Example Title
+                        id: abc123
+                      composite: true
+                      rolling: true
+                      auto_publish: true
+                      solve_dependencies: true
+                      import_only: true
+                      generated_for: example_value
+                      default: true
+                      repository_ids:
+                      - {}
+                      repositories:
+                      - {}
+                      component_ids:
+                      - {}
+                      versions:
+                      - {}
+                      environments:
+                      - {}
+                      activation_keys:
+                      - {}
+                      next_version: example_value
+                      last_published: '2026-01-15T10:30:00Z'
+                      latest_version: example_value
+                      latest_version_id: '500123'
+                      created_at: '2026-01-15T10:30:00Z'
+                      updated_at: '2026-01-15T10:30:00Z'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createContentView
+      summary: Create a Content View
+      description: Create a new content view for an organization. Content views can be standard (selecting individual repositories) or composite (combining published versions of other content views).
+      tags:
+      - Content Views
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentViewCreate'
+            examples:
+              CreatecontentviewRequestExample:
+                summary: Default createContentView request
+                x-microcks-default: true
+                value:
+                  organization_id: '500123'
+                  name: Example Title
+                  label: Example Title
+                  description: A sample description.
+                  composite: true
+                  rolling: true
+                  auto_publish: true
+                  solve_dependencies: true
+                  import_only: true
+                  repository_ids:
+                  - 10
+                  component_ids:
+                  - 10
+                  environment_ids:
+                  - 10
+      responses:
+        '201':
+          description: Content view created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentView'
+              examples:
+                Createcontentview201Example:
+                  summary: Default createContentView 201 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    label: Example Title
+                    description: A sample description.
+                    organization_id: '500123'
+                    organization:
+                      name: Example Title
+                      label: Example Title
+                      id: abc123
+                    composite: true
+                    rolling: true
+                    auto_publish: true
+                    solve_dependencies: true
+                    import_only: true
+                    generated_for: example_value
+                    default: true
+                    repository_ids:
+                    - 10
+                    repositories:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                      content_type: example_value
+                    component_ids:
+                    - 10
+                    versions:
+                    - id: abc123
+                      version: example_value
+                      published: '2026-01-15T10:30:00Z'
+                      environment_ids:
+                      - {}
+                    environments:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                    activation_keys:
+                    - id: abc123
+                      name: Example Title
+                    next_version: example_value
+                    last_published: '2026-01-15T10:30:00Z'
+                    latest_version: example_value
+                    latest_version_id: '500123'
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /katello/api/v2/content_views/{id}:
+    get:
+      operationId: showContentView
+      summary: Show a Content View
+      description: Retrieve details for a specific content view.
+      tags:
+      - Content Views
+      parameters:
+      - $ref: '#/components/parameters/contentViewId'
+      responses:
+        '200':
+          description: Successful response containing content view details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentView'
+              examples:
+                Showcontentview200Example:
+                  summary: Default showContentView 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    label: Example Title
+                    description: A sample description.
+                    organization_id: '500123'
+                    organization:
+                      name: Example Title
+                      label: Example Title
+                      id: abc123
+                    composite: true
+                    rolling: true
+                    auto_publish: true
+                    solve_dependencies: true
+                    import_only: true
+                    generated_for: example_value
+                    default: true
+                    repository_ids:
+                    - 10
+                    repositories:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                      content_type: example_value
+                    component_ids:
+                    - 10
+                    versions:
+                    - id: abc123
+                      version: example_value
+                      published: '2026-01-15T10:30:00Z'
+                      environment_ids:
+                      - {}
+                    environments:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                    activation_keys:
+                    - id: abc123
+                      name: Example Title
+                    next_version: example_value
+                    last_published: '2026-01-15T10:30:00Z'
+                    latest_version: example_value
+                    latest_version_id: '500123'
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updateContentView
+      summary: Update a Content View
+      description: Update an existing content view's attributes.
+      tags:
+      - Content Views
+      parameters:
+      - $ref: '#/components/parameters/contentViewId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentViewUpdate'
+            examples:
+              UpdatecontentviewRequestExample:
+                summary: Default updateContentView request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  description: A sample description.
+                  auto_publish: true
+                  solve_dependencies: true
+                  repository_ids:
+                  - 10
+                  component_ids:
+                  - 10
+                  environment_ids:
+                  - 10
+      responses:
+        '200':
+          description: Content view updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentView'
+              examples:
+                Updatecontentview200Example:
+                  summary: Default updateContentView 200 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    name: Example Title
+                    label: Example Title
+                    description: A sample description.
+                    organization_id: '500123'
+                    organization:
+                      name: Example Title
+                      label: Example Title
+                      id: abc123
+                    composite: true
+                    rolling: true
+                    auto_publish: true
+                    solve_dependencies: true
+                    import_only: true
+                    generated_for: example_value
+                    default: true
+                    repository_ids:
+                    - 10
+                    repositories:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                      content_type: example_value
+                    component_ids:
+                    - 10
+                    versions:
+                    - id: abc123
+                      version: example_value
+                      published: '2026-01-15T10:30:00Z'
+                      environment_ids:
+                      - {}
+                    environments:
+                    - id: abc123
+                      name: Example Title
+                      label: Example Title
+                    activation_keys:
+                    - id: abc123
+                      name: Example Title
+                    next_version: example_value
+                    last_published: '2026-01-15T10:30:00Z'
+                    latest_version: example_value
+                    latest_version_id: '500123'
+                    created_at: '2026-01-15T10:30:00Z'
+                    updated_at: '2026-01-15T10:30:00Z'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteContentView
+      summary: Delete a Content View
+      description: Delete a content view. The content view must not be associated with any lifecycle environments or activation keys.
+      tags:
+      - Content Views
+      parameters:
+      - $ref: '#/components/parameters/contentViewId'
+      responses:
+        '200':
+          description: Content view deleted successfully.
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /katello/api/v2/content_views/{id}/publish:
+    post:
+      operationId: publishContentView
+      summary: Publish a Content View
+      description: Publish a new version of a content view. This creates a snapshot of the current repository content and makes it available for promotion to lifecycle environments.
+      tags:
+      - Content Views
+      parameters:
+      - $ref: '#/components/parameters/contentViewId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                description:
+                  type: string
+                  description: Description for the new published version.
+                major:
+                  type: integer
+                  description: Override the major version number.
+                minor:
+                  type: integer
+                  description: Override the minor version number.
+                repos_units:
+                  type: array
+                  description: List of repository and unit pairs to include in the publish.
+                  items:
+                    type: object
+                    properties:
+                      label:
+                        type: string
+                      rpm_filenames:
+                        type: array
+                        items:
+                          type: string
+            examples:
+              PublishcontentviewRequestExample:
+                summary: Default publishContentView request
+                x-microcks-default: true
+                value:
+                  description: A sample description.
+                  major: 10
+                  minor: 10
+                  repos_units:
+                  - label: Example Title
+                    rpm_filenames:
+                    - example_value
+      responses:
+        '202':
+          description: Content view publish task accepted. Returns a task object for tracking the asynchronous publish operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForemanTask'
+              examples:
+                Publishcontentview202Example:
+                  summary: Default publishContentView 202 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    label: Example Title
+                    pending: true
+                    action: example_value
+                    username: example_value
+                    state: planned
+                    result: pending
+                    progress: 42.5
+                    started_at: '2026-01-15T10:30:00Z'
+                    ended_at: '2026-01-15T10:30:00Z'
+                    humanized:
+                      action: example_value
+                      input:
+                      - example_value
+                      output: example_value
+                      errors:
+                      - example_value
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /katello/api/v2/content_view_versions/{id}/promote:
+    post:
+      operationId: promoteContentViewVersion
+      summary: Promote a Content View Version
+      description: Promote a published content view version to a lifecycle environment. This makes the content available to hosts in that environment.
+      tags:
+      - Content Views
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Content view version identifier.
+        schema:
+          type: integer
+        example: abc123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - environment_ids
+              properties:
+                environment_ids:
+                  type: array
+                  description: Identifiers of the lifecycle environments to promote to.
+                  items:
+                    type: integer
+                description:
+                  type: string
+                  description: Description for the promotion.
+                force:
+                  type: boolean
+                  description: Force promotion even if validation fails.
+                  default: false
+            examples:
+              PromotecontentviewversionRequestExample:
+                summary: Default promoteContentViewVersion request
+                x-microcks-default: true
+                value:
+                  environment_ids:
+                  - 10
+                  description: A sample description.
+                  force: true
+      responses:
+        '202':
+          description: Content view version promotion task accepted. Returns a task object for tracking the asynchronous operation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForemanTask'
+              examples:
+                Promotecontentviewversion202Example:
+                  summary: Default promoteContentViewVersion 202 response
+                  x-microcks-default: true
+                  value:
+                    id: abc123
+                    label: Example Title
+                    pending: true
+                    action: example_value
+                    username: example_value
+                    state: planned
+                    result: pending
+                    progress: 42.5
+                    started_at: '2026-01-15T10:30:00Z'
+                    ended_at: '2026-01-15T10:30:00Z'
+                    humanized:
+                      action: example_value
+                      input:
+                      - example_value
+                      output: example_value
+                      errors:
+                      - example_value
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    pageQuery:
+      name: page
+      in: query
+      description: Page number for paginated results (starting at 1).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    perPageQuery:
+      name: per_page
+      in: query
+      description: Number of results per page. Use "all" to retrieve all results without pagination.
+      schema:
+        oneOf:
+        - type: integer
+          minimum: 1
+        - type: string
+          enum:
+          - all
+        default: 20
+    searchQuery:
+      name: search
+      in: query
+      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
+      schema:
+        type: string
+    orderQuery:
+      name: order
+      in: query
+      description: Sort field and direction (e.g., "name ASC" or "id DESC").
+      schema:
+        type: string
+    contentViewId:
+      name: id
+      in: path
+      required: true
+      description: Content view identifier.
+      schema:
+        type: integer
+    organizationIdQuery:
+      name: organization_id
+      in: query
+      description: Set the current organization context for the request.
+      schema:
+        type: integer
+  schemas:
+    ContentViewCreate:
+      type: object
+      description: Parameters for creating a new content view.
+      required:
+      - name
+      - organization_id
+      properties:
+        organization_id:
+          type: integer
+          description: Organization identifier.
+          example: '500123'
+        name:
+          type: string
+          description: Name of the content view.
+          example: Example Title
+        label:
+          type: string
+          description: Content view label (auto-generated from name if omitted).
+          example: Example Title
+        description:
+          type: string
+          description: Description of the content view.
+          example: A sample description.
+        composite:
+          type: boolean
+          description: Whether this is a composite content view.
+          default: false
+          example: true
+        rolling:
+          type: boolean
+          description: Whether this is a rolling content view.
+          default: false
+          example: true
+        auto_publish:
+          type: boolean
+          description: Auto-publish composite view when a component updates.
+          default: false
+          example: true
+        solve_dependencies:
+          type: boolean
+          description: Resolve RPM dependencies during publish.
+          default: false
+          example: true
+        import_only:
+          type: boolean
+          description: Mark as import-only content view.
+          default: false
+          example: true
+        repository_ids:
+          type: array
+          description: Repository IDs to include.
+          items:
+            type: integer
+          example: []
+        component_ids:
+          type: array
+          description: Content view version IDs for composite views.
+          items:
+            type: integer
+          example: []
+        environment_ids:
+          type: array
+          description: Lifecycle environment IDs for rolling content views.
+          items:
+            type: integer
+          example: []
+    ForemanTask:
+      type: object
+      description: An asynchronous task object returned for long-running operations such as publishing content views or uploading manifests.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique task identifier.
+          example: abc123
+        label:
+          type: string
+          description: Machine-readable task label.
+          example: Example Title
+        pending:
+          type: boolean
+          description: Whether the task is still pending.
+          example: true
+        action:
+          type: string
+          description: Human-readable description of the task action.
+          example: example_value
+        username:
+          type: string
+          description: User who initiated the task.
+          example: example_value
+        state:
+          type: string
+          description: Current state of the task.
+          enum:
+          - planned
+          - running
+          - paused
+          - stopped
+          example: planned
+        result:
+          type: string
+          description: Result of the task.
+          enum:
+          - pending
+          - success
+          - error
+          - warning
+          example: pending
+        progress:
+          type: number
+          description: Task progress as a decimal (0.0 to 1.0).
+          minimum: 0
+          maximum: 1
+          example: 42.5
+        started_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        ended_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        humanized:
+          type: object
+          properties:
+            action:
+              type: string
+            input:
+              type: array
+              items:
+                type: string
+            output:
+              type: string
+            errors:
+              type: array
+              items:
+                type: string
+          example: example_value
+    ContentView:
+      type: object
+      description: A content view defining a curated set of repositories and content available to hosts.
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the content view.
+          example: abc123
+        name:
+          type: string
+          description: Name of the content view.
+          example: Example Title
+        label:
+          type: string
+          description: Unique label for the content view (auto-generated from name).
+          example: Example Title
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the content view.
+          example: A sample description.
+        organization_id:
+          type: integer
+          description: Organization this content view belongs to.
+          example: '500123'
+        organization:
+          type: object
+          properties:
+            name:
+              type: string
+            label:
+              type: string
+            id:
+              type: integer
+          example: example_value
+        composite:
+          type: boolean
+          description: Whether this is a composite content view combining other content view versions.
+          example: true
+        rolling:
+          type: boolean
+          description: Whether this is a rolling content view.
+          example: true
+        auto_publish:
+          type: boolean
+          description: Whether composite content views auto-publish when a component is updated.
+          example: true
+        solve_dependencies:
+          type: boolean
+          description: Whether RPM dependencies are resolved during publish.
+          example: true
+        import_only:
+          type: boolean
+          description: Whether this content view is only for upstream imports.
+          example: true
+        generated_for:
+          type:
+          - string
+          - 'null'
+          description: If generated, indicates the purpose (e.g., import or export).
+          example: example_value
+        default:
+          type: boolean
+          description: Whether this is the default content view (every organization has one).
+          example: true
+        repository_ids:
+          type: array
+          description: Identifiers of repositories in this content view.
+          items:
+            type: integer
+          example: []
+        repositories:
+          type: array
+          description: Repositories included in this content view.
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              label:
+                type: string
+              content_type:
+                type: string
+          example: []
+        component_ids:
+          type: array
+          description: Content view version IDs for composite content views.
+          items:
+            type: integer
+          example: []
+        versions:
+          type: array
+          description: Published versions of this content view.
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              version:
+                type: string
+              published:
+                type: string
+                format: date-time
+              environment_ids:
+                type: array
+                items:
+                  type: integer
+          example: []
+        environments:
+          type: array
+          description: Lifecycle environments this content view is in.
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+              label:
+                type: string
+          example: []
+        activation_keys:
+          type: array
+          description: Activation keys using this content view.
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
+          example: []
+        next_version:
+          type: string
+          description: Next version number to be published.
+          example: example_value
+        last_published:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Timestamp of the last publish.
+          example: '2026-01-15T10:30:00Z'
+        latest_version:
+          type:
+          - string
+          - 'null'
+          description: Latest published version number.
+          example: example_value
+        latest_version_id:
+          type:
+          - integer
+          - 'null'
+          description: Identifier of the latest published version.
+          example: '500123'
+        created_at:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        updated_at:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+    ContentViewUpdate:
+      type: object
+      description: Parameters for updating a content view.
+      properties:
+        name:
+          type: string
+          example: Example Title
+        description:
+          type: string
+          example: A sample description.
+        auto_publish:
+          type: boolean
+          example: true
+        solve_dependencies:
+          type: boolean
+          example: true
+        repository_ids:
+          type: array
+          items:
+            type: integer
+          example: []
+        component_ids:
+          type: array
+          items:
+            type: integer
+          example: []
+        environment_ids:
+          type: array
+          items:
+            type: integer
+          example: []
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Resource not found.
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to authenticate user.
+    UnprocessableEntity:
+      description: The request was well-formed but contained validation errors.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                  full_messages:
+                    type: array
+                    items:
+                      type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using Satellite username and password.
+    oAuth2:
+      type: oauth2
+      description: OAuth 2.0 Personal Access Token authentication for Satellite users.
+      flows:
+        implicit:
+          authorizationUrl: https://satellite.example.com/users/extlogin
+          scopes: {}
+externalDocs:
+  description: Red Hat Satellite API Documentation
+  url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
