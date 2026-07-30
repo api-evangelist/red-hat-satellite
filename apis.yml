@@ -4,6 +4,19 @@ description: >-
   Red Hat Satellite is a systems management product that helps deploy, configure, and maintain systems across physical,
   virtual, and cloud environments.
 type: Index
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
 url: https://raw.githubusercontent.com/api-evangelist/red-hat-satellite/refs/heads/main/apis.yml
 tags:
@@ -16,217 +29,606 @@ created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - name: Red Hat Satellite REST API
-    description: >-
-      The main REST API for Red Hat Satellite 6.x, providing programmatic access to all Satellite functions including
-      host management, content management, provisioning, and configuration.
-    image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
-    baseURL: https://satellite.example.com/api/v2
-    humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
-    tags:
-      - Automation
-      - REST API
-      - Systems Management
-    properties:
-      - type: Documentation
-        url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
-      - type: OpenAPI
-        url: https://satellite.example.com/apidoc/v2.json
-      - type: OpenAPI
-        url: openapi/red-hat-satellite-api.yml
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-host-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-host-create-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-host-update-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-host-interface-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-host-interface-create-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-content-view-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-content-view-create-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-content-view-update-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-subscription-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-lifecycle-environment-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-organization-schema.json
-      - type: JSONSchema
-        url: json-schema/red-hat-satellite-foreman-task-schema.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-host-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-host-create-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-host-update-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-host-interface-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-host-interface-create-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-content-view-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-content-view-create-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-content-view-update-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-subscription-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-lifecycle-environment-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-organization-structure.json
-      - type: JSONStructure
-        url: json-structure/red-hat-satellite-foreman-task-structure.json
-      - type: Examples
-        url: examples/red-hat-satellite-host-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-host-create-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-host-update-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-host-interface-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-host-interface-create-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-content-view-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-content-view-create-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-content-view-update-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-subscription-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-lifecycle-environment-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-organization-example.json
-      - type: Examples
-        url: examples/red-hat-satellite-foreman-task-example.json
-      - type: JSONLD
-        url: json-ld/red-hat-satellite-context.jsonld
-      - type: Authentication
-        url: >-
-          https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-api_guide-authentication
-      - type: GettingStarted
-        url: >-
-          https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/introduction-to-satellite-api
-      - type: APIReference
-        url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
-    contact:
-      - type: Support
-        url: https://access.redhat.com/support
-  - name: Red Hat Satellite Hammer CLI
-    description: >-
-      Command-line interface tool for Red Hat Satellite that provides scriptable access to Satellite functions including
-      host management, content views, and provisioning.
-    image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
-    humanURL: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_hammer_cli_tool/index
-    tags:
-      - Automation
-      - CLI
-      - Command Line
-    properties:
-      - type: Documentation
-        url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_hammer_cli_tool/index
-      - type: CodeExamples
-        url: >-
-          https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html/using_the_hammer_cli_tool/hammer-cheat-sheet
-      - type: Authentication
-        url: >-
-          https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html/using_the_hammer_cli_tool/hammer-authentication
-    contact:
-      - type: Support
-        url: https://access.redhat.com/support
-  - name: Red Hat Satellite Foreman API
-    description: >-
-      Core Foreman API integrated into Red Hat Satellite for host lifecycle management, provisioning, and configuration
-      management. This is the upstream project API that powers Satellite's core functionality including the web UI,
-      users, organizations, and security.
-    image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
-    baseURL: https://satellite.example.com/api
-    humanURL: https://theforeman.org/api.html
-    tags:
-      - Foreman
-      - Host Management
-      - Provisioning
-      - REST API
-    properties:
-      - type: Documentation
-        url: https://apidocs.theforeman.org/
-      - type: APIReference
-        url: https://apidocs.theforeman.org/foreman/latest/apidoc/v2.html
-      - type: GitHubOrganization
-        url: https://github.com/theforeman
-      - type: GitHubRepository
-        url: https://github.com/theforeman/foreman
-      - type: GitHubRepository
-        url: https://github.com/theforeman/apidocs
-        title: API Docs Repository
-    contact:
-      - type: Support
-        url: https://access.redhat.com/support
-      - type: Support
-        url: https://community.theforeman.org/
-  - name: Red Hat Satellite Katello API
-    description: >-
-      Content management API for Red Hat Satellite handling repositories, content views, lifecycle environments,
-      subscriptions, and errata. Katello is the upstream plugin that provides Satellite's content and subscription
-      management capabilities.
-    image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
-    baseURL: https://satellite.example.com/katello/api
-    humanURL: https://theforeman.org/plugins/katello/
-    tags:
-      - Content Management
-      - Lifecycle Environments
-      - Repositories
-      - REST API
-      - Subscriptions
-    properties:
-      - type: Documentation
-        url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
-      - type: APIReference
-        url: https://apidocs.theforeman.org/katello/latest/apidoc/v2.html
-      - type: Documentation
-        url: https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/managing_content/index
-        title: Content Management Guide
-      - type: GitHubRepository
-        url: https://github.com/Katello/katello
-      - type: GitHubOrganization
-        url: https://github.com/Katello
-    contact:
-      - type: Support
-        url: https://access.redhat.com/support
-  - name: Red Hat Satellite Ansible Collection
-    description: >-
-      The redhat.satellite Ansible collection provides modules, roles, and plugins for automating Red Hat Satellite
-      configuration and management through the Satellite API. Based on the theforeman.foreman community collection.
-    image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
-    humanURL: https://catalog.redhat.com/en/software/collection/redhat/satellite
-    tags:
-      - Ansible
-      - Automation
-      - Configuration Management
-      - Infrastructure as Code
-    properties:
-      - type: Documentation
-        url: https://redhatsatellite.github.io/satellite-ansible-collection/develop/README.html
-      - type: GitHubRepository
-        url: https://github.com/RedHatSatellite/satellite-ansible-collection
-      - type: Marketplace
-        url: https://catalog.redhat.com/en/software/collection/redhat/satellite
-      - type: GitHubRepository
-        url: https://github.com/theforeman/foreman-ansible-modules
-        title: Community Upstream
-      - type: Blog
-        url: https://www.redhat.com/en/blog/automating-red-hat-satellite-with-ansible
-    contact:
-      - type: Support
-        url: https://access.redhat.com/support
+- name: Red Hat Satellite Hammer CLI
+  description: >-
+    Command-line interface tool for Red Hat Satellite that provides scriptable access to Satellite functions
+    including host management, content views, and provisioning.
+  image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+  humanURL: >-
+    https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_hammer_cli_tool/index
+  tags:
+  - Automation
+  - CLI
+  - Command Line
+  properties:
+  - type: Documentation
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_hammer_cli_tool/index
+  - type: CodeExamples
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html/using_the_hammer_cli_tool/hammer-cheat-sheet
+  - type: Authentication
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html/using_the_hammer_cli_tool/hammer-authentication
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Satellite Foreman API
+  description: >-
+    Core Foreman API integrated into Red Hat Satellite for host lifecycle management, provisioning, and
+    configuration management. This is the upstream project API that powers Satellite's core functionality
+    including the web UI, users, organizations, and security.
+  image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+  baseURL: https://satellite.example.com/api
+  humanURL: https://theforeman.org/api.html
+  tags:
+  - Foreman
+  - Host Management
+  - Provisioning
+  - REST API
+  properties:
+  - type: Documentation
+    url: https://apidocs.theforeman.org/
+  - type: APIReference
+    url: https://apidocs.theforeman.org/foreman/latest/apidoc/v2.html
+  - type: GitHubOrganization
+    url: https://github.com/theforeman
+  - type: GitHubRepository
+    url: https://github.com/theforeman/foreman
+  - type: GitHubRepository
+    url: https://github.com/theforeman/apidocs
+    title: API Docs Repository
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+  - type: Support
+    url: https://community.theforeman.org/
+- name: Red Hat Satellite Katello API
+  description: >-
+    Content management API for Red Hat Satellite handling repositories, content views, lifecycle environments,
+    subscriptions, and errata. Katello is the upstream plugin that provides Satellite's content and subscription
+    management capabilities.
+  image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+  baseURL: https://satellite.example.com/katello/api
+  humanURL: https://theforeman.org/plugins/katello/
+  tags:
+  - Content Management
+  - Lifecycle Environments
+  - Repositories
+  - REST API
+  - Subscriptions
+  properties:
+  - type: Documentation
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+  - type: APIReference
+    url: https://apidocs.theforeman.org/katello/latest/apidoc/v2.html
+  - type: Documentation
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/managing_content/index
+    title: Content Management Guide
+  - type: GitHubRepository
+    url: https://github.com/Katello/katello
+  - type: GitHubOrganization
+    url: https://github.com/Katello
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- name: Red Hat Satellite Ansible Collection
+  description: >-
+    The redhat.satellite Ansible collection provides modules, roles, and plugins for automating Red Hat
+    Satellite configuration and management through the Satellite API. Based on the theforeman.foreman
+    community collection.
+  image: https://www.redhat.com/profiles/rh/themes/redhatdotcom/img/logo.png
+  humanURL: https://catalog.redhat.com/en/software/collection/redhat/satellite
+  tags:
+  - Ansible
+  - Automation
+  - Configuration Management
+  - Infrastructure as Code
+  properties:
+  - type: Documentation
+    url: https://redhatsatellite.github.io/satellite-ansible-collection/develop/README.html
+  - type: GitHubRepository
+    url: https://github.com/RedHatSatellite/satellite-ansible-collection
+  - type: Marketplace
+    url: https://catalog.redhat.com/en/software/collection/redhat/satellite
+  - type: GitHubRepository
+    url: https://github.com/theforeman/foreman-ansible-modules
+    title: Community Upstream
+  - type: Blog
+    url: https://www.redhat.com/en/blog/automating-red-hat-satellite-with-ansible
+  contact:
+  - type: Support
+    url: https://access.redhat.com/support
+- aid: red-hat-satellite:red-hat-satellite-content-views-api
+  name: Red Hat Satellite Content Views API
+  description: >-
+    Manage content views which define curated sets of repositories and packages available to hosts.
+  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
+  baseURL: https://satellite.example.com/api/v2
+  tags:
+  - Content Views
+  properties:
+  - type: OpenAPI
+    url: openapi/red-hat-satellite-content-views-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-update-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-interface-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-interface-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-update-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-lifecycle-environment-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-foreman-task-schema.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-update-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-interface-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-interface-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-update-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-lifecycle-environment-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-organization-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-foreman-task-structure.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-update-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-interface-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-interface-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-update-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-subscription-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-lifecycle-environment-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-organization-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-foreman-task-example.json
+  - type: JSONLD
+    url: json-ld/red-hat-satellite-context.jsonld
+  - type: Authentication
+    url: >-
+      https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-api_guide-authentication
+  - type: GettingStarted
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/introduction-to-satellite-api
+  - type: APIReference
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
+- aid: red-hat-satellite:red-hat-satellite-hosts-api
+  name: Red Hat Satellite Hosts API
+  description: >-
+    Manage hosts registered with Red Hat Satellite including physical, virtual, and cloud instances.
+  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
+  baseURL: https://satellite.example.com/api/v2
+  tags:
+  - Hosts
+  properties:
+  - type: OpenAPI
+    url: openapi/red-hat-satellite-hosts-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-update-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-interface-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-interface-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-update-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-lifecycle-environment-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-foreman-task-schema.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-update-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-interface-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-interface-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-update-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-lifecycle-environment-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-organization-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-foreman-task-structure.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-update-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-interface-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-interface-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-update-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-subscription-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-lifecycle-environment-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-organization-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-foreman-task-example.json
+  - type: JSONLD
+    url: json-ld/red-hat-satellite-context.jsonld
+  - type: Authentication
+    url: >-
+      https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-api_guide-authentication
+  - type: GettingStarted
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/introduction-to-satellite-api
+  - type: APIReference
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
+- aid: red-hat-satellite:red-hat-satellite-lifecycle-environments-api
+  name: Red Hat Satellite Lifecycle Environments API
+  description: >-
+    Manage lifecycle environments that define promotion paths for content views from development through
+    production.
+  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
+  baseURL: https://satellite.example.com/api/v2
+  tags:
+  - Lifecycle Environments
+  properties:
+  - type: OpenAPI
+    url: openapi/red-hat-satellite-lifecycle-environments-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-update-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-interface-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-interface-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-update-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-lifecycle-environment-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-foreman-task-schema.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-update-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-interface-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-interface-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-update-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-lifecycle-environment-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-organization-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-foreman-task-structure.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-update-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-interface-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-interface-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-update-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-subscription-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-lifecycle-environment-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-organization-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-foreman-task-example.json
+  - type: JSONLD
+    url: json-ld/red-hat-satellite-context.jsonld
+  - type: Authentication
+    url: >-
+      https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-api_guide-authentication
+  - type: GettingStarted
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/introduction-to-satellite-api
+  - type: APIReference
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
+- aid: red-hat-satellite:red-hat-satellite-organizations-api
+  name: Red Hat Satellite Organizations API
+  description: >-
+    Manage organizations which provide multi-tenancy isolation for hosts, content, and subscriptions.
+  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
+  baseURL: https://satellite.example.com/api/v2
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/red-hat-satellite-organizations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-update-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-interface-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-interface-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-update-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-lifecycle-environment-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-foreman-task-schema.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-update-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-interface-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-interface-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-update-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-lifecycle-environment-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-organization-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-foreman-task-structure.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-update-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-interface-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-interface-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-update-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-subscription-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-lifecycle-environment-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-organization-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-foreman-task-example.json
+  - type: JSONLD
+    url: json-ld/red-hat-satellite-context.jsonld
+  - type: Authentication
+    url: >-
+      https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-api_guide-authentication
+  - type: GettingStarted
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/introduction-to-satellite-api
+  - type: APIReference
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
+- aid: red-hat-satellite:red-hat-satellite-subscriptions-api
+  name: Red Hat Satellite Subscriptions API
+  description: Manage Red Hat subscriptions and entitlements for organizations and hosts.
+  humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
+  baseURL: https://satellite.example.com/api/v2
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/red-hat-satellite-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-update-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-interface-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-host-interface-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-create-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-content-view-update-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-subscription-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-lifecycle-environment-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-organization-schema.json
+  - type: JSONSchema
+    url: json-schema/red-hat-satellite-foreman-task-schema.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-update-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-interface-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-host-interface-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-create-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-content-view-update-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-subscription-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-lifecycle-environment-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-organization-structure.json
+  - type: JSONStructure
+    url: json-structure/red-hat-satellite-foreman-task-structure.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-update-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-interface-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-host-interface-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-create-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-content-view-update-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-subscription-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-lifecycle-environment-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-organization-example.json
+  - type: Examples
+    url: examples/red-hat-satellite-foreman-task-example.json
+  - type: JSONLD
+    url: json-ld/red-hat-satellite-context.jsonld
+  - type: Authentication
+    url: >-
+      https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-api_guide-authentication
+  - type: GettingStarted
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/introduction-to-satellite-api
+  - type: APIReference
+    url: >-
+      https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/red-hat-satellite/overview
   - type: AgenticAccess
     url: agentic-access/red-hat-satellite-agentic-access.yml
   - type: TrustCenter
