@@ -1,0 +1,22 @@
+{
+  "provider": "red-hat-satellite",
+  "sources": [
+    "red-hat-satellite-content-views-api-openapi.yml",
+    "red-hat-satellite-hosts-api-openapi.yml",
+    "red-hat-satellite-lifecycle-environments-api-openapi.yml",
+    "red-hat-satellite-organizations-api-openapi.yml",
+    "red-hat-satellite-subscriptions-api-openapi.yml"
+  ],
+  "outputs": [
+    "red-hat-satellite-content-views-api-openapi.yml",
+    "red-hat-satellite-hosts-api-openapi.yml",
+    "red-hat-satellite-lifecycle-environments-api-openapi.yml",
+    "red-hat-satellite-organizations-api-openapi.yml",
+    "red-hat-satellite-subscriptions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

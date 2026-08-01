@@ -1,0 +1,1013 @@
+{
+  "info": {
+    "_postman_id": "05ff33be-013c-4436-ad63-5a53e3c67415",
+    "name": "Red Hat Satellite REST Content Views Subscriptions API",
+    "description": "The Red Hat Satellite REST API provides programmatic access to Red Hat Satellite server functionality including host management, content view management, subscription management, lifecycle environments, and provisioning. The API is built on the Foreman and Katello upstream projects and follows RESTful conventions with JSON request and response bodies.\n\nContact Support:\n Name: Red Hat Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:43:37.000Z",
+    "updatedAt": "2026-07-28T02:43:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-05ff33be-013c-4436-ad63-5a53e3c67415"
+  },
+  "item": [
+    {
+      "name": "katello",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "organizations",
+                  "item": [
+                    {
+                      "name": "{organization_id}",
+                      "item": [
+                        {
+                          "name": "subscriptions",
+                          "item": [
+                            {
+                              "name": "upload",
+                              "item": [
+                                {
+                                  "name": "Upload a Subscription Manifest",
+                                  "id": "9c18b5e5-d02c-45cb-8fa3-93d8ecd03f90",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "multipart/form-data"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "formdata",
+                                      "formdata": [
+                                        {
+                                          "description": "(Required) Subscription manifest file (.zip).",
+                                          "key": "content",
+                                          "type": "file",
+                                          "value": null
+                                        },
+                                        {
+                                          "description": "Custom CDN URL for content.",
+                                          "key": "repository_url",
+                                          "value": "<string>",
+                                          "type": "text"
+                                        }
+                                      ]
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions/upload",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "subscriptions",
+                                        "upload"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "26cd16c6-c8fd-42d4-8a20-aef97397ab72",
+                                          "key": "organization_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) Organization identifier."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Upload a Red Hat subscription manifest file to import subscriptions into an organization."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "f44c9df1-fd08-40b8-baf7-c0c39c0cfb42",
+                                      "name": "Manifest upload task accepted.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Subscription manifest file (.zip).",
+                                              "key": "content",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "Custom CDN URL for content.",
+                                              "key": "repository_url",
+                                              "value": "<string>",
+                                              "type": "text"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions/upload",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "katello",
+                                            "api",
+                                            "v2",
+                                            "organizations",
+                                            ":organization_id",
+                                            "subscriptions",
+                                            "upload"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Accepted",
+                                      "code": 202,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"id\": \"<uuid>\",\n  \"label\": \"<string>\",\n  \"pending\": \"<boolean>\",\n  \"action\": \"<string>\",\n  \"username\": \"<string>\",\n  \"state\": \"running\",\n  \"result\": \"warning\",\n  \"progress\": \"<number>\",\n  \"started_at\": \"<string,null-date-time>\",\n  \"ended_at\": \"<string,null-date-time>\",\n  \"humanized\": {\n    \"action\": \"<string>\",\n    \"input\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"output\": \"<string>\",\n    \"errors\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                      "createdAt": "2026-07-28T02:43:37.000Z",
+                                      "updatedAt": "2026-07-28T02:43:37.000Z",
+                                      "uid": "35240-f44c9df1-fd08-40b8-baf7-c0c39c0cfb42"
+                                    },
+                                    {
+                                      "id": "b72bfdad-beb4-4957-921f-f105ef46cc19",
+                                      "name": "Invalid manifest or upload error.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Subscription manifest file (.zip).",
+                                              "key": "content",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "Custom CDN URL for content.",
+                                              "key": "repository_url",
+                                              "value": "<string>",
+                                              "type": "text"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions/upload",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "katello",
+                                            "api",
+                                            "v2",
+                                            "organizations",
+                                            ":organization_id",
+                                            "subscriptions",
+                                            "upload"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Bad Request",
+                                      "code": 400,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-07-28T02:43:37.000Z",
+                                      "updatedAt": "2026-07-28T02:43:37.000Z",
+                                      "uid": "35240-b72bfdad-beb4-4957-921f-f105ef46cc19"
+                                    },
+                                    {
+                                      "id": "65386ef0-2a97-44a1-a92b-a82608f400ed",
+                                      "name": "Authentication credentials are missing or invalid.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "formdata",
+                                          "formdata": [
+                                            {
+                                              "description": "(Required) Subscription manifest file (.zip).",
+                                              "key": "content",
+                                              "type": "file"
+                                            },
+                                            {
+                                              "description": "Custom CDN URL for content.",
+                                              "key": "repository_url",
+                                              "value": "<string>",
+                                              "type": "text"
+                                            }
+                                          ]
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions/upload",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "katello",
+                                            "api",
+                                            "v2",
+                                            "organizations",
+                                            ":organization_id",
+                                            "subscriptions",
+                                            "upload"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:43:37.000Z",
+                                      "updatedAt": "2026-07-28T02:43:37.000Z",
+                                      "uid": "35240-65386ef0-2a97-44a1-a92b-a82608f400ed"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:43:37.000Z",
+                                  "updatedAt": "2026-07-28T02:43:37.000Z",
+                                  "uid": "35240-9c18b5e5-d02c-45cb-8fa3-93d8ecd03f90"
+                                }
+                              ],
+                              "id": "e6e7e043-32c6-4076-a85a-96c9cbeb30a1",
+                              "createdAt": "2026-07-28T02:43:37.000Z",
+                              "updatedAt": "2026-07-28T02:43:37.000Z",
+                              "uid": "35240-e6e7e043-32c6-4076-a85a-96c9cbeb30a1"
+                            },
+                            {
+                              "name": "delete_manifest",
+                              "item": [
+                                {
+                                  "name": "Delete a Subscription Manifest",
+                                  "id": "d51385e1-6707-4760-8c3e-67b19807d0ef",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions/delete_manifest",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "subscriptions",
+                                        "delete_manifest"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e03fa3fe-5e6c-4b40-9335-ec4243108292",
+                                          "key": "organization_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) Organization identifier."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Delete the subscription manifest from an organization, removing all imported subscriptions."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "7fc5df68-2d2a-40f9-8f19-51514951a1d9",
+                                      "name": "Manifest deletion task accepted.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions/delete_manifest",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "katello",
+                                            "api",
+                                            "v2",
+                                            "organizations",
+                                            ":organization_id",
+                                            "subscriptions",
+                                            "delete_manifest"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Accepted",
+                                      "code": 202,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"id\": \"<uuid>\",\n  \"label\": \"<string>\",\n  \"pending\": \"<boolean>\",\n  \"action\": \"<string>\",\n  \"username\": \"<string>\",\n  \"state\": \"running\",\n  \"result\": \"warning\",\n  \"progress\": \"<number>\",\n  \"started_at\": \"<string,null-date-time>\",\n  \"ended_at\": \"<string,null-date-time>\",\n  \"humanized\": {\n    \"action\": \"<string>\",\n    \"input\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"output\": \"<string>\",\n    \"errors\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                      "createdAt": "2026-07-28T02:43:37.000Z",
+                                      "updatedAt": "2026-07-28T02:43:37.000Z",
+                                      "uid": "35240-7fc5df68-2d2a-40f9-8f19-51514951a1d9"
+                                    },
+                                    {
+                                      "id": "c297b073-2f64-40d5-bb74-9d702d5e439f",
+                                      "name": "Authentication credentials are missing or invalid.",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions/delete_manifest",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "katello",
+                                            "api",
+                                            "v2",
+                                            "organizations",
+                                            ":organization_id",
+                                            "subscriptions",
+                                            "delete_manifest"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:43:37.000Z",
+                                      "updatedAt": "2026-07-28T02:43:37.000Z",
+                                      "uid": "35240-c297b073-2f64-40d5-bb74-9d702d5e439f"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:43:37.000Z",
+                                  "updatedAt": "2026-07-28T02:43:37.000Z",
+                                  "uid": "35240-d51385e1-6707-4760-8c3e-67b19807d0ef"
+                                }
+                              ],
+                              "id": "68269c43-59f6-4254-8712-fb4746eff163",
+                              "createdAt": "2026-07-28T02:43:37.000Z",
+                              "updatedAt": "2026-07-28T02:43:37.000Z",
+                              "uid": "35240-68269c43-59f6-4254-8712-fb4746eff163"
+                            },
+                            {
+                              "name": "refresh_manifest",
+                              "item": [
+                                {
+                                  "name": "Refresh a Subscription Manifest",
+                                  "id": "a284b78f-ee0c-4b03-afa3-032246c48fa2",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions/refresh_manifest",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "subscriptions",
+                                        "refresh_manifest"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "ddc8acad-e0dc-4d4f-a95a-17ad9c557e30",
+                                          "key": "organization_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) Organization identifier."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Refresh the subscription manifest for an organization to sync changes from the Red Hat Customer Portal."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "9698e47b-48b9-4c05-bae5-2393c2366815",
+                                      "name": "Manifest refresh task accepted.",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions/refresh_manifest",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "katello",
+                                            "api",
+                                            "v2",
+                                            "organizations",
+                                            ":organization_id",
+                                            "subscriptions",
+                                            "refresh_manifest"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Accepted",
+                                      "code": 202,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"id\": \"<uuid>\",\n  \"label\": \"<string>\",\n  \"pending\": \"<boolean>\",\n  \"action\": \"<string>\",\n  \"username\": \"<string>\",\n  \"state\": \"running\",\n  \"result\": \"warning\",\n  \"progress\": \"<number>\",\n  \"started_at\": \"<string,null-date-time>\",\n  \"ended_at\": \"<string,null-date-time>\",\n  \"humanized\": {\n    \"action\": \"<string>\",\n    \"input\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"output\": \"<string>\",\n    \"errors\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                      "createdAt": "2026-07-28T02:43:37.000Z",
+                                      "updatedAt": "2026-07-28T02:43:37.000Z",
+                                      "uid": "35240-9698e47b-48b9-4c05-bae5-2393c2366815"
+                                    },
+                                    {
+                                      "id": "3f89ed38-6cce-413b-8033-d29b96d9e522",
+                                      "name": "Authentication credentials are missing or invalid.",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions/refresh_manifest",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "katello",
+                                            "api",
+                                            "v2",
+                                            "organizations",
+                                            ":organization_id",
+                                            "subscriptions",
+                                            "refresh_manifest"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:43:37.000Z",
+                                      "updatedAt": "2026-07-28T02:43:37.000Z",
+                                      "uid": "35240-3f89ed38-6cce-413b-8033-d29b96d9e522"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:43:37.000Z",
+                                  "updatedAt": "2026-07-28T02:43:37.000Z",
+                                  "uid": "35240-a284b78f-ee0c-4b03-afa3-032246c48fa2"
+                                }
+                              ],
+                              "id": "85546f4d-9a47-49a1-8796-682a8d3000ce",
+                              "createdAt": "2026-07-28T02:43:37.000Z",
+                              "updatedAt": "2026-07-28T02:43:37.000Z",
+                              "uid": "35240-85546f4d-9a47-49a1-8796-682a8d3000ce"
+                            },
+                            {
+                              "name": "List Organization Subscriptions",
+                              "id": "9fa859a4-2c2e-4eb4-b06a-62a7655d06cc",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions?host_id=<string>&activation_key_id=<string>&name=<string>&available_for=host&match_host=<boolean>&match_installed=<boolean>&no_overlap=<boolean>&search=<string>&order=<string>&page=1&per_page=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "katello",
+                                    "api",
+                                    "v2",
+                                    "organizations",
+                                    ":organization_id",
+                                    "subscriptions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter subscriptions by host identifier.",
+                                      "key": "host_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter subscriptions by activation key identifier.",
+                                      "key": "activation_key_id",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by subscription name.",
+                                      "key": "name",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Object type to show available subscriptions for (host or activation_key).",
+                                      "key": "available_for",
+                                      "value": "host"
+                                    },
+                                    {
+                                      "description": "Ignore subscriptions not applicable to the specified host.",
+                                      "key": "match_host",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Return only subscriptions matching installed products on the host.",
+                                      "key": "match_installed",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Exclude subscriptions that overlap with existing host attachments.",
+                                      "key": "no_overlap",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\").",
+                                      "key": "search",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\").",
+                                      "key": "order",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Page number for paginated results (starting at 1).",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "Number of results per page. Use \"all\" to retrieve all results without pagination.",
+                                      "key": "per_page",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "fdd6c652-2985-4206-a2fc-dd762e548b67",
+                                      "key": "organization_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) Organization identifier."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve a paginated list of subscriptions for an organization. Subscriptions represent Red Hat product entitlements that can be attached to hosts."
+                              },
+                              "response": [
+                                {
+                                  "id": "f5bd7534-3685-4cbd-9dbb-cde6bf06f21c",
+                                  "name": "Successful response containing a list of subscriptions.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions?host_id=<string>&activation_key_id=<string>&name=<string>&available_for=host&match_host=<boolean>&match_installed=<boolean>&no_overlap=<boolean>&search=<string>&order=<string>&page=1&per_page=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "subscriptions"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter subscriptions by host identifier.",
+                                          "key": "host_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter subscriptions by activation key identifier.",
+                                          "key": "activation_key_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter by subscription name.",
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Object type to show available subscriptions for (host or activation_key).",
+                                          "key": "available_for",
+                                          "value": "host"
+                                        },
+                                        {
+                                          "description": "Ignore subscriptions not applicable to the specified host.",
+                                          "key": "match_host",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Return only subscriptions matching installed products on the host.",
+                                          "key": "match_installed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Exclude subscriptions that overlap with existing host attachments.",
+                                          "key": "no_overlap",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\").",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\").",
+                                          "key": "order",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Page number for paginated results (starting at 1).",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "Number of results per page. Use \"all\" to retrieve all results without pagination.",
+                                          "key": "per_page",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"cp_id\": \"<string>\",\n      \"subscription_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"product_id\": \"<string>\",\n      \"product_name\": \"<string>\",\n      \"contract_number\": \"<string,null>\",\n      \"account_number\": \"<string,null>\",\n      \"quantity\": \"<integer>\",\n      \"consumed\": \"<integer>\",\n      \"available\": \"<integer>\",\n      \"start_date\": \"<dateTime>\",\n      \"end_date\": \"<dateTime>\",\n      \"support_level\": \"<string,null>\",\n      \"type\": \"<string>\",\n      \"virt_only\": \"<boolean>\",\n      \"virt_who\": \"<boolean>\",\n      \"multi_entitlement\": \"<boolean>\",\n      \"stacking_id\": \"<string,null>\",\n      \"upstream_pool_id\": \"<string,null>\",\n      \"organization_id\": \"<integer>\",\n      \"provided_products\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"cp_id\": \"<string>\",\n      \"subscription_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"product_id\": \"<string>\",\n      \"product_name\": \"<string>\",\n      \"contract_number\": \"<string,null>\",\n      \"account_number\": \"<string,null>\",\n      \"quantity\": \"<integer>\",\n      \"consumed\": \"<integer>\",\n      \"available\": \"<integer>\",\n      \"start_date\": \"<dateTime>\",\n      \"end_date\": \"<dateTime>\",\n      \"support_level\": \"<string,null>\",\n      \"type\": \"<string>\",\n      \"virt_only\": \"<boolean>\",\n      \"virt_who\": \"<boolean>\",\n      \"multi_entitlement\": \"<boolean>\",\n      \"stacking_id\": \"<string,null>\",\n      \"upstream_pool_id\": \"<string,null>\",\n      \"organization_id\": \"<integer>\",\n      \"provided_products\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:43:37.000Z",
+                                  "updatedAt": "2026-07-28T02:43:37.000Z",
+                                  "uid": "35240-f5bd7534-3685-4cbd-9dbb-cde6bf06f21c"
+                                },
+                                {
+                                  "id": "c256039b-edc6-4951-81c5-c65b773d75c4",
+                                  "name": "Authentication credentials are missing or invalid.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/subscriptions?host_id=<string>&activation_key_id=<string>&name=<string>&available_for=host&match_host=<boolean>&match_installed=<boolean>&no_overlap=<boolean>&search=<string>&order=<string>&page=1&per_page=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "subscriptions"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter subscriptions by host identifier.",
+                                          "key": "host_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter subscriptions by activation key identifier.",
+                                          "key": "activation_key_id",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter by subscription name.",
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Object type to show available subscriptions for (host or activation_key).",
+                                          "key": "available_for",
+                                          "value": "host"
+                                        },
+                                        {
+                                          "description": "Ignore subscriptions not applicable to the specified host.",
+                                          "key": "match_host",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Return only subscriptions matching installed products on the host.",
+                                          "key": "match_installed",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Exclude subscriptions that overlap with existing host attachments.",
+                                          "key": "no_overlap",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\").",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\").",
+                                          "key": "order",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Page number for paginated results (starting at 1).",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "Number of results per page. Use \"all\" to retrieve all results without pagination.",
+                                          "key": "per_page",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:43:37.000Z",
+                                  "updatedAt": "2026-07-28T02:43:37.000Z",
+                                  "uid": "35240-c256039b-edc6-4951-81c5-c65b773d75c4"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:37.000Z",
+                              "updatedAt": "2026-07-28T02:43:37.000Z",
+                              "uid": "35240-9fa859a4-2c2e-4eb4-b06a-62a7655d06cc"
+                            }
+                          ],
+                          "id": "2cd8a9d1-43f4-4278-8407-d7033d268a6a",
+                          "createdAt": "2026-07-28T02:43:37.000Z",
+                          "updatedAt": "2026-07-28T02:43:37.000Z",
+                          "uid": "35240-2cd8a9d1-43f4-4278-8407-d7033d268a6a"
+                        }
+                      ],
+                      "id": "0d2397c3-ee87-4b82-94aa-deed6fa95387",
+                      "createdAt": "2026-07-28T02:43:37.000Z",
+                      "updatedAt": "2026-07-28T02:43:37.000Z",
+                      "uid": "35240-0d2397c3-ee87-4b82-94aa-deed6fa95387"
+                    }
+                  ],
+                  "id": "abb4090f-6afa-4d46-b1ae-e1d3fddf1194",
+                  "createdAt": "2026-07-28T02:43:37.000Z",
+                  "updatedAt": "2026-07-28T02:43:37.000Z",
+                  "uid": "35240-abb4090f-6afa-4d46-b1ae-e1d3fddf1194"
+                }
+              ],
+              "id": "a266121f-b5ce-454a-8904-0c5fb2b583ad",
+              "createdAt": "2026-07-28T02:43:37.000Z",
+              "updatedAt": "2026-07-28T02:43:37.000Z",
+              "uid": "35240-a266121f-b5ce-454a-8904-0c5fb2b583ad"
+            }
+          ],
+          "id": "66e6da80-0f23-4004-8abb-6e0ca4c4f246",
+          "createdAt": "2026-07-28T02:43:37.000Z",
+          "updatedAt": "2026-07-28T02:43:37.000Z",
+          "uid": "35240-66e6da80-0f23-4004-8abb-6e0ca4c4f246"
+        }
+      ],
+      "id": "170fd194-bead-48a9-a5f4-c2bfecd0b50e",
+      "createdAt": "2026-07-28T02:43:37.000Z",
+      "updatedAt": "2026-07-28T02:43:37.000Z",
+      "uid": "35240-170fd194-bead-48a9-a5f4-c2bfecd0b50e"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://satellite.example.com"
+    }
+  ]
+}

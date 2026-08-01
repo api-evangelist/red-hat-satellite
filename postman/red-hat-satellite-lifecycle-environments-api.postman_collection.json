@@ -1,0 +1,764 @@
+{
+  "info": {
+    "_postman_id": "b51e890e-02c7-49e5-9416-c13f513e536f",
+    "name": "Red Hat Satellite REST Content Views Lifecycle Environments API",
+    "description": "The Red Hat Satellite REST API provides programmatic access to Red Hat Satellite server functionality including host management, content view management, subscription management, lifecycle environments, and provisioning. The API is built on the Foreman and Katello upstream projects and follows RESTful conventions with JSON request and response bodies.\n\nContact Support:\n Name: Red Hat Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:43:33.000Z",
+    "updatedAt": "2026-07-28T02:43:33.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b51e890e-02c7-49e5-9416-c13f513e536f"
+  },
+  "item": [
+    {
+      "name": "katello",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "organizations",
+                  "item": [
+                    {
+                      "name": "{organization_id}",
+                      "item": [
+                        {
+                          "name": "environments",
+                          "item": [
+                            {
+                              "name": "paths",
+                              "item": [
+                                {
+                                  "name": "List Lifecycle Environment Paths",
+                                  "id": "69fbb79e-1487-4707-bfb4-8adda6995ff7",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments/paths",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "environments",
+                                        "paths"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "5cd9e20b-4b83-4c32-a27e-71ca5aebf994",
+                                          "key": "organization_id",
+                                          "value": "<integer>",
+                                          "description": "(Required) Organization identifier."
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieve the lifecycle environment promotion paths for an organization, showing the sequence of environments content views are promoted through."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a80ea5b7-ab6b-4434-8341-b88ec9426112",
+                                      "name": "Successful response containing lifecycle environment paths.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments/paths",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "katello",
+                                            "api",
+                                            "v2",
+                                            "organizations",
+                                            ":organization_id",
+                                            "environments",
+                                            "paths"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "[\n  {\n    \"environments\": [\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"label\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"organization_id\": \"<integer>\",\n        \"organization\": {\n          \"name\": \"<string>\",\n          \"label\": \"<string>\",\n          \"id\": \"<integer>\"\n        },\n        \"library\": \"<boolean>\",\n        \"prior\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"successor\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"counts\": {\n          \"content_hosts\": \"<integer>\",\n          \"content_views\": \"<integer>\"\n        },\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"label\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"organization_id\": \"<integer>\",\n        \"organization\": {\n          \"name\": \"<string>\",\n          \"label\": \"<string>\",\n          \"id\": \"<integer>\"\n        },\n        \"library\": \"<boolean>\",\n        \"prior\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"successor\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"counts\": {\n          \"content_hosts\": \"<integer>\",\n          \"content_views\": \"<integer>\"\n        },\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    ]\n  },\n  {\n    \"environments\": [\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"label\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"organization_id\": \"<integer>\",\n        \"organization\": {\n          \"name\": \"<string>\",\n          \"label\": \"<string>\",\n          \"id\": \"<integer>\"\n        },\n        \"library\": \"<boolean>\",\n        \"prior\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"successor\": null,\n        \"counts\": {\n          \"content_hosts\": \"<integer>\",\n          \"content_views\": \"<integer>\"\n        },\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"label\": \"<string>\",\n        \"description\": \"<string,null>\",\n        \"organization_id\": \"<integer>\",\n        \"organization\": {\n          \"name\": \"<string>\",\n          \"label\": \"<string>\",\n          \"id\": \"<integer>\"\n        },\n        \"library\": \"<boolean>\",\n        \"prior\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"successor\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"counts\": {\n          \"content_hosts\": \"<integer>\",\n          \"content_views\": \"<integer>\"\n        },\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    ]\n  }\n]",
+                                      "createdAt": "2026-07-28T02:43:34.000Z",
+                                      "updatedAt": "2026-07-28T02:43:34.000Z",
+                                      "uid": "35240-a80ea5b7-ab6b-4434-8341-b88ec9426112"
+                                    },
+                                    {
+                                      "id": "c4c828c7-14cf-4c59-b7e4-fb2d2f1c507b",
+                                      "name": "Authentication credentials are missing or invalid.",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments/paths",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "katello",
+                                            "api",
+                                            "v2",
+                                            "organizations",
+                                            ":organization_id",
+                                            "environments",
+                                            "paths"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "organization_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T02:43:34.000Z",
+                                      "updatedAt": "2026-07-28T02:43:34.000Z",
+                                      "uid": "35240-c4c828c7-14cf-4c59-b7e4-fb2d2f1c507b"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:43:34.000Z",
+                                  "updatedAt": "2026-07-28T02:43:34.000Z",
+                                  "uid": "35240-69fbb79e-1487-4707-bfb4-8adda6995ff7"
+                                }
+                              ],
+                              "id": "18312d33-42c0-42f1-a89d-54807db355f4",
+                              "createdAt": "2026-07-28T02:43:34.000Z",
+                              "updatedAt": "2026-07-28T02:43:34.000Z",
+                              "uid": "35240-18312d33-42c0-42f1-a89d-54807db355f4"
+                            },
+                            {
+                              "name": "List Lifecycle Environments",
+                              "id": "7d545bf2-2623-4ea8-be15-6dbc2a7c0c19",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments?library=<boolean>&name=<string>&label=<string>&search=<string>&order=<string>&page=1&per_page=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "katello",
+                                    "api",
+                                    "v2",
+                                    "organizations",
+                                    ":organization_id",
+                                    "environments"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Include the Library lifecycle environment.",
+                                      "key": "library",
+                                      "value": "<boolean>"
+                                    },
+                                    {
+                                      "description": "Filter by lifecycle environment name.",
+                                      "key": "name",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Filter by lifecycle environment label.",
+                                      "key": "label",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\").",
+                                      "key": "search",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\").",
+                                      "key": "order",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Page number for paginated results (starting at 1).",
+                                      "key": "page",
+                                      "value": "1"
+                                    },
+                                    {
+                                      "description": "Number of results per page. Use \"all\" to retrieve all results without pagination.",
+                                      "key": "per_page",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "bc42be89-563b-4f9c-8c40-13ef336a99ef",
+                                      "key": "organization_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) Organization identifier."
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve a list of lifecycle environments for an organization. Lifecycle environments define the content promotion path from Library through development, testing, and production stages."
+                              },
+                              "response": [
+                                {
+                                  "id": "59176e36-2a13-401a-93ef-9e193ec18942",
+                                  "name": "Successful response containing a list of lifecycle environments.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments?library=<boolean>&name=<string>&label=<string>&search=<string>&order=<string>&page=1&per_page=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "environments"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Include the Library lifecycle environment.",
+                                          "key": "library",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Filter by lifecycle environment name.",
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter by lifecycle environment label.",
+                                          "key": "label",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\").",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\").",
+                                          "key": "order",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Page number for paginated results (starting at 1).",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "Number of results per page. Use \"all\" to retrieve all results without pagination.",
+                                          "key": "per_page",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"organization_id\": \"<integer>\",\n      \"organization\": {\n        \"name\": \"<string>\",\n        \"label\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      \"library\": \"<boolean>\",\n      \"prior\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"successor\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"counts\": {\n        \"content_hosts\": \"<integer>\",\n        \"content_views\": \"<integer>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"organization_id\": \"<integer>\",\n      \"organization\": {\n        \"name\": \"<string>\",\n        \"label\": \"<string>\",\n        \"id\": \"<integer>\"\n      },\n      \"library\": \"<boolean>\",\n      \"prior\": {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\"\n      },\n      \"successor\": null,\n      \"counts\": {\n        \"content_hosts\": \"<integer>\",\n        \"content_views\": \"<integer>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T02:43:34.000Z",
+                                  "updatedAt": "2026-07-28T02:43:34.000Z",
+                                  "uid": "35240-59176e36-2a13-401a-93ef-9e193ec18942"
+                                },
+                                {
+                                  "id": "0ef33948-08d9-4844-b927-c7955253bf11",
+                                  "name": "Authentication credentials are missing or invalid.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments?library=<boolean>&name=<string>&label=<string>&search=<string>&order=<string>&page=1&per_page=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "environments"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Include the Library lifecycle environment.",
+                                          "key": "library",
+                                          "value": "<boolean>"
+                                        },
+                                        {
+                                          "description": "Filter by lifecycle environment name.",
+                                          "key": "name",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Filter by lifecycle environment label.",
+                                          "key": "label",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\").",
+                                          "key": "search",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\").",
+                                          "key": "order",
+                                          "value": "<string>"
+                                        },
+                                        {
+                                          "description": "Page number for paginated results (starting at 1).",
+                                          "key": "page",
+                                          "value": "1"
+                                        },
+                                        {
+                                          "description": "Number of results per page. Use \"all\" to retrieve all results without pagination.",
+                                          "key": "per_page",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:43:34.000Z",
+                                  "updatedAt": "2026-07-28T02:43:34.000Z",
+                                  "uid": "35240-0ef33948-08d9-4844-b927-c7955253bf11"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:34.000Z",
+                              "updatedAt": "2026-07-28T02:43:34.000Z",
+                              "uid": "35240-7d545bf2-2623-4ea8-be15-6dbc2a7c0c19"
+                            },
+                            {
+                              "name": "Create a Lifecycle Environment",
+                              "id": "94ed5e52-d9d8-49f0-85fa-e5d49bf8eeae",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"prior_id\": \"<integer>\",\n  \"label\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "katello",
+                                    "api",
+                                    "v2",
+                                    "organizations",
+                                    ":organization_id",
+                                    "environments"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "cb467b02-10f9-41c1-b0f1-8890ec7da69c",
+                                      "key": "organization_id",
+                                      "value": "<integer>",
+                                      "description": "(Required) Organization identifier."
+                                    }
+                                  ]
+                                },
+                                "description": "Create a new lifecycle environment within an organization's content promotion path."
+                              },
+                              "response": [
+                                {
+                                  "id": "3536b87a-4a1f-4da1-8298-5e1a642cc80b",
+                                  "name": "Lifecycle environment created successfully.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"prior_id\": \"<integer>\",\n  \"label\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "environments"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"label\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"organization_id\": \"<integer>\",\n  \"organization\": {\n    \"name\": \"<string>\",\n    \"label\": \"<string>\",\n    \"id\": \"<integer>\"\n  },\n  \"library\": \"<boolean>\",\n  \"prior\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"successor\": null,\n  \"counts\": {\n    \"content_hosts\": \"<integer>\",\n    \"content_views\": \"<integer>\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                                  "createdAt": "2026-07-28T02:43:34.000Z",
+                                  "updatedAt": "2026-07-28T02:43:34.000Z",
+                                  "uid": "35240-3536b87a-4a1f-4da1-8298-5e1a642cc80b"
+                                },
+                                {
+                                  "id": "d4eaad7e-5c9e-496c-87c5-62edafc71732",
+                                  "name": "Authentication credentials are missing or invalid.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"prior_id\": \"<integer>\",\n  \"label\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "environments"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T02:43:34.000Z",
+                                  "updatedAt": "2026-07-28T02:43:34.000Z",
+                                  "uid": "35240-d4eaad7e-5c9e-496c-87c5-62edafc71732"
+                                },
+                                {
+                                  "id": "3ebb43f3-30a5-48ec-9930-785a67449f76",
+                                  "name": "The request was well-formed but contained validation errors.",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"prior_id\": \"<integer>\",\n  \"label\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/katello/api/v2/organizations/:organization_id/environments",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "katello",
+                                        "api",
+                                        "v2",
+                                        "organizations",
+                                        ":organization_id",
+                                        "environments"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "organization_id"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                                  "code": 422,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": {\n    \"id\": \"<integer>\",\n    \"errors\": {\n      \"quie\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"ut_12\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"amet_d7a\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"full_messages\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                  "createdAt": "2026-07-28T02:43:34.000Z",
+                                  "updatedAt": "2026-07-28T02:43:34.000Z",
+                                  "uid": "35240-3ebb43f3-30a5-48ec-9930-785a67449f76"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T02:43:34.000Z",
+                              "updatedAt": "2026-07-28T02:43:34.000Z",
+                              "uid": "35240-94ed5e52-d9d8-49f0-85fa-e5d49bf8eeae"
+                            }
+                          ],
+                          "id": "e411d9c0-52c2-43d3-b5d5-6f7052912e60",
+                          "createdAt": "2026-07-28T02:43:34.000Z",
+                          "updatedAt": "2026-07-28T02:43:34.000Z",
+                          "uid": "35240-e411d9c0-52c2-43d3-b5d5-6f7052912e60"
+                        }
+                      ],
+                      "id": "dc6636c1-7831-4b93-bd6d-240e5062e997",
+                      "createdAt": "2026-07-28T02:43:34.000Z",
+                      "updatedAt": "2026-07-28T02:43:34.000Z",
+                      "uid": "35240-dc6636c1-7831-4b93-bd6d-240e5062e997"
+                    }
+                  ],
+                  "id": "074121cb-66e6-4d16-a113-81bebdd051ed",
+                  "createdAt": "2026-07-28T02:43:34.000Z",
+                  "updatedAt": "2026-07-28T02:43:34.000Z",
+                  "uid": "35240-074121cb-66e6-4d16-a113-81bebdd051ed"
+                }
+              ],
+              "id": "67a4f415-2374-49c1-b021-7bd2e6d6b068",
+              "createdAt": "2026-07-28T02:43:34.000Z",
+              "updatedAt": "2026-07-28T02:43:34.000Z",
+              "uid": "35240-67a4f415-2374-49c1-b021-7bd2e6d6b068"
+            }
+          ],
+          "id": "94d049d4-5c21-4c43-b880-a6bf3bdded5a",
+          "createdAt": "2026-07-28T02:43:34.000Z",
+          "updatedAt": "2026-07-28T02:43:34.000Z",
+          "uid": "35240-94d049d4-5c21-4c43-b880-a6bf3bdded5a"
+        }
+      ],
+      "id": "40da2b40-5ece-4006-a638-58091c08c2b3",
+      "createdAt": "2026-07-28T02:43:34.000Z",
+      "updatedAt": "2026-07-28T02:43:34.000Z",
+      "uid": "35240-40da2b40-5ece-4006-a638-58091c08c2b3"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://satellite.example.com"
+    }
+  ]
+}

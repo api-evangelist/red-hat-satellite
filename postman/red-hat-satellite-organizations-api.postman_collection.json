@@ -1,0 +1,450 @@
+{
+  "info": {
+    "_postman_id": "144f5128-380c-44b1-b8a1-5716b96b49f6",
+    "name": "Red Hat Satellite REST Content Views Organizations API",
+    "description": "The Red Hat Satellite REST API provides programmatic access to Red Hat Satellite server functionality including host management, content view management, subscription management, lifecycle environments, and provisioning. The API is built on the Foreman and Katello upstream projects and follows RESTful conventions with JSON request and response bodies.\n\nContact Support:\n Name: Red Hat Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:43:34.000Z",
+    "updatedAt": "2026-07-28T02:43:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-144f5128-380c-44b1-b8a1-5716b96b49f6"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "organizations",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Show an Organization",
+                      "id": "a7d5789b-5bd7-44e5-937b-9511c7b78cd1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/organizations/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "organizations",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "17017d13-ec36-490c-a489-9b67ff1c2580",
+                              "key": "id",
+                              "value": "<integer>",
+                              "description": "(Required) Organization identifier."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve details for a specific organization."
+                      },
+                      "response": [
+                        {
+                          "id": "40087924-72fc-43ad-b44a-387a54641fb2",
+                          "name": "Successful response containing organization details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/organizations/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "organizations",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"label\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string,null>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:43:35.000Z",
+                          "updatedAt": "2026-07-28T02:43:35.000Z",
+                          "uid": "35240-40087924-72fc-43ad-b44a-387a54641fb2"
+                        },
+                        {
+                          "id": "2ff44e12-25cc-4232-8dec-438d274282d2",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/organizations/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "organizations",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:43:35.000Z",
+                          "updatedAt": "2026-07-28T02:43:35.000Z",
+                          "uid": "35240-2ff44e12-25cc-4232-8dec-438d274282d2"
+                        },
+                        {
+                          "id": "1a6662fa-3433-48b1-9d08-f58df26c7fbc",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/organizations/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "organizations",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:43:35.000Z",
+                          "updatedAt": "2026-07-28T02:43:35.000Z",
+                          "uid": "35240-1a6662fa-3433-48b1-9d08-f58df26c7fbc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:43:35.000Z",
+                      "updatedAt": "2026-07-28T02:43:35.000Z",
+                      "uid": "35240-a7d5789b-5bd7-44e5-937b-9511c7b78cd1"
+                    }
+                  ],
+                  "id": "c7512ee1-6f82-40b0-90fa-99e25f04e0c6",
+                  "createdAt": "2026-07-28T02:43:35.000Z",
+                  "updatedAt": "2026-07-28T02:43:35.000Z",
+                  "uid": "35240-c7512ee1-6f82-40b0-90fa-99e25f04e0c6"
+                },
+                {
+                  "name": "List Organizations",
+                  "id": "b2f84021-f2a0-4fba-8044-f7c070b0056d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/v2/organizations?search=<string>&order=<string>&page=1&per_page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "v2",
+                        "organizations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\").",
+                          "key": "search",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\").",
+                          "key": "order",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Page number for paginated results (starting at 1).",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Number of results per page. Use \"all\" to retrieve all results without pagination.",
+                          "key": "per_page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a list of all organizations. Organizations provide multi-tenancy isolation for content, hosts, and subscriptions."
+                  },
+                  "response": [
+                    {
+                      "id": "1052479c-9acb-4faa-854d-e450ad6e622d",
+                      "name": "Successful response containing a list of organizations.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/organizations?search=<string>&order=<string>&page=1&per_page=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "organizations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\").",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\").",
+                              "key": "order",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Page number for paginated results (starting at 1).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of results per page. Use \"all\" to retrieve all results without pagination.",
+                              "key": "per_page",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total\": \"<integer>\",\n  \"subtotal\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"per_page\": \"<integer>\",\n  \"results\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"label\": \"<string>\",\n      \"title\": \"<string>\",\n      \"description\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:43:35.000Z",
+                      "updatedAt": "2026-07-28T02:43:35.000Z",
+                      "uid": "35240-1052479c-9acb-4faa-854d-e450ad6e622d"
+                    },
+                    {
+                      "id": "fa8488d8-8d35-4a72-a8a9-9e67aa531e21",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/organizations?search=<string>&order=<string>&page=1&per_page=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "organizations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\").",
+                              "key": "search",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\").",
+                              "key": "order",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Page number for paginated results (starting at 1).",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Number of results per page. Use \"all\" to retrieve all results without pagination.",
+                              "key": "per_page",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:43:35.000Z",
+                      "updatedAt": "2026-07-28T02:43:35.000Z",
+                      "uid": "35240-fa8488d8-8d35-4a72-a8a9-9e67aa531e21"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:43:35.000Z",
+                  "updatedAt": "2026-07-28T02:43:35.000Z",
+                  "uid": "35240-b2f84021-f2a0-4fba-8044-f7c070b0056d"
+                }
+              ],
+              "id": "542d5817-7923-45e9-9799-3e508d49413e",
+              "createdAt": "2026-07-28T02:43:35.000Z",
+              "updatedAt": "2026-07-28T02:43:35.000Z",
+              "uid": "35240-542d5817-7923-45e9-9799-3e508d49413e"
+            }
+          ],
+          "id": "5dc623ed-5a58-44c8-9096-fe078a519c28",
+          "createdAt": "2026-07-28T02:43:35.000Z",
+          "updatedAt": "2026-07-28T02:43:35.000Z",
+          "uid": "35240-5dc623ed-5a58-44c8-9096-fe078a519c28"
+        }
+      ],
+      "id": "a7f186b3-fafe-4dbd-83ba-945d288a8fe2",
+      "createdAt": "2026-07-28T02:43:35.000Z",
+      "updatedAt": "2026-07-28T02:43:35.000Z",
+      "uid": "35240-a7f186b3-fafe-4dbd-83ba-945d288a8fe2"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://satellite.example.com"
+    }
+  ]
+}
