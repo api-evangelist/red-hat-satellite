@@ -627,6 +627,9 @@ apis:
     url: >-
       https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
 common:
+  - type: License
+    name: GPL-3.0
+    url: https://github.com/theforeman/foreman/blob/develop/LICENSE
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/red-hat-satellite/overview
   - type: AgenticAccess
