@@ -13,13 +13,14 @@
       "feed_url": "https://www.redhat.com/en/blog/automating-red-hat-satellite-with-ansible",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     },
     {
       "source": "https://status.redhat.com/history.atom",
       "feed_url": "https://status.redhat.com/history.atom",
       "title": "",
-      "saved": 0,
+      "saved": 4,
       "method": "feed"
     },
     {
@@ -27,7 +28,8 @@
       "feed_url": "https://github.com/theforeman/foreman-ansible-modules",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     },
     {
       "source": "https://status.redhat.com/",
@@ -37,6 +39,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 47,
-  "fetched": "2026-08-06T14:08:46Z"
+  "post_count": 51,
+  "fetched": "2026-08-15T12:11:08Z"
 }
