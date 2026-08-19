@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Satellite REST Content Views Lifecycle Environments API",
+    "version": "6.18.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lifecycle Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Lifecycle Environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/environments",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              },
+              {
+                "name": "library",
+                "value": "true",
+                "type": "query",
+                "description": "Include the Library lifecycle environment."
+              },
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by lifecycle environment name."
+              },
+              {
+                "name": "label",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by lifecycle environment label."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (starting at 1)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of lifecycle environments for an organization. Lifecycle environments define the content promotion path from Library through development, testing, and production stages."
+        },
+        {
+          "info": {
+            "name": "Create a Lifecycle Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/environments",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new lifecycle environment within an organization's content promotion path."
+        },
+        {
+          "info": {
+            "name": "List Lifecycle Environment Paths",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/environments/paths",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve the lifecycle environment promotion paths for an organization, showing the sequence of environments content views are promoted through."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Satellite REST Content Views Organizations API",
+    "version": "6.18.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/organizations",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (starting at 1)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all organizations. Organizations provide multi-tenancy isolation for content, hosts, and subscriptions."
+        },
+        {
+          "info": {
+            "name": "Show an Organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/organizations/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "abc123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

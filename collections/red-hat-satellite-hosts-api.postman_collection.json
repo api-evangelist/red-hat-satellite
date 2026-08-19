@@ -1,0 +1,1567 @@
+{
+  "item": [
+    {
+      "id": "b1f6b7d7-2f36-4f58-83d0-71d1779136fb",
+      "name": "Hosts",
+      "description": {
+        "content": "Manage hosts registered with Red Hat Satellite including physical, virtual, and cloud instances.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "97127d8f-e115-40db-9b14-a3d255cb2d76",
+          "name": "List All Hosts",
+          "request": {
+            "name": "List All Hosts",
+            "description": {
+              "content": "Retrieve a paginated list of all hosts registered with the Satellite server. Supports filtering by organization, location, host group, and search queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<integer>",
+                  "description": "Set the current organization context for the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<integer>",
+                  "description": "Set the current location context for the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "hostgroup_id",
+                  "value": "<integer>",
+                  "description": "Filter hosts by host group identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "thin",
+                  "value": "false",
+                  "description": "Only return the ID and name of each host."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Additional information to include (e.g., parameters, all_parameters)."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (starting at 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a723776-897d-4b7b-8684-0e7fac6eba07",
+              "name": "Successful response containing a list of hosts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "hostgroup_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "thin",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include",
+                      "value": "parameters"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"search\": \"example_value\",\n  \"sort\": {\n    \"by\": \"example_value\",\n    \"order\": \"example_value\"\n  },\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"ip\": \"example_value\",\n      \"ip6\": \"example_value\",\n      \"mac\": \"example_value\",\n      \"environment_id\": \"500123\",\n      \"hostgroup_id\": \"500123\",\n      \"hostgroup_name\": \"example_value\",\n      \"hostgroup_title\": \"example_value\",\n      \"operatingsystem_id\": \"500123\",\n      \"operatingsystem_name\": \"example_value\",\n      \"architecture_id\": \"500123\",\n      \"architecture_name\": \"example_value\",\n      \"domain_id\": \"500123\",\n      \"domain_name\": \"example_value\",\n      \"subnet_id\": \"500123\",\n      \"subnet_name\": \"example_value\",\n      \"subnet6_id\": \"500123\",\n      \"compute_resource_id\": \"500123\",\n      \"compute_resource_name\": \"example_value\",\n      \"compute_profile_id\": \"500123\",\n      \"medium_id\": \"500123\",\n      \"ptable_id\": \"500123\",\n      \"model_id\": \"500123\",\n      \"model_name\": \"example_value\",\n      \"location_id\": \"500123\",\n      \"location_name\": \"example_value\",\n      \"organization_id\": \"500123\",\n      \"organization_name\": \"example_value\",\n      \"owner_id\": \"500123\",\n      \"owner_type\": \"User\",\n      \"managed\": true,\n      \"build\": true,\n      \"enabled\": true,\n      \"comment\": \"example_value\",\n      \"uuid\": \"500123\",\n      \"global_status\": 10,\n      \"global_status_label\": \"OK\",\n      \"content_facet_attributes\": {\n        \"id\": \"abc123\",\n        \"content_view_id\": \"500123\",\n        \"content_view_name\": \"example_value\",\n        \"lifecycle_environment_id\": \"500123\",\n        \"lifecycle_environment_name\": \"example_value\",\n        \"content_source_id\": \"500123\",\n        \"errata_counts\": {},\n        \"applicable_errata_count\": 10,\n        \"upgradable_package_count\": 10\n      },\n      \"subscription_facet_attributes\": {\n        \"id\": \"abc123\",\n        \"uuid\": \"500123\",\n        \"registered_at\": \"2026-01-15T10:30:00Z\",\n        \"last_checkin\": \"2026-01-15T10:30:00Z\",\n        \"service_level\": \"example_value\",\n        \"release_version\": \"example_value\",\n        \"autoheal\": true,\n        \"registered_through\": \"example_value\"\n      },\n      \"interfaces\": [\n        {}\n      ],\n      \"puppetclasses\": [\n        {}\n      ],\n      \"all_puppetclasses\": [\n        {}\n      ],\n      \"created_at\": \"2026-01-15T10:30:00Z\",\n      \"updated_at\": \"2026-01-15T10:30:00Z\",\n      \"installed_at\": \"2026-01-15T10:30:00Z\",\n      \"last_report\": \"2026-01-15T10:30:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "417dab40-079d-4deb-8c5f-bf4881aa4740",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "hostgroup_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "thin",
+                      "value": "true"
+                    },
+                    {
+                      "key": "include",
+                      "value": "parameters"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e99c129-4334-430e-bf2b-a0f50c576870",
+          "name": "Create a Host",
+          "request": {
+            "name": "Create a Host",
+            "description": {
+              "content": "Register a new host with the Satellite server. The host can be managed (provisioned and configured by Satellite) or unmanaged (inventory only).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<integer>",
+                  "description": "Set the current organization context for the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<integer>",
+                  "description": "Set the current location context for the request."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"host\": {\n    \"name\": \"<string>\",\n    \"organization_id\": \"<integer>\",\n    \"location_id\": \"<integer>\",\n    \"ip\": \"<ipv4>\",\n    \"mac\": \"<string>\",\n    \"architecture_id\": \"<integer>\",\n    \"domain_id\": \"<integer>\",\n    \"subnet_id\": \"<integer>\",\n    \"operatingsystem_id\": \"<integer>\",\n    \"medium_id\": \"<integer>\",\n    \"ptable_id\": \"<integer>\",\n    \"compute_resource_id\": \"<integer>\",\n    \"compute_profile_id\": \"<integer>\",\n    \"hostgroup_id\": \"<integer>\",\n    \"root_pass\": \"<password>\",\n    \"owner_id\": \"<integer>\",\n    \"owner_type\": \"<string>\",\n    \"build\": \"<boolean>\",\n    \"managed\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"content_facet_attributes\": {\n      \"content_view_id\": \"<integer>\",\n      \"lifecycle_environment_id\": \"<integer>\",\n      \"content_source_id\": \"<integer>\"\n    },\n    \"interfaces_attributes\": [\n      {\n        \"id\": \"<integer>\",\n        \"mac\": \"<string>\",\n        \"ip\": \"<ipv4>\",\n        \"ip6\": \"<ipv6>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"subnet_id\": \"<integer>\",\n        \"subnet6_id\": \"<integer>\",\n        \"domain_id\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"managed\": \"<boolean>\",\n        \"primary\": \"<boolean>\",\n        \"provision\": \"<boolean>\",\n        \"virtual\": \"<boolean>\",\n        \"tag\": \"<string>\",\n        \"mtu\": \"<integer>\",\n        \"attached_to\": \"<string>\",\n        \"username\": \"<string>\",\n        \"password\": \"<password>\",\n        \"provider\": \"<string>\",\n        \"mode\": \"<string>\",\n        \"attached_devices\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bond_options\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"mac\": \"<string>\",\n        \"ip\": \"<ipv4>\",\n        \"ip6\": \"<ipv6>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"subnet_id\": \"<integer>\",\n        \"subnet6_id\": \"<integer>\",\n        \"domain_id\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"managed\": \"<boolean>\",\n        \"primary\": \"<boolean>\",\n        \"provision\": \"<boolean>\",\n        \"virtual\": \"<boolean>\",\n        \"tag\": \"<string>\",\n        \"mtu\": \"<integer>\",\n        \"attached_to\": \"<string>\",\n        \"username\": \"<string>\",\n        \"password\": \"<password>\",\n        \"provider\": \"<string>\",\n        \"mode\": \"<string>\",\n        \"attached_devices\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bond_options\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5ff54bea-0846-47bc-bcc3-a61f42db6dd6",
+              "name": "Host created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": {\n    \"name\": \"Example Title\",\n    \"location_id\": \"500123\",\n    \"organization_id\": \"500123\",\n    \"ip\": \"example_value\",\n    \"mac\": \"example_value\",\n    \"architecture_id\": \"500123\",\n    \"domain_id\": \"500123\",\n    \"subnet_id\": \"500123\",\n    \"operatingsystem_id\": \"500123\",\n    \"medium_id\": \"500123\",\n    \"ptable_id\": \"500123\",\n    \"compute_resource_id\": \"500123\",\n    \"compute_profile_id\": \"500123\",\n    \"hostgroup_id\": \"500123\",\n    \"root_pass\": \"example_value\",\n    \"owner_id\": \"500123\",\n    \"owner_type\": \"User\",\n    \"build\": true,\n    \"managed\": true,\n    \"comment\": \"example_value\",\n    \"content_facet_attributes\": {\n      \"content_view_id\": \"500123\",\n      \"lifecycle_environment_id\": \"500123\",\n      \"content_source_id\": \"500123\"\n    },\n    \"interfaces_attributes\": [\n      {}\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"ip\": \"example_value\",\n  \"ip6\": \"example_value\",\n  \"mac\": \"example_value\",\n  \"environment_id\": \"500123\",\n  \"hostgroup_id\": \"500123\",\n  \"hostgroup_name\": \"example_value\",\n  \"hostgroup_title\": \"example_value\",\n  \"operatingsystem_id\": \"500123\",\n  \"operatingsystem_name\": \"example_value\",\n  \"architecture_id\": \"500123\",\n  \"architecture_name\": \"example_value\",\n  \"domain_id\": \"500123\",\n  \"domain_name\": \"example_value\",\n  \"subnet_id\": \"500123\",\n  \"subnet_name\": \"example_value\",\n  \"subnet6_id\": \"500123\",\n  \"compute_resource_id\": \"500123\",\n  \"compute_resource_name\": \"example_value\",\n  \"compute_profile_id\": \"500123\",\n  \"medium_id\": \"500123\",\n  \"ptable_id\": \"500123\",\n  \"model_id\": \"500123\",\n  \"model_name\": \"example_value\",\n  \"location_id\": \"500123\",\n  \"location_name\": \"example_value\",\n  \"organization_id\": \"500123\",\n  \"organization_name\": \"example_value\",\n  \"owner_id\": \"500123\",\n  \"owner_type\": \"User\",\n  \"managed\": true,\n  \"build\": true,\n  \"enabled\": true,\n  \"comment\": \"example_value\",\n  \"uuid\": \"500123\",\n  \"global_status\": 10,\n  \"global_status_label\": \"OK\",\n  \"content_facet_attributes\": {\n    \"id\": \"abc123\",\n    \"content_view_id\": \"500123\",\n    \"content_view_name\": \"example_value\",\n    \"lifecycle_environment_id\": \"500123\",\n    \"lifecycle_environment_name\": \"example_value\",\n    \"content_source_id\": \"500123\",\n    \"errata_counts\": {\n      \"security\": 10,\n      \"bugfix\": 10,\n      \"enhancement\": 10,\n      \"total\": 10\n    },\n    \"applicable_errata_count\": 10,\n    \"upgradable_package_count\": 10\n  },\n  \"subscription_facet_attributes\": {\n    \"id\": \"abc123\",\n    \"uuid\": \"500123\",\n    \"registered_at\": \"2026-01-15T10:30:00Z\",\n    \"last_checkin\": \"2026-01-15T10:30:00Z\",\n    \"service_level\": \"example_value\",\n    \"release_version\": \"example_value\",\n    \"autoheal\": true,\n    \"registered_through\": \"example_value\"\n  },\n  \"interfaces\": [\n    {\n      \"id\": \"abc123\",\n      \"mac\": \"example_value\",\n      \"ip\": \"example_value\",\n      \"ip6\": \"example_value\",\n      \"type\": \"interface\",\n      \"name\": \"Example Title\",\n      \"subnet_id\": \"500123\",\n      \"subnet6_id\": \"500123\",\n      \"domain_id\": \"500123\",\n      \"identifier\": \"example_value\",\n      \"managed\": true,\n      \"primary\": true,\n      \"provision\": true,\n      \"virtual\": true,\n      \"tag\": \"example_value\",\n      \"mtu\": \"example_value\",\n      \"attached_to\": \"example_value\"\n    }\n  ],\n  \"puppetclasses\": [\n    {}\n  ],\n  \"all_puppetclasses\": [\n    {}\n  ],\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\",\n  \"installed_at\": \"2026-01-15T10:30:00Z\",\n  \"last_report\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "035a2d02-87e3-43c1-a759-a9b28bf9a64f",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": {\n    \"name\": \"Example Title\",\n    \"location_id\": \"500123\",\n    \"organization_id\": \"500123\",\n    \"ip\": \"example_value\",\n    \"mac\": \"example_value\",\n    \"architecture_id\": \"500123\",\n    \"domain_id\": \"500123\",\n    \"subnet_id\": \"500123\",\n    \"operatingsystem_id\": \"500123\",\n    \"medium_id\": \"500123\",\n    \"ptable_id\": \"500123\",\n    \"compute_resource_id\": \"500123\",\n    \"compute_profile_id\": \"500123\",\n    \"hostgroup_id\": \"500123\",\n    \"root_pass\": \"example_value\",\n    \"owner_id\": \"500123\",\n    \"owner_type\": \"User\",\n    \"build\": true,\n    \"managed\": true,\n    \"comment\": \"example_value\",\n    \"content_facet_attributes\": {\n      \"content_view_id\": \"500123\",\n      \"lifecycle_environment_id\": \"500123\",\n      \"content_source_id\": \"500123\"\n    },\n    \"interfaces_attributes\": [\n      {}\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ea84769-e95d-4e7a-840d-bd6c2812a45a",
+              "name": "The request was well-formed but contained validation errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": {\n    \"name\": \"Example Title\",\n    \"location_id\": \"500123\",\n    \"organization_id\": \"500123\",\n    \"ip\": \"example_value\",\n    \"mac\": \"example_value\",\n    \"architecture_id\": \"500123\",\n    \"domain_id\": \"500123\",\n    \"subnet_id\": \"500123\",\n    \"operatingsystem_id\": \"500123\",\n    \"medium_id\": \"500123\",\n    \"ptable_id\": \"500123\",\n    \"compute_resource_id\": \"500123\",\n    \"compute_profile_id\": \"500123\",\n    \"hostgroup_id\": \"500123\",\n    \"root_pass\": \"example_value\",\n    \"owner_id\": \"500123\",\n    \"owner_type\": \"User\",\n    \"build\": true,\n    \"managed\": true,\n    \"comment\": \"example_value\",\n    \"content_facet_attributes\": {\n      \"content_view_id\": \"500123\",\n      \"lifecycle_environment_id\": \"500123\",\n      \"content_source_id\": \"500123\"\n    },\n    \"interfaces_attributes\": [\n      {}\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": 3424,\n    \"errors\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_1\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_2\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"full_messages\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94e6086d-1ae8-4510-95dc-f058d2a14915",
+          "name": "Show a Host",
+          "request": {
+            "name": "Show a Host",
+            "description": {
+              "content": "Retrieve details for a specific host by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Host identifier (numeric ID or FQDN)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ed01d6d-a8d6-416a-9d73-7c31e5a2a146",
+              "name": "Successful response containing host details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"ip\": \"example_value\",\n  \"ip6\": \"example_value\",\n  \"mac\": \"example_value\",\n  \"environment_id\": \"500123\",\n  \"hostgroup_id\": \"500123\",\n  \"hostgroup_name\": \"example_value\",\n  \"hostgroup_title\": \"example_value\",\n  \"operatingsystem_id\": \"500123\",\n  \"operatingsystem_name\": \"example_value\",\n  \"architecture_id\": \"500123\",\n  \"architecture_name\": \"example_value\",\n  \"domain_id\": \"500123\",\n  \"domain_name\": \"example_value\",\n  \"subnet_id\": \"500123\",\n  \"subnet_name\": \"example_value\",\n  \"subnet6_id\": \"500123\",\n  \"compute_resource_id\": \"500123\",\n  \"compute_resource_name\": \"example_value\",\n  \"compute_profile_id\": \"500123\",\n  \"medium_id\": \"500123\",\n  \"ptable_id\": \"500123\",\n  \"model_id\": \"500123\",\n  \"model_name\": \"example_value\",\n  \"location_id\": \"500123\",\n  \"location_name\": \"example_value\",\n  \"organization_id\": \"500123\",\n  \"organization_name\": \"example_value\",\n  \"owner_id\": \"500123\",\n  \"owner_type\": \"User\",\n  \"managed\": true,\n  \"build\": true,\n  \"enabled\": true,\n  \"comment\": \"example_value\",\n  \"uuid\": \"500123\",\n  \"global_status\": 10,\n  \"global_status_label\": \"OK\",\n  \"content_facet_attributes\": {\n    \"id\": \"abc123\",\n    \"content_view_id\": \"500123\",\n    \"content_view_name\": \"example_value\",\n    \"lifecycle_environment_id\": \"500123\",\n    \"lifecycle_environment_name\": \"example_value\",\n    \"content_source_id\": \"500123\",\n    \"errata_counts\": {\n      \"security\": 10,\n      \"bugfix\": 10,\n      \"enhancement\": 10,\n      \"total\": 10\n    },\n    \"applicable_errata_count\": 10,\n    \"upgradable_package_count\": 10\n  },\n  \"subscription_facet_attributes\": {\n    \"id\": \"abc123\",\n    \"uuid\": \"500123\",\n    \"registered_at\": \"2026-01-15T10:30:00Z\",\n    \"last_checkin\": \"2026-01-15T10:30:00Z\",\n    \"service_level\": \"example_value\",\n    \"release_version\": \"example_value\",\n    \"autoheal\": true,\n    \"registered_through\": \"example_value\"\n  },\n  \"interfaces\": [\n    {\n      \"id\": \"abc123\",\n      \"mac\": \"example_value\",\n      \"ip\": \"example_value\",\n      \"ip6\": \"example_value\",\n      \"type\": \"interface\",\n      \"name\": \"Example Title\",\n      \"subnet_id\": \"500123\",\n      \"subnet6_id\": \"500123\",\n      \"domain_id\": \"500123\",\n      \"identifier\": \"example_value\",\n      \"managed\": true,\n      \"primary\": true,\n      \"provision\": true,\n      \"virtual\": true,\n      \"tag\": \"example_value\",\n      \"mtu\": \"example_value\",\n      \"attached_to\": \"example_value\"\n    }\n  ],\n  \"puppetclasses\": [\n    {}\n  ],\n  \"all_puppetclasses\": [\n    {}\n  ],\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\",\n  \"installed_at\": \"2026-01-15T10:30:00Z\",\n  \"last_report\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f93120b0-a78e-4c45-9eec-c805dda3e038",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed86673d-24ac-4a5a-b727-902c45187aaa",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Resource not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17644330-48af-49c5-aeda-bcb7f3644e29",
+          "name": "Update a Host",
+          "request": {
+            "name": "Update a Host",
+            "description": {
+              "content": "Update the attributes of an existing host.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<integer>",
+                  "description": "Set the current organization context for the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "location_id",
+                  "value": "<integer>",
+                  "description": "Set the current location context for the request."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Host identifier (numeric ID or FQDN)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"host\": {\n    \"name\": \"<string>\",\n    \"ip\": \"<ipv4>\",\n    \"mac\": \"<string>\",\n    \"architecture_id\": \"<integer>\",\n    \"domain_id\": \"<integer>\",\n    \"subnet_id\": \"<integer>\",\n    \"operatingsystem_id\": \"<integer>\",\n    \"hostgroup_id\": \"<integer>\",\n    \"location_id\": \"<integer>\",\n    \"organization_id\": \"<integer>\",\n    \"owner_id\": \"<integer>\",\n    \"owner_type\": \"<string>\",\n    \"build\": \"<boolean>\",\n    \"managed\": \"<boolean>\",\n    \"comment\": \"<string>\",\n    \"content_facet_attributes\": {\n      \"content_view_id\": \"<integer>\",\n      \"lifecycle_environment_id\": \"<integer>\",\n      \"content_source_id\": \"<integer>\"\n    },\n    \"interfaces_attributes\": [\n      {\n        \"id\": \"<integer>\",\n        \"mac\": \"<string>\",\n        \"ip\": \"<ipv4>\",\n        \"ip6\": \"<ipv6>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"subnet_id\": \"<integer>\",\n        \"subnet6_id\": \"<integer>\",\n        \"domain_id\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"managed\": \"<boolean>\",\n        \"primary\": \"<boolean>\",\n        \"provision\": \"<boolean>\",\n        \"virtual\": \"<boolean>\",\n        \"tag\": \"<string>\",\n        \"mtu\": \"<integer>\",\n        \"attached_to\": \"<string>\",\n        \"username\": \"<string>\",\n        \"password\": \"<password>\",\n        \"provider\": \"<string>\",\n        \"mode\": \"<string>\",\n        \"attached_devices\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bond_options\": \"<string>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"mac\": \"<string>\",\n        \"ip\": \"<ipv4>\",\n        \"ip6\": \"<ipv6>\",\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"subnet_id\": \"<integer>\",\n        \"subnet6_id\": \"<integer>\",\n        \"domain_id\": \"<integer>\",\n        \"identifier\": \"<string>\",\n        \"managed\": \"<boolean>\",\n        \"primary\": \"<boolean>\",\n        \"provision\": \"<boolean>\",\n        \"virtual\": \"<boolean>\",\n        \"tag\": \"<string>\",\n        \"mtu\": \"<integer>\",\n        \"attached_to\": \"<string>\",\n        \"username\": \"<string>\",\n        \"password\": \"<password>\",\n        \"provider\": \"<string>\",\n        \"mode\": \"<string>\",\n        \"attached_devices\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"bond_options\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0f10a35d-78ae-4cfd-81e9-811468b5e9ef",
+              "name": "Host updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": {\n    \"name\": \"Example Title\",\n    \"ip\": \"example_value\",\n    \"mac\": \"example_value\",\n    \"architecture_id\": \"500123\",\n    \"domain_id\": \"500123\",\n    \"subnet_id\": \"500123\",\n    \"operatingsystem_id\": \"500123\",\n    \"hostgroup_id\": \"500123\",\n    \"location_id\": \"500123\",\n    \"organization_id\": \"500123\",\n    \"owner_id\": \"500123\",\n    \"owner_type\": \"User\",\n    \"build\": true,\n    \"managed\": true,\n    \"comment\": \"example_value\",\n    \"content_facet_attributes\": {\n      \"content_view_id\": \"500123\",\n      \"lifecycle_environment_id\": \"500123\",\n      \"content_source_id\": \"500123\"\n    },\n    \"interfaces_attributes\": [\n      {}\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"ip\": \"example_value\",\n  \"ip6\": \"example_value\",\n  \"mac\": \"example_value\",\n  \"environment_id\": \"500123\",\n  \"hostgroup_id\": \"500123\",\n  \"hostgroup_name\": \"example_value\",\n  \"hostgroup_title\": \"example_value\",\n  \"operatingsystem_id\": \"500123\",\n  \"operatingsystem_name\": \"example_value\",\n  \"architecture_id\": \"500123\",\n  \"architecture_name\": \"example_value\",\n  \"domain_id\": \"500123\",\n  \"domain_name\": \"example_value\",\n  \"subnet_id\": \"500123\",\n  \"subnet_name\": \"example_value\",\n  \"subnet6_id\": \"500123\",\n  \"compute_resource_id\": \"500123\",\n  \"compute_resource_name\": \"example_value\",\n  \"compute_profile_id\": \"500123\",\n  \"medium_id\": \"500123\",\n  \"ptable_id\": \"500123\",\n  \"model_id\": \"500123\",\n  \"model_name\": \"example_value\",\n  \"location_id\": \"500123\",\n  \"location_name\": \"example_value\",\n  \"organization_id\": \"500123\",\n  \"organization_name\": \"example_value\",\n  \"owner_id\": \"500123\",\n  \"owner_type\": \"User\",\n  \"managed\": true,\n  \"build\": true,\n  \"enabled\": true,\n  \"comment\": \"example_value\",\n  \"uuid\": \"500123\",\n  \"global_status\": 10,\n  \"global_status_label\": \"OK\",\n  \"content_facet_attributes\": {\n    \"id\": \"abc123\",\n    \"content_view_id\": \"500123\",\n    \"content_view_name\": \"example_value\",\n    \"lifecycle_environment_id\": \"500123\",\n    \"lifecycle_environment_name\": \"example_value\",\n    \"content_source_id\": \"500123\",\n    \"errata_counts\": {\n      \"security\": 10,\n      \"bugfix\": 10,\n      \"enhancement\": 10,\n      \"total\": 10\n    },\n    \"applicable_errata_count\": 10,\n    \"upgradable_package_count\": 10\n  },\n  \"subscription_facet_attributes\": {\n    \"id\": \"abc123\",\n    \"uuid\": \"500123\",\n    \"registered_at\": \"2026-01-15T10:30:00Z\",\n    \"last_checkin\": \"2026-01-15T10:30:00Z\",\n    \"service_level\": \"example_value\",\n    \"release_version\": \"example_value\",\n    \"autoheal\": true,\n    \"registered_through\": \"example_value\"\n  },\n  \"interfaces\": [\n    {\n      \"id\": \"abc123\",\n      \"mac\": \"example_value\",\n      \"ip\": \"example_value\",\n      \"ip6\": \"example_value\",\n      \"type\": \"interface\",\n      \"name\": \"Example Title\",\n      \"subnet_id\": \"500123\",\n      \"subnet6_id\": \"500123\",\n      \"domain_id\": \"500123\",\n      \"identifier\": \"example_value\",\n      \"managed\": true,\n      \"primary\": true,\n      \"provision\": true,\n      \"virtual\": true,\n      \"tag\": \"example_value\",\n      \"mtu\": \"example_value\",\n      \"attached_to\": \"example_value\"\n    }\n  ],\n  \"puppetclasses\": [\n    {}\n  ],\n  \"all_puppetclasses\": [\n    {}\n  ],\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\",\n  \"installed_at\": \"2026-01-15T10:30:00Z\",\n  \"last_report\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af472465-86cd-44a0-9826-9883791b4122",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": {\n    \"name\": \"Example Title\",\n    \"ip\": \"example_value\",\n    \"mac\": \"example_value\",\n    \"architecture_id\": \"500123\",\n    \"domain_id\": \"500123\",\n    \"subnet_id\": \"500123\",\n    \"operatingsystem_id\": \"500123\",\n    \"hostgroup_id\": \"500123\",\n    \"location_id\": \"500123\",\n    \"organization_id\": \"500123\",\n    \"owner_id\": \"500123\",\n    \"owner_type\": \"User\",\n    \"build\": true,\n    \"managed\": true,\n    \"comment\": \"example_value\",\n    \"content_facet_attributes\": {\n      \"content_view_id\": \"500123\",\n      \"lifecycle_environment_id\": \"500123\",\n      \"content_source_id\": \"500123\"\n    },\n    \"interfaces_attributes\": [\n      {}\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a779393c-8915-4378-8893-c3839afefce5",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": {\n    \"name\": \"Example Title\",\n    \"ip\": \"example_value\",\n    \"mac\": \"example_value\",\n    \"architecture_id\": \"500123\",\n    \"domain_id\": \"500123\",\n    \"subnet_id\": \"500123\",\n    \"operatingsystem_id\": \"500123\",\n    \"hostgroup_id\": \"500123\",\n    \"location_id\": \"500123\",\n    \"organization_id\": \"500123\",\n    \"owner_id\": \"500123\",\n    \"owner_type\": \"User\",\n    \"build\": true,\n    \"managed\": true,\n    \"comment\": \"example_value\",\n    \"content_facet_attributes\": {\n      \"content_view_id\": \"500123\",\n      \"lifecycle_environment_id\": \"500123\",\n      \"content_source_id\": \"500123\"\n    },\n    \"interfaces_attributes\": [\n      {}\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Resource not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3c916c2-d842-4985-9edc-0d208f477942",
+              "name": "The request was well-formed but contained validation errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "location_id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": {\n    \"name\": \"Example Title\",\n    \"ip\": \"example_value\",\n    \"mac\": \"example_value\",\n    \"architecture_id\": \"500123\",\n    \"domain_id\": \"500123\",\n    \"subnet_id\": \"500123\",\n    \"operatingsystem_id\": \"500123\",\n    \"hostgroup_id\": \"500123\",\n    \"location_id\": \"500123\",\n    \"organization_id\": \"500123\",\n    \"owner_id\": \"500123\",\n    \"owner_type\": \"User\",\n    \"build\": true,\n    \"managed\": true,\n    \"comment\": \"example_value\",\n    \"content_facet_attributes\": {\n      \"content_view_id\": \"500123\",\n      \"lifecycle_environment_id\": \"500123\",\n      \"content_source_id\": \"500123\"\n    },\n    \"interfaces_attributes\": [\n      {}\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": 5661,\n    \"errors\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"full_messages\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afb56126-68d1-4116-a022-a6695e866ef3",
+          "name": "Delete a Host",
+          "request": {
+            "name": "Delete a Host",
+            "description": {
+              "content": "Remove a host from the Satellite server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Host identifier (numeric ID or FQDN)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d3476ab-446a-4328-ac55-b77737490f63",
+              "name": "Host deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "da2fe35b-cb8f-4352-b389-fe2ea847cbb0",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e180fbf0-b9c3-4fd7-a17b-f9fab895576f",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Resource not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4af4a865-3cb8-423e-a449-4fb7176e304e",
+          "name": "Execute a Power Operation on a Host",
+          "request": {
+            "name": "Execute a Power Operation on a Host",
+            "description": {
+              "content": "Perform a power management action on a host such as powering on, powering off, or rebooting. Requires a BMC or compute resource association.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "hosts",
+                ":id",
+                "power"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Host identifier (numeric ID or FQDN)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"power_action\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "84856ad0-ea56-4f00-b899-145944c9ade6",
+              "name": "Power action executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id",
+                    "power"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"power_action\": \"start\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"power\": \"example_value\",\n  \"id\": \"abc123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ea68153-fb0b-453f-afc4-19c7e6ac4ff3",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id",
+                    "power"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"power_action\": \"start\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Resource not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90c2c0aa-c3f7-4917-a1dd-d1959161a880",
+              "name": "The request was well-formed but contained validation errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "hosts",
+                    ":id",
+                    "power"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Host identifier (numeric ID or FQDN)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"power_action\": \"start\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": 5661,\n    \"errors\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"full_messages\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://satellite.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9008e263-d33e-43b0-bf4d-e10a894966ae",
+    "name": "Red Hat Satellite REST Content Views Hosts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Satellite REST API provides programmatic access to Red Hat Satellite server functionality including host management, content view management, subscription management, lifecycle environments, and provisioning. The API is built on the Foreman and Katello upstream projects and follows RESTful conventions with JSON request and response bodies.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

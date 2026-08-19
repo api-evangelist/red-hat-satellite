@@ -1,0 +1,182 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Satellite REST Content Views Subscriptions API",
+    "version": "6.18.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Organization Subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/subscriptions",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              },
+              {
+                "name": "host_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter subscriptions by host identifier."
+              },
+              {
+                "name": "activation_key_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter subscriptions by activation key identifier."
+              },
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by subscription name."
+              },
+              {
+                "name": "available_for",
+                "value": "host",
+                "type": "query",
+                "description": "Object type to show available subscriptions for (host or activation_key)."
+              },
+              {
+                "name": "match_host",
+                "value": "true",
+                "type": "query",
+                "description": "Ignore subscriptions not applicable to the specified host."
+              },
+              {
+                "name": "match_installed",
+                "value": "true",
+                "type": "query",
+                "description": "Return only subscriptions matching installed products on the host."
+              },
+              {
+                "name": "no_overlap",
+                "value": "true",
+                "type": "query",
+                "description": "Exclude subscriptions that overlap with existing host attachments."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (starting at 1)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of subscriptions for an organization. Subscriptions represent Red Hat product entitlements that can be attached to hosts."
+        },
+        {
+          "info": {
+            "name": "Upload a Subscription Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/subscriptions/upload",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "content",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "repository_url",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a Red Hat subscription manifest file to import subscriptions into an organization."
+        },
+        {
+          "info": {
+            "name": "Delete a Subscription Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/subscriptions/delete_manifest",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ]
+          },
+          "docs": "Delete the subscription manifest from an organization, removing all imported subscriptions."
+        },
+        {
+          "info": {
+            "name": "Refresh a Subscription Manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://satellite.example.com/katello/api/v2/organizations/:organization_id/subscriptions/refresh_manifest",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "500123",
+                "type": "path",
+                "description": "Organization identifier."
+              }
+            ]
+          },
+          "docs": "Refresh the subscription manifest for an organization to sync changes from the Red Hat Customer Portal."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

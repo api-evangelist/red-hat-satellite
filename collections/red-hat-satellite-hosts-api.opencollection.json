@@ -1,0 +1,217 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Satellite REST Content Views Hosts API",
+    "version": "6.18.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hosts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Hosts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/hosts",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current organization context for the request."
+              },
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current location context for the request."
+              },
+              {
+                "name": "hostgroup_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter hosts by host group identifier."
+              },
+              {
+                "name": "thin",
+                "value": "true",
+                "type": "query",
+                "description": "Only return the ID and name of each host."
+              },
+              {
+                "name": "include",
+                "value": "parameters",
+                "type": "query",
+                "description": "Additional information to include (e.g., parameters, all_parameters)."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (starting at 1)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all hosts registered with the Satellite server. Supports filtering by organization, location, host group, and search queries."
+        },
+        {
+          "info": {
+            "name": "Create a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/api/v2/hosts",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current organization context for the request."
+              },
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current location context for the request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new host with the Satellite server. The host can be managed (provisioned and configured by Satellite) or unmanaged (inventory only)."
+        },
+        {
+          "info": {
+            "name": "Show a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/api/v2/hosts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Host identifier (numeric ID or FQDN)."
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific host by its identifier."
+        },
+        {
+          "info": {
+            "name": "Update a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://satellite.example.com/api/v2/hosts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Host identifier (numeric ID or FQDN)."
+              },
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current organization context for the request."
+              },
+              {
+                "name": "location_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current location context for the request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the attributes of an existing host."
+        },
+        {
+          "info": {
+            "name": "Delete a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://satellite.example.com/api/v2/hosts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Host identifier (numeric ID or FQDN)."
+              }
+            ]
+          },
+          "docs": "Remove a host from the Satellite server."
+        },
+        {
+          "info": {
+            "name": "Execute a Power Operation on a Host",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://satellite.example.com/api/v2/hosts/:id/power",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Host identifier (numeric ID or FQDN)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform a power management action on a host such as powering on, powering off, or rebooting. Requires a BMC or compute resource association."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1797 @@
+{
+  "item": [
+    {
+      "id": "a8c584a0-a996-4452-8544-ce67f74bdc9e",
+      "name": "Content Views",
+      "description": {
+        "content": "Manage content views which define curated sets of repositories and packages available to hosts.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "405bd027-1752-41e9-888f-01ca850cd4a0",
+          "name": "List Content Views",
+          "request": {
+            "name": "List Content Views",
+            "description": {
+              "content": "Retrieve a paginated list of content views for an organization. Content views define curated collections of repositories whose packages, errata, and other content are made available to hosts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "organization_id",
+                  "value": "<integer>",
+                  "description": "Set the current organization context for the request."
+                },
+                {
+                  "disabled": false,
+                  "key": "environment_id",
+                  "value": "<integer>",
+                  "description": "Filter by lifecycle environment identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "nondefault",
+                  "value": "<boolean>",
+                  "description": "Filter out default content views."
+                },
+                {
+                  "disabled": false,
+                  "key": "noncomposite",
+                  "value": "<boolean>",
+                  "description": "Filter out composite content views."
+                },
+                {
+                  "disabled": false,
+                  "key": "composite",
+                  "value": "<boolean>",
+                  "description": "Filter only composite content views."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filter by content view name."
+                },
+                {
+                  "disabled": false,
+                  "key": "label",
+                  "value": "<string>",
+                  "description": "Filter by content view label."
+                },
+                {
+                  "disabled": false,
+                  "key": "include_generated",
+                  "value": "false",
+                  "description": "Include import/export generated content views."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number for paginated results (starting at 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "709683ab-1919-4c7f-89fe-a0b158a0ea3b",
+              "name": "Successful response containing a list of content views.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "environment_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nondefault",
+                      "value": "true"
+                    },
+                    {
+                      "key": "noncomposite",
+                      "value": "true"
+                    },
+                    {
+                      "key": "composite",
+                      "value": "true"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "key": "label",
+                      "value": "Example Title"
+                    },
+                    {
+                      "key": "include_generated",
+                      "value": "true"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 10,\n  \"subtotal\": 10,\n  \"page\": 10,\n  \"per_page\": 10,\n  \"search\": \"example_value\",\n  \"results\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"description\": \"A sample description.\",\n      \"organization_id\": \"500123\",\n      \"organization\": {\n        \"name\": \"Example Title\",\n        \"label\": \"Example Title\",\n        \"id\": \"abc123\"\n      },\n      \"composite\": true,\n      \"rolling\": true,\n      \"auto_publish\": true,\n      \"solve_dependencies\": true,\n      \"import_only\": true,\n      \"generated_for\": \"example_value\",\n      \"default\": true,\n      \"repository_ids\": [\n        {}\n      ],\n      \"repositories\": [\n        {}\n      ],\n      \"component_ids\": [\n        {}\n      ],\n      \"versions\": [\n        {}\n      ],\n      \"environments\": [\n        {}\n      ],\n      \"activation_keys\": [\n        {}\n      ],\n      \"next_version\": \"example_value\",\n      \"last_published\": \"2026-01-15T10:30:00Z\",\n      \"latest_version\": \"example_value\",\n      \"latest_version_id\": \"500123\",\n      \"created_at\": \"2026-01-15T10:30:00Z\",\n      \"updated_at\": \"2026-01-15T10:30:00Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0c75d4a-e19c-4e8e-a447-c291826b5447",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "organization_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "environment_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nondefault",
+                      "value": "true"
+                    },
+                    {
+                      "key": "noncomposite",
+                      "value": "true"
+                    },
+                    {
+                      "key": "composite",
+                      "value": "true"
+                    },
+                    {
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "key": "label",
+                      "value": "Example Title"
+                    },
+                    {
+                      "key": "include_generated",
+                      "value": "true"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb52899e-9166-4668-a86d-7c1770e85c30",
+          "name": "Create a Content View",
+          "request": {
+            "name": "Create a Content View",
+            "description": {
+              "content": "Create a new content view for an organization. Content views can be standard (selecting individual repositories) or composite (combining published versions of other content views).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"organization_id\": \"<integer>\",\n  \"label\": \"<string>\",\n  \"description\": \"<string>\",\n  \"composite\": false,\n  \"rolling\": false,\n  \"auto_publish\": false,\n  \"solve_dependencies\": false,\n  \"import_only\": false,\n  \"repository_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"component_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"environment_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc3950db-466f-48b7-a95d-14833241cac4",
+              "name": "Content view created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"500123\",\n  \"name\": \"Example Title\",\n  \"label\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"composite\": true,\n  \"rolling\": true,\n  \"auto_publish\": true,\n  \"solve_dependencies\": true,\n  \"import_only\": true,\n  \"repository_ids\": [\n    10\n  ],\n  \"component_ids\": [\n    10\n  ],\n  \"environment_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"label\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"organization_id\": \"500123\",\n  \"organization\": {\n    \"name\": \"Example Title\",\n    \"label\": \"Example Title\",\n    \"id\": \"abc123\"\n  },\n  \"composite\": true,\n  \"rolling\": true,\n  \"auto_publish\": true,\n  \"solve_dependencies\": true,\n  \"import_only\": true,\n  \"generated_for\": \"example_value\",\n  \"default\": true,\n  \"repository_ids\": [\n    10\n  ],\n  \"repositories\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"content_type\": \"example_value\"\n    }\n  ],\n  \"component_ids\": [\n    10\n  ],\n  \"versions\": [\n    {\n      \"id\": \"abc123\",\n      \"version\": \"example_value\",\n      \"published\": \"2026-01-15T10:30:00Z\",\n      \"environment_ids\": [\n        {}\n      ]\n    }\n  ],\n  \"environments\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\"\n    }\n  ],\n  \"activation_keys\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\"\n    }\n  ],\n  \"next_version\": \"example_value\",\n  \"last_published\": \"2026-01-15T10:30:00Z\",\n  \"latest_version\": \"example_value\",\n  \"latest_version_id\": \"500123\",\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3303ffa0-a54b-4e36-9171-3e7e6ba37c5a",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"500123\",\n  \"name\": \"Example Title\",\n  \"label\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"composite\": true,\n  \"rolling\": true,\n  \"auto_publish\": true,\n  \"solve_dependencies\": true,\n  \"import_only\": true,\n  \"repository_ids\": [\n    10\n  ],\n  \"component_ids\": [\n    10\n  ],\n  \"environment_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c231e96-dc4f-4978-954a-28fa2c574546",
+              "name": "The request was well-formed but contained validation errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"organization_id\": \"500123\",\n  \"name\": \"Example Title\",\n  \"label\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"composite\": true,\n  \"rolling\": true,\n  \"auto_publish\": true,\n  \"solve_dependencies\": true,\n  \"import_only\": true,\n  \"repository_ids\": [\n    10\n  ],\n  \"component_ids\": [\n    10\n  ],\n  \"environment_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": 5640,\n    \"errors\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_1\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_2\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"full_messages\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd2857b2-60e0-4a16-b219-c8198afa3d68",
+          "name": "Show a Content View",
+          "request": {
+            "name": "Show a Content View",
+            "description": {
+              "content": "Retrieve details for a specific content view.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_views",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Content view identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be2f3005-5c92-46cd-9adc-af83dec53f6b",
+              "name": "Successful response containing content view details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"label\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"organization_id\": \"500123\",\n  \"organization\": {\n    \"name\": \"Example Title\",\n    \"label\": \"Example Title\",\n    \"id\": \"abc123\"\n  },\n  \"composite\": true,\n  \"rolling\": true,\n  \"auto_publish\": true,\n  \"solve_dependencies\": true,\n  \"import_only\": true,\n  \"generated_for\": \"example_value\",\n  \"default\": true,\n  \"repository_ids\": [\n    10\n  ],\n  \"repositories\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"content_type\": \"example_value\"\n    }\n  ],\n  \"component_ids\": [\n    10\n  ],\n  \"versions\": [\n    {\n      \"id\": \"abc123\",\n      \"version\": \"example_value\",\n      \"published\": \"2026-01-15T10:30:00Z\",\n      \"environment_ids\": [\n        {}\n      ]\n    }\n  ],\n  \"environments\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\"\n    }\n  ],\n  \"activation_keys\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\"\n    }\n  ],\n  \"next_version\": \"example_value\",\n  \"last_published\": \"2026-01-15T10:30:00Z\",\n  \"latest_version\": \"example_value\",\n  \"latest_version_id\": \"500123\",\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "786bd0dd-74f5-4d1c-9c44-88f29b642828",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96bef247-a806-41d1-91c3-7fc79d5816ac",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Resource not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2d21345-090f-42ee-907a-375048674ae6",
+          "name": "Update a Content View",
+          "request": {
+            "name": "Update a Content View",
+            "description": {
+              "content": "Update an existing content view's attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_views",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Content view identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"auto_publish\": \"<boolean>\",\n  \"solve_dependencies\": \"<boolean>\",\n  \"repository_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"component_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"environment_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca85db27-db24-4a48-8bd7-e265232a73bb",
+              "name": "Content view updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"auto_publish\": true,\n  \"solve_dependencies\": true,\n  \"repository_ids\": [\n    10\n  ],\n  \"component_ids\": [\n    10\n  ],\n  \"environment_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"name\": \"Example Title\",\n  \"label\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"organization_id\": \"500123\",\n  \"organization\": {\n    \"name\": \"Example Title\",\n    \"label\": \"Example Title\",\n    \"id\": \"abc123\"\n  },\n  \"composite\": true,\n  \"rolling\": true,\n  \"auto_publish\": true,\n  \"solve_dependencies\": true,\n  \"import_only\": true,\n  \"generated_for\": \"example_value\",\n  \"default\": true,\n  \"repository_ids\": [\n    10\n  ],\n  \"repositories\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\",\n      \"content_type\": \"example_value\"\n    }\n  ],\n  \"component_ids\": [\n    10\n  ],\n  \"versions\": [\n    {\n      \"id\": \"abc123\",\n      \"version\": \"example_value\",\n      \"published\": \"2026-01-15T10:30:00Z\",\n      \"environment_ids\": [\n        {}\n      ]\n    }\n  ],\n  \"environments\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\",\n      \"label\": \"Example Title\"\n    }\n  ],\n  \"activation_keys\": [\n    {\n      \"id\": \"abc123\",\n      \"name\": \"Example Title\"\n    }\n  ],\n  \"next_version\": \"example_value\",\n  \"last_published\": \"2026-01-15T10:30:00Z\",\n  \"latest_version\": \"example_value\",\n  \"latest_version_id\": \"500123\",\n  \"created_at\": \"2026-01-15T10:30:00Z\",\n  \"updated_at\": \"2026-01-15T10:30:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa73e0bc-204b-4f35-9e6e-a2d594017e50",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"auto_publish\": true,\n  \"solve_dependencies\": true,\n  \"repository_ids\": [\n    10\n  ],\n  \"component_ids\": [\n    10\n  ],\n  \"environment_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a74b0d4-fcbe-41dd-bc26-92535a801a61",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"auto_publish\": true,\n  \"solve_dependencies\": true,\n  \"repository_ids\": [\n    10\n  ],\n  \"component_ids\": [\n    10\n  ],\n  \"environment_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Resource not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d830dd0-0305-4be2-baac-188f8278887d",
+              "name": "The request was well-formed but contained validation errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Example Title\",\n  \"description\": \"A sample description.\",\n  \"auto_publish\": true,\n  \"solve_dependencies\": true,\n  \"repository_ids\": [\n    10\n  ],\n  \"component_ids\": [\n    10\n  ],\n  \"environment_ids\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": 6943,\n    \"errors\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_1\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_2\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"full_messages\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1e89b2f-3b54-42d8-83b2-4a669831eb48",
+          "name": "Delete a Content View",
+          "request": {
+            "name": "Delete a Content View",
+            "description": {
+              "content": "Delete a content view. The content view must not be associated with any lifecycle environments or activation keys.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_views",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Content view identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0e5b806-0b91-4621-88ed-fd96285965f2",
+              "name": "Content view deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7962d852-180b-47a1-b435-dc48e2132fa7",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "444b76c7-aca9-4a69-a686-9c923c5dc6d2",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Resource not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15ee0b85-9986-4b5c-ab08-298da4717b51",
+          "name": "Publish a Content View",
+          "request": {
+            "name": "Publish a Content View",
+            "description": {
+              "content": "Publish a new version of a content view. This creates a snapshot of the current repository content and makes it available for promotion to lifecycle environments.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_views",
+                ":id",
+                "publish"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Content view identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"major\": \"<integer>\",\n  \"minor\": \"<integer>\",\n  \"repos_units\": [\n    {\n      \"label\": \"<string>\",\n      \"rpm_filenames\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"label\": \"<string>\",\n      \"rpm_filenames\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9da836ab-430e-4c37-935a-286533b02d6d",
+              "name": "Content view publish task accepted. Returns a task object for tracking the asynchronous publish operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"A sample description.\",\n  \"major\": 10,\n  \"minor\": 10,\n  \"repos_units\": [\n    {\n      \"label\": \"Example Title\",\n      \"rpm_filenames\": [\n        \"example_value\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"label\": \"Example Title\",\n  \"pending\": true,\n  \"action\": \"example_value\",\n  \"username\": \"example_value\",\n  \"state\": \"planned\",\n  \"result\": \"pending\",\n  \"progress\": 42.5,\n  \"started_at\": \"2026-01-15T10:30:00Z\",\n  \"ended_at\": \"2026-01-15T10:30:00Z\",\n  \"humanized\": {\n    \"action\": \"example_value\",\n    \"input\": [\n      \"example_value\"\n    ],\n    \"output\": \"example_value\",\n    \"errors\": [\n      \"example_value\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ee0de2a-6e5f-44f7-85f9-86b39bc52dc7",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"A sample description.\",\n  \"major\": 10,\n  \"minor\": 10,\n  \"repos_units\": [\n    {\n      \"label\": \"Example Title\",\n      \"rpm_filenames\": [\n        \"example_value\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Unable to authenticate user.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80e2d33f-a9fe-44a2-92b0-647a970ebd20",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_views",
+                    ":id",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"A sample description.\",\n  \"major\": 10,\n  \"minor\": 10,\n  \"repos_units\": [\n    {\n      \"label\": \"Example Title\",\n      \"rpm_filenames\": [\n        \"example_value\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Resource not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "454af340-8ef6-45a0-8fc5-452b467978ce",
+          "name": "Promote a Content View Version",
+          "request": {
+            "name": "Promote a Content View Version",
+            "description": {
+              "content": "Promote a published content view version to a lifecycle environment. This makes the content available to hosts in that environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "katello",
+                "api",
+                "v2",
+                "content_view_versions",
+                ":id",
+                "promote"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Content view version identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"environment_ids\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"description\": \"<string>\",\n  \"force\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ffb1b49e-017c-4e39-af47-ae8cc24429bf",
+              "name": "Content view version promotion task accepted. Returns a task object for tracking the asynchronous operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_view_versions",
+                    ":id",
+                    "promote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view version identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"environment_ids\": [\n    10\n  ],\n  \"description\": \"A sample description.\",\n  \"force\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc123\",\n  \"label\": \"Example Title\",\n  \"pending\": true,\n  \"action\": \"example_value\",\n  \"username\": \"example_value\",\n  \"state\": \"planned\",\n  \"result\": \"pending\",\n  \"progress\": 42.5,\n  \"started_at\": \"2026-01-15T10:30:00Z\",\n  \"ended_at\": \"2026-01-15T10:30:00Z\",\n  \"humanized\": {\n    \"action\": \"example_value\",\n    \"input\": [\n      \"example_value\"\n    ],\n    \"output\": \"example_value\",\n    \"errors\": [\n      \"example_value\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59411de0-95a2-48fb-8149-63ba205a48ae",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_view_versions",
+                    ":id",
+                    "promote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view version identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"environment_ids\": [\n    10\n  ],\n  \"description\": \"A sample description.\",\n  \"force\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"message\": \"Resource not found.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0501ee1-e46f-44bf-ae17-cf4abb2252fa",
+              "name": "The request was well-formed but contained validation errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "katello",
+                    "api",
+                    "v2",
+                    "content_view_versions",
+                    ":id",
+                    "promote"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Content view version identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"environment_ids\": [\n    10\n  ],\n  \"description\": \"A sample description.\",\n  \"force\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"id\": 6943,\n    \"errors\": {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_1\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_2\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"full_messages\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://satellite.example.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a4144105-e048-40c7-b093-1a943c422ddd",
+    "name": "Red Hat Satellite REST Content Views API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Red Hat Satellite REST API provides programmatic access to Red Hat Satellite server functionality including host management, content view management, subscription management, lifecycle environments, and provisioning. The API is built on the Foreman and Katello upstream projects and follows RESTful conventions with JSON request and response bodies.\n\nContact Support:\n Name: Red Hat Support",
+      "type": "text/plain"
+    }
+  }
+}

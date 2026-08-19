@@ -1,0 +1,232 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Red Hat Satellite REST Content Views API",
+    "version": "6.18.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content Views",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Content Views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/content_views",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "",
+                "type": "query",
+                "description": "Set the current organization context for the request."
+              },
+              {
+                "name": "environment_id",
+                "value": "500123",
+                "type": "query",
+                "description": "Filter by lifecycle environment identifier."
+              },
+              {
+                "name": "nondefault",
+                "value": "true",
+                "type": "query",
+                "description": "Filter out default content views."
+              },
+              {
+                "name": "noncomposite",
+                "value": "true",
+                "type": "query",
+                "description": "Filter out composite content views."
+              },
+              {
+                "name": "composite",
+                "value": "true",
+                "type": "query",
+                "description": "Filter only composite content views."
+              },
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by content view name."
+              },
+              {
+                "name": "label",
+                "value": "Example Title",
+                "type": "query",
+                "description": "Filter by content view label."
+              },
+              {
+                "name": "include_generated",
+                "value": "true",
+                "type": "query",
+                "description": "Include import/export generated content views."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Scoped search query string to filter results. Supports field-based search syntax (e.g., \"name ~ web*\")."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort field and direction (e.g., \"name ASC\" or \"id DESC\")."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results (starting at 1)."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page. Use \"all\" to retrieve all results without pagination."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of content views for an organization. Content views define curated collections of repositories whose packages, errata, and other content are made available to hosts."
+        },
+        {
+          "info": {
+            "name": "Create a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/content_views",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new content view for an organization. Content views can be standard (selecting individual repositories) or composite (combining published versions of other content views)."
+        },
+        {
+          "info": {
+            "name": "Show a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://satellite.example.com/katello/api/v2/content_views/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Content view identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific content view."
+        },
+        {
+          "info": {
+            "name": "Update a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://satellite.example.com/katello/api/v2/content_views/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Content view identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing content view's attributes."
+        },
+        {
+          "info": {
+            "name": "Delete a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://satellite.example.com/katello/api/v2/content_views/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Content view identifier."
+              }
+            ]
+          },
+          "docs": "Delete a content view. The content view must not be associated with any lifecycle environments or activation keys."
+        },
+        {
+          "info": {
+            "name": "Publish a Content View",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/content_views/:id/publish",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Content view identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publish a new version of a content view. This creates a snapshot of the current repository content and makes it available for promotion to lifecycle environments."
+        },
+        {
+          "info": {
+            "name": "Promote a Content View Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://satellite.example.com/katello/api/v2/content_view_versions/:id/promote",
+            "params": [
+              {
+                "name": "id",
+                "value": "abc123",
+                "type": "path",
+                "description": "Content view version identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Promote a published content view version to a lifecycle environment. This makes the content available to hosts in that environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
