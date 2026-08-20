@@ -96,6 +96,12 @@ apis:
   - Lifecycle Environments
   - Repositories
   - REST API
+  - Subscription
+  tags_raw:
+  - Content Management
+  - Lifecycle Environments
+  - Repositories
+  - REST API
   - Subscriptions
   properties:
   - type: Documentation
@@ -440,6 +446,8 @@ apis:
   humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
   baseURL: https://satellite.example.com/api/v2
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -536,6 +544,8 @@ apis:
   humanURL: https://access.redhat.com/documentation/en-us/red_hat_satellite/
   baseURL: https://satellite.example.com/api/v2
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
