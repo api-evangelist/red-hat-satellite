@@ -1,0 +1,26 @@
+slug: red-hat-satellite
+provider: Red Hat Satellite
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Hosts
+  spec_file: red-hat-satellite-hosts-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: GET /api/v2/hosts  List All Hosts; PUT /api/v2/hosts/{id}/power  Execute a Power Operation
+    on a Host
+  reason: CRUD and power control over managed physical/virtual/cloud hosts is compute infrastructure management,
+    matching IT Infrastructure Management.

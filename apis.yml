@@ -4,6 +4,19 @@ description: >-
   Red Hat Satellite is a systems management product that helps deploy, configure, and maintain systems across physical,
   virtual, and cloud environments.
 type: Index
+deliveryModel:
+  model: self-hosted
+  license: GPL-3.0
+  open_source: true
+  commercial: false
+  callable_host: false
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
@@ -637,6 +650,13 @@ apis:
     url: >-
       https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
 common:
+  - type: CapabilityMap
+    url: capabilities/red-hat-satellite-capability-edges.yml
+    name: Red Hat Satellite Business Capability Map
+  - type: IssueTracker
+    url: https://github.com/theforeman/foreman/issues
+  - type: ContributionGuide
+    url: https://github.com/theforeman/foreman/blob/develop/CONTRIBUTING.md
   - type: License
     name: GPL-3.0
     url: https://github.com/theforeman/foreman/blob/develop/LICENSE
