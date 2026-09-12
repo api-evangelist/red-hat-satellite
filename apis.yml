@@ -650,6 +650,8 @@ apis:
     url: >-
       https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
 common:
+  - type: Website
+    url: https://www.redhat.com/
   - type: CapabilityMap
     url: capabilities/red-hat-satellite-capability-edges.yml
     name: Red Hat Satellite Business Capability Map
