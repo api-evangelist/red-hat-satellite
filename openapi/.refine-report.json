@@ -1,11 +1,7 @@
 {
   "provider": "red-hat-satellite",
   "sources": [
-    "red-hat-satellite-content-views-api-openapi.yml",
-    "red-hat-satellite-hosts-api-openapi.yml",
-    "red-hat-satellite-lifecycle-environments-api-openapi.yml",
-    "red-hat-satellite-organizations-api-openapi.yml",
-    "red-hat-satellite-subscriptions-api-openapi.yml"
+    "_original/red-hat-satellite-api.yml"
   ],
   "outputs": [
     "red-hat-satellite-content-views-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "red-hat-satellite-api.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "red-hat-satellite-content-views-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-satellite-hosts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-satellite-lifecycle-environments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-satellite-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "red-hat-satellite-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

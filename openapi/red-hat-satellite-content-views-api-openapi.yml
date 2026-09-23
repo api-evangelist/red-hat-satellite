@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Red Hat Satellite REST Content Views API
   description: The Red Hat Satellite REST API provides programmatic access to Red Hat Satellite server functionality including host management, content view management, subscription management, lifecycle environments, and provisioning. The API is built on the Foreman and Katello upstream projects and follows RESTful conventions with JSON request and response bodies.
@@ -607,6 +607,13 @@ components:
         type: integer
         minimum: 1
         default: 1
+    contentViewId:
+      name: id
+      in: path
+      required: true
+      description: Content view identifier.
+      schema:
+        type: integer
     perPageQuery:
       name: per_page
       in: query
@@ -625,92 +632,68 @@ components:
       description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
       schema:
         type: string
-    orderQuery:
-      name: order
-      in: query
-      description: Sort field and direction (e.g., "name ASC" or "id DESC").
-      schema:
-        type: string
-    contentViewId:
-      name: id
-      in: path
-      required: true
-      description: Content view identifier.
-      schema:
-        type: integer
     organizationIdQuery:
       name: organization_id
       in: query
       description: Set the current organization context for the request.
       schema:
         type: integer
+    orderQuery:
+      name: order
+      in: query
+      description: Sort field and direction (e.g., "name ASC" or "id DESC").
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to authenticate user.
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Resource not found.
+    UnprocessableEntity:
+      description: The request was well-formed but contained validation errors.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                  full_messages:
+                    type: array
+                    items:
+                      type: string
   schemas:
-    ContentViewCreate:
-      type: object
-      description: Parameters for creating a new content view.
-      required:
-      - name
-      - organization_id
-      properties:
-        organization_id:
-          type: integer
-          description: Organization identifier.
-          example: '500123'
-        name:
-          type: string
-          description: Name of the content view.
-          example: Example Title
-        label:
-          type: string
-          description: Content view label (auto-generated from name if omitted).
-          example: Example Title
-        description:
-          type: string
-          description: Description of the content view.
-          example: A sample description.
-        composite:
-          type: boolean
-          description: Whether this is a composite content view.
-          default: false
-          example: true
-        rolling:
-          type: boolean
-          description: Whether this is a rolling content view.
-          default: false
-          example: true
-        auto_publish:
-          type: boolean
-          description: Auto-publish composite view when a component updates.
-          default: false
-          example: true
-        solve_dependencies:
-          type: boolean
-          description: Resolve RPM dependencies during publish.
-          default: false
-          example: true
-        import_only:
-          type: boolean
-          description: Mark as import-only content view.
-          default: false
-          example: true
-        repository_ids:
-          type: array
-          description: Repository IDs to include.
-          items:
-            type: integer
-          example: []
-        component_ids:
-          type: array
-          description: Content view version IDs for composite views.
-          items:
-            type: integer
-          example: []
-        environment_ids:
-          type: array
-          description: Lifecycle environment IDs for rolling content views.
-          items:
-            type: integer
-          example: []
     ForemanTask:
       type: object
       description: An asynchronous task object returned for long-running operations such as publishing content views or uploading manifests.
@@ -788,6 +771,72 @@ components:
               items:
                 type: string
           example: example_value
+    ContentViewCreate:
+      type: object
+      description: Parameters for creating a new content view.
+      required:
+      - name
+      - organization_id
+      properties:
+        organization_id:
+          type: integer
+          description: Organization identifier.
+          example: '500123'
+        name:
+          type: string
+          description: Name of the content view.
+          example: Example Title
+        label:
+          type: string
+          description: Content view label (auto-generated from name if omitted).
+          example: Example Title
+        description:
+          type: string
+          description: Description of the content view.
+          example: A sample description.
+        composite:
+          type: boolean
+          description: Whether this is a composite content view.
+          default: false
+          example: true
+        rolling:
+          type: boolean
+          description: Whether this is a rolling content view.
+          default: false
+          example: true
+        auto_publish:
+          type: boolean
+          description: Auto-publish composite view when a component updates.
+          default: false
+          example: true
+        solve_dependencies:
+          type: boolean
+          description: Resolve RPM dependencies during publish.
+          default: false
+          example: true
+        import_only:
+          type: boolean
+          description: Mark as import-only content view.
+          default: false
+          example: true
+        repository_ids:
+          type: array
+          description: Repository IDs to include.
+          items:
+            type: integer
+          example: []
+        component_ids:
+          type: array
+          description: Content view version IDs for composite views.
+          items:
+            type: integer
+          example: []
+        environment_ids:
+          type: array
+          description: Lifecycle environment IDs for rolling content views.
+          items:
+            type: integer
+          example: []
     ContentView:
       type: object
       description: A content view defining a curated set of repositories and content available to hosts.
@@ -985,55 +1034,6 @@ components:
           items:
             type: integer
           example: []
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Resource not found.
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Unable to authenticate user.
-    UnprocessableEntity:
-      description: The request was well-formed but contained validation errors.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: array
-                      items:
-                        type: string
-                  full_messages:
-                    type: array
-                    items:
-                      type: string
   securitySchemes:
     basicAuth:
       type: http

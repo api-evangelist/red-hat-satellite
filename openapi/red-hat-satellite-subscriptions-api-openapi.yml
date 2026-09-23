@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Red Hat Satellite REST Content Views Subscriptions API
+  title: Red Hat Satellite REST Subscriptions API
   description: The Red Hat Satellite REST API provides programmatic access to Red Hat Satellite server functionality including host management, content view management, subscription management, lifecycle environments, and provisioning. The API is built on the Foreman and Katello upstream projects and follows RESTful conventions with JSON request and response bodies.
   version: 6.18.0
   contact:
@@ -545,16 +545,16 @@ components:
           enum:
           - all
         default: 20
-    orderQuery:
-      name: order
-      in: query
-      description: Sort field and direction (e.g., "name ASC" or "id DESC").
-      schema:
-        type: string
     searchQuery:
       name: search
       in: query
       description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
+      schema:
+        type: string
+    orderQuery:
+      name: order
+      in: query
+      description: Sort field and direction (e.g., "name ASC" or "id DESC").
       schema:
         type: string
   responses:

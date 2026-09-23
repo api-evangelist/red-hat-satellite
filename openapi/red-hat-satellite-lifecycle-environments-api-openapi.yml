@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Red Hat Satellite REST Content Views Lifecycle Environments API
+  title: Red Hat Satellite REST Lifecycle Environments API
   description: The Red Hat Satellite REST API provides programmatic access to Red Hat Satellite server functionality including host management, content view management, subscription management, lifecycle environments, and provisioning. The API is built on the Foreman and Katello upstream projects and follows RESTful conventions with JSON request and response bodies.
   version: 6.18.0
   contact:
@@ -283,6 +283,42 @@ components:
       description: Sort field and direction (e.g., "name ASC" or "id DESC").
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to authenticate user.
+    UnprocessableEntity:
+      description: The request was well-formed but contained validation errors.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                  full_messages:
+                    type: array
+                    items:
+                      type: string
   schemas:
     LifecycleEnvironment:
       type: object
@@ -361,42 +397,6 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Unable to authenticate user.
-    UnprocessableEntity:
-      description: The request was well-formed but contained validation errors.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: array
-                      items:
-                        type: string
-                  full_messages:
-                    type: array
-                    items:
-                      type: string
   securitySchemes:
     basicAuth:
       type: http
