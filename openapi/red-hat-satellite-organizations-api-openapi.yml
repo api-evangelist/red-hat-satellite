@@ -120,6 +120,12 @@ paths:
         dispatcher: FALLBACK
 components:
   parameters:
+    searchQuery:
+      name: search
+      in: query
+      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
+      schema:
+        type: string
     pageQuery:
       name: page
       in: query
@@ -140,12 +146,6 @@ components:
           enum:
           - all
         default: 20
-    searchQuery:
-      name: search
-      in: query
-      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
-      schema:
-        type: string
     orderQuery:
       name: order
       in: query
