@@ -321,40 +321,84 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    searchQuery:
-      name: search
-      in: query
-      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
-      schema:
-        type: string
-    pageQuery:
-      name: page
-      in: query
-      description: Page number for paginated results (starting at 1).
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    perPageQuery:
-      name: per_page
-      in: query
-      description: Number of results per page. Use "all" to retrieve all results without pagination.
-      schema:
-        oneOf:
-        - type: integer
-          minimum: 1
-        - type: string
-          enum:
-          - all
-        default: 20
-    orderQuery:
-      name: order
-      in: query
-      description: Sort field and direction (e.g., "name ASC" or "id DESC").
-      schema:
-        type: string
   schemas:
+    ForemanTask:
+      type: object
+      description: An asynchronous task object returned for long-running operations such as publishing content views or uploading manifests.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique task identifier.
+          example: abc123
+        label:
+          type: string
+          description: Machine-readable task label.
+          example: Example Title
+        pending:
+          type: boolean
+          description: Whether the task is still pending.
+          example: true
+        action:
+          type: string
+          description: Human-readable description of the task action.
+          example: example_value
+        username:
+          type: string
+          description: User who initiated the task.
+          example: example_value
+        state:
+          type: string
+          description: Current state of the task.
+          enum:
+          - planned
+          - running
+          - paused
+          - stopped
+          example: planned
+        result:
+          type: string
+          description: Result of the task.
+          enum:
+          - pending
+          - success
+          - error
+          - warning
+          example: pending
+        progress:
+          type: number
+          description: Task progress as a decimal (0.0 to 1.0).
+          minimum: 0
+          maximum: 1
+          example: 42.5
+        started_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        ended_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        humanized:
+          type: object
+          properties:
+            action:
+              type: string
+            input:
+              type: array
+              items:
+                type: string
+            output:
+              type: string
+            errors:
+              type: array
+              items:
+                type: string
+          example: example_value
     Subscription:
       type: object
       description: A Red Hat subscription providing product entitlements for an organization.
@@ -480,83 +524,39 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-    ForemanTask:
-      type: object
-      description: An asynchronous task object returned for long-running operations such as publishing content views or uploading manifests.
-      properties:
-        id:
-          type: string
-          format: uuid
-          description: Unique task identifier.
-          example: abc123
-        label:
-          type: string
-          description: Machine-readable task label.
-          example: Example Title
-        pending:
-          type: boolean
-          description: Whether the task is still pending.
-          example: true
-        action:
-          type: string
-          description: Human-readable description of the task action.
-          example: example_value
-        username:
-          type: string
-          description: User who initiated the task.
-          example: example_value
-        state:
-          type: string
-          description: Current state of the task.
+  parameters:
+    searchQuery:
+      name: search
+      in: query
+      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
+      schema:
+        type: string
+    pageQuery:
+      name: page
+      in: query
+      description: Page number for paginated results (starting at 1).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    orderQuery:
+      name: order
+      in: query
+      description: Sort field and direction (e.g., "name ASC" or "id DESC").
+      schema:
+        type: string
+    perPageQuery:
+      name: per_page
+      in: query
+      description: Number of results per page. Use "all" to retrieve all results without pagination.
+      schema:
+        oneOf:
+        - type: integer
+          minimum: 1
+        - type: string
           enum:
-          - planned
-          - running
-          - paused
-          - stopped
-          example: planned
-        result:
-          type: string
-          description: Result of the task.
-          enum:
-          - pending
-          - success
-          - error
-          - warning
-          example: pending
-        progress:
-          type: number
-          description: Task progress as a decimal (0.0 to 1.0).
-          minimum: 0
-          maximum: 1
-          example: 42.5
-        started_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        ended_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        humanized:
-          type: object
-          properties:
-            action:
-              type: string
-            input:
-              type: array
-              items:
-                type: string
-            output:
-              type: string
-            errors:
-              type: array
-              items:
-                type: string
-          example: example_value
+          - all
+        default: 20
   responses:
     Unauthorized:
       description: Authentication credentials are missing or invalid.

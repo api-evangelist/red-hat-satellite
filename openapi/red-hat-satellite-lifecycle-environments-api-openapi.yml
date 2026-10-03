@@ -250,75 +250,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    searchQuery:
-      name: search
-      in: query
-      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
-      schema:
-        type: string
-    pageQuery:
-      name: page
-      in: query
-      description: Page number for paginated results (starting at 1).
-      schema:
-        type: integer
-        minimum: 1
-        default: 1
-    perPageQuery:
-      name: per_page
-      in: query
-      description: Number of results per page. Use "all" to retrieve all results without pagination.
-      schema:
-        oneOf:
-        - type: integer
-          minimum: 1
-        - type: string
-          enum:
-          - all
-        default: 20
-    orderQuery:
-      name: order
-      in: query
-      description: Sort field and direction (e.g., "name ASC" or "id DESC").
-      schema:
-        type: string
-  responses:
-    UnprocessableEntity:
-      description: The request was well-formed but contained validation errors.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: array
-                      items:
-                        type: string
-                  full_messages:
-                    type: array
-                    items:
-                      type: string
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Unable to authenticate user.
   schemas:
     LifecycleEnvironment:
       type: object
@@ -397,6 +328,75 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+  parameters:
+    searchQuery:
+      name: search
+      in: query
+      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
+      schema:
+        type: string
+    pageQuery:
+      name: page
+      in: query
+      description: Page number for paginated results (starting at 1).
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    orderQuery:
+      name: order
+      in: query
+      description: Sort field and direction (e.g., "name ASC" or "id DESC").
+      schema:
+        type: string
+    perPageQuery:
+      name: per_page
+      in: query
+      description: Number of results per page. Use "all" to retrieve all results without pagination.
+      schema:
+        oneOf:
+        - type: integer
+          minimum: 1
+        - type: string
+          enum:
+          - all
+        default: 20
+  responses:
+    UnprocessableEntity:
+      description: The request was well-formed but contained validation errors.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                  full_messages:
+                    type: array
+                    items:
+                      type: string
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to authenticate user.
   securitySchemes:
     basicAuth:
       type: http

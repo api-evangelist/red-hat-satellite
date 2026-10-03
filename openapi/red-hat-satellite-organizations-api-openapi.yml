@@ -134,6 +134,12 @@ components:
         type: integer
         minimum: 1
         default: 1
+    orderQuery:
+      name: order
+      in: query
+      description: Sort field and direction (e.g., "name ASC" or "id DESC").
+      schema:
+        type: string
     perPageQuery:
       name: per_page
       in: query
@@ -146,39 +152,6 @@ components:
           enum:
           - all
         default: 20
-    orderQuery:
-      name: order
-      in: query
-      description: Sort field and direction (e.g., "name ASC" or "id DESC").
-      schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Unable to authenticate user.
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Resource not found.
   schemas:
     Organization:
       type: object
@@ -214,6 +187,33 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Resource not found.
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to authenticate user.
   securitySchemes:
     basicAuth:
       type: http
