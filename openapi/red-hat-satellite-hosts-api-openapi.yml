@@ -691,6 +691,55 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    UnprocessableEntity:
+      description: The request was well-formed but contained validation errors.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+                  full_messages:
+                    type: array
+                    items:
+                      type: string
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Resource not found.
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to authenticate user.
   schemas:
     HostCreate:
       type: object
@@ -801,6 +850,74 @@ components:
         interfaces_attributes:
           type: array
           description: Network interface configurations.
+          items:
+            $ref: '#/components/schemas/HostInterfaceCreate'
+          example: []
+    HostUpdate:
+      type: object
+      description: Parameters for updating an existing host.
+      properties:
+        name:
+          type: string
+          example: Example Title
+        ip:
+          type: string
+          format: ipv4
+          example: example_value
+        mac:
+          type: string
+          example: example_value
+        architecture_id:
+          type: integer
+          example: '500123'
+        domain_id:
+          type: integer
+          example: '500123'
+        subnet_id:
+          type: integer
+          example: '500123'
+        operatingsystem_id:
+          type: integer
+          example: '500123'
+        hostgroup_id:
+          type: integer
+          example: '500123'
+        location_id:
+          type: integer
+          example: '500123'
+        organization_id:
+          type: integer
+          example: '500123'
+        owner_id:
+          type: integer
+          example: '500123'
+        owner_type:
+          type: string
+          enum:
+          - User
+          - Usergroup
+          example: User
+        build:
+          type: boolean
+          example: true
+        managed:
+          type: boolean
+          example: true
+        comment:
+          type: string
+          example: example_value
+        content_facet_attributes:
+          type: object
+          properties:
+            content_view_id:
+              type: integer
+            lifecycle_environment_id:
+              type: integer
+            content_source_id:
+              type: integer
+          example: example_value
+        interfaces_attributes:
+          type: array
           items:
             $ref: '#/components/schemas/HostInterfaceCreate'
           example: []
@@ -921,162 +1038,6 @@ components:
         bond_options:
           type: string
           description: Additional bond options (space-separated).
-          example: example_value
-    HostUpdate:
-      type: object
-      description: Parameters for updating an existing host.
-      properties:
-        name:
-          type: string
-          example: Example Title
-        ip:
-          type: string
-          format: ipv4
-          example: example_value
-        mac:
-          type: string
-          example: example_value
-        architecture_id:
-          type: integer
-          example: '500123'
-        domain_id:
-          type: integer
-          example: '500123'
-        subnet_id:
-          type: integer
-          example: '500123'
-        operatingsystem_id:
-          type: integer
-          example: '500123'
-        hostgroup_id:
-          type: integer
-          example: '500123'
-        location_id:
-          type: integer
-          example: '500123'
-        organization_id:
-          type: integer
-          example: '500123'
-        owner_id:
-          type: integer
-          example: '500123'
-        owner_type:
-          type: string
-          enum:
-          - User
-          - Usergroup
-          example: User
-        build:
-          type: boolean
-          example: true
-        managed:
-          type: boolean
-          example: true
-        comment:
-          type: string
-          example: example_value
-        content_facet_attributes:
-          type: object
-          properties:
-            content_view_id:
-              type: integer
-            lifecycle_environment_id:
-              type: integer
-            content_source_id:
-              type: integer
-          example: example_value
-        interfaces_attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/HostInterfaceCreate'
-          example: []
-    HostInterface:
-      type: object
-      description: A network interface associated with a host.
-      properties:
-        id:
-          type: integer
-          example: abc123
-        mac:
-          type:
-          - string
-          - 'null'
-          example: example_value
-        ip:
-          type:
-          - string
-          - 'null'
-          format: ipv4
-          example: example_value
-        ip6:
-          type:
-          - string
-          - 'null'
-          format: ipv6
-          example: example_value
-        type:
-          type: string
-          enum:
-          - interface
-          - bmc
-          - bond
-          - bridge
-          example: interface
-        name:
-          type:
-          - string
-          - 'null'
-          example: Example Title
-        subnet_id:
-          type:
-          - integer
-          - 'null'
-          example: '500123'
-        subnet6_id:
-          type:
-          - integer
-          - 'null'
-          example: '500123'
-        domain_id:
-          type:
-          - integer
-          - 'null'
-          example: '500123'
-        identifier:
-          type:
-          - string
-          - 'null'
-          description: Device identifier (e.g., eth0, ens192).
-          example: example_value
-        managed:
-          type: boolean
-          example: true
-        primary:
-          type: boolean
-          example: true
-        provision:
-          type: boolean
-          example: true
-        virtual:
-          type: boolean
-          example: true
-        tag:
-          type:
-          - string
-          - 'null'
-          description: VLAN tag.
-          example: example_value
-        mtu:
-          type:
-          - integer
-          - 'null'
-          description: Maximum transmission unit.
-          example: example_value
-        attached_to:
-          type:
-          - string
-          - 'null'
-          description: Parent interface identifier.
           example: example_value
     Host:
       type: object
@@ -1404,13 +1365,95 @@ components:
           format: date-time
           description: Timestamp of the last configuration management report.
           example: '2026-01-15T10:30:00Z'
+    HostInterface:
+      type: object
+      description: A network interface associated with a host.
+      properties:
+        id:
+          type: integer
+          example: abc123
+        mac:
+          type:
+          - string
+          - 'null'
+          example: example_value
+        ip:
+          type:
+          - string
+          - 'null'
+          format: ipv4
+          example: example_value
+        ip6:
+          type:
+          - string
+          - 'null'
+          format: ipv6
+          example: example_value
+        type:
+          type: string
+          enum:
+          - interface
+          - bmc
+          - bond
+          - bridge
+          example: interface
+        name:
+          type:
+          - string
+          - 'null'
+          example: Example Title
+        subnet_id:
+          type:
+          - integer
+          - 'null'
+          example: '500123'
+        subnet6_id:
+          type:
+          - integer
+          - 'null'
+          example: '500123'
+        domain_id:
+          type:
+          - integer
+          - 'null'
+          example: '500123'
+        identifier:
+          type:
+          - string
+          - 'null'
+          description: Device identifier (e.g., eth0, ens192).
+          example: example_value
+        managed:
+          type: boolean
+          example: true
+        primary:
+          type: boolean
+          example: true
+        provision:
+          type: boolean
+          example: true
+        virtual:
+          type: boolean
+          example: true
+        tag:
+          type:
+          - string
+          - 'null'
+          description: VLAN tag.
+          example: example_value
+        mtu:
+          type:
+          - integer
+          - 'null'
+          description: Maximum transmission unit.
+          example: example_value
+        attached_to:
+          type:
+          - string
+          - 'null'
+          description: Parent interface identifier.
+          example: example_value
   parameters:
-    searchQuery:
-      name: search
-      in: query
-      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
-      schema:
-        type: string
     pageQuery:
       name: page
       in: query
@@ -1419,11 +1462,22 @@ components:
         type: integer
         minimum: 1
         default: 1
-    hostId:
-      name: id
-      in: path
-      required: true
-      description: Host identifier (numeric ID or FQDN).
+    locationIdQuery:
+      name: location_id
+      in: query
+      description: Set the current location context for the request.
+      schema:
+        type: integer
+    organizationIdQuery:
+      name: organization_id
+      in: query
+      description: Set the current organization context for the request.
+      schema:
+        type: integer
+    searchQuery:
+      name: search
+      in: query
+      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
       schema:
         type: string
     orderQuery:
@@ -1432,12 +1486,13 @@ components:
       description: Sort field and direction (e.g., "name ASC" or "id DESC").
       schema:
         type: string
-    organizationIdQuery:
-      name: organization_id
-      in: query
-      description: Set the current organization context for the request.
+    hostId:
+      name: id
+      in: path
+      required: true
+      description: Host identifier (numeric ID or FQDN).
       schema:
-        type: integer
+        type: string
     perPageQuery:
       name: per_page
       in: query
@@ -1450,61 +1505,6 @@ components:
           enum:
           - all
         default: 20
-    locationIdQuery:
-      name: location_id
-      in: query
-      description: Set the current location context for the request.
-      schema:
-        type: integer
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Unable to authenticate user.
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Resource not found.
-    UnprocessableEntity:
-      description: The request was well-formed but contained validation errors.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: array
-                      items:
-                        type: string
-                  full_messages:
-                    type: array
-                    items:
-                      type: string
   securitySchemes:
     basicAuth:
       type: http
