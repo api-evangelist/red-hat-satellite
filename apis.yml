@@ -650,6 +650,12 @@ apis:
     url: >-
       https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index
 common:
+  - type: Plans
+    url: plans/red-hat-satellite-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/red-hat-satellite-rate-limits.yml
+  - type: FinOps
+    url: finops/red-hat-satellite-finops.yml
   - type: Website
     url: https://www.redhat.com/
   - type: CapabilityMap
