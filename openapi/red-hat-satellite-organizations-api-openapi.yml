@@ -128,12 +128,6 @@ components:
         type: integer
         minimum: 1
         default: 1
-    searchQuery:
-      name: search
-      in: query
-      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
-      schema:
-        type: string
     orderQuery:
       name: order
       in: query
@@ -152,6 +146,39 @@ components:
           enum:
           - all
         default: 20
+    searchQuery:
+      name: search
+      in: query
+      description: Scoped search query string to filter results. Supports field-based search syntax (e.g., "name ~ web*").
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Resource not found.
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unable to authenticate user.
   schemas:
     Organization:
       type: object
@@ -187,33 +214,6 @@ components:
           type: string
           format: date-time
           example: '2026-01-15T10:30:00Z'
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Resource not found.
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Unable to authenticate user.
   securitySchemes:
     basicAuth:
       type: http
