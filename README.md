@@ -1,4 +1,4 @@
-# Red Hat Satellite (red-hat-satellite)
+# Red Hat Satellite
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,206 +66,240 @@
 
 Red Hat Satellite is a systems management product that helps deploy, configure, and maintain systems across physical, virtual, and cloud environments.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/red-hat-satellite/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/red-hat-satellite/refs/heads/main/apis.yml)
+**Areas:** Configuration Management · Lifecycle Management · Patch Management · Subscription Management · Systems Management
 
-## Scope
+## Red Hat Satellite on APIs.io
 
-- **Type:** Index
+Everything profiled for Red Hat Satellite is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/red-hat-satellite/](https://apis.io/providers/red-hat-satellite/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (9)
 
-- Configuration Management
-- Lifecycle Management
-- Patch Management
-- Subscription Management
-- Systems Management
+- [Red Hat Satellite Hammer CLI](https://apis.io/apis/red-hat-satellite/red-hat-satellite-hammer-cli/) — Command-line interface tool for Red Hat Satellite that provides scriptable access to Satellite functions including host management, content views, and…
+- [Red Hat Satellite Foreman API](https://apis.io/apis/red-hat-satellite/red-hat-satellite-foreman-api/) — Core Foreman API integrated into Red Hat Satellite for host lifecycle management, provisioning, and configuration management. This is the upstream project…
+- [Red Hat Satellite Katello API](https://apis.io/apis/red-hat-satellite/red-hat-satellite-katello-api/) — Content management API for Red Hat Satellite handling repositories, content views, lifecycle environments, subscriptions, and errata. Katello is the…
+- [Red Hat Satellite Ansible Collection](https://apis.io/apis/red-hat-satellite/red-hat-satellite-ansible-collection/) — The redhat.satellite Ansible collection provides modules, roles, and plugins for automating Red Hat Satellite configuration and management through the…
+- [Red Hat Satellite Content Views API](https://apis.io/apis/red-hat-satellite/red-hat-satellite-content-views-api/) — Manage content views which define curated sets of repositories and packages available to hosts.
+- [Red Hat Satellite Hosts API](https://apis.io/apis/red-hat-satellite/red-hat-satellite-hosts-api/) — Manage hosts registered with Red Hat Satellite including physical, virtual, and cloud instances.
+- [Red Hat Satellite Lifecycle Environments API](https://apis.io/apis/red-hat-satellite/red-hat-satellite-lifecycle-environments-api/) — Manage lifecycle environments that define promotion paths for content views from development through production.
+- [Red Hat Satellite Organizations API](https://apis.io/apis/red-hat-satellite/red-hat-satellite-organizations-api/) — Manage organizations which provide multi-tenancy isolation for hosts, content, and subscriptions.
+- [Red Hat Satellite Subscriptions API](https://apis.io/apis/red-hat-satellite/red-hat-satellite-subscriptions-api/) — Manage Red Hat subscriptions and entitlements for organizations and hosts.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Red Hat Satellite REST API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The main REST API for Red Hat Satellite 6.x, providing programmatic access to all Satellite functions including host management, content management, provisioning, and configuration.
+- [Red Hat Satellite Agentic Access](https://apis.io/agentic-access/red-hat-satellite/red-hat-satellite-agentic-access/)
 
-- **Human URL:** [https://access.redhat.com/documentation/en-us/red_hat_satellite/](https://access.redhat.com/documentation/en-us/red_hat_satellite/)
-- **Base URL:** `https://satellite.example.com/api/v2`
+#### JSON Schema (21)
 
-#### Tags
+The data models the API reads and writes.
 
-- Automation
-- REST API
-- Systems Management
+- [ContentView](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-content-view/)
+- [ContentViewCreate](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-content-view-create/)
+- [ContentViewUpdate](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-content-view-update/)
+- [ContentView](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-contentview/)
+- [ContentViewCreate](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-contentviewcreate/)
+- [ContentViewUpdate](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-contentviewupdate/)
+- [ForemanTask](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-foreman-task/)
+- [ForemanTask](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-foremantask/)
+- [Host](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-host/)
+- [HostCreate](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-host-create/)
+- [HostInterface](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-host-interface/)
+- [HostInterfaceCreate](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-host-interface-create/)
+- [HostUpdate](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-host-update/)
+- [HostCreate](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-hostcreate/)
+- [HostInterface](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-hostinterface/)
+- [HostInterfaceCreate](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-hostinterfacecreate/)
+- [HostUpdate](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-hostupdate/)
+- [LifecycleEnvironment](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-lifecycle-environment/)
+- [LifecycleEnvironment](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-lifecycleenvironment/)
+- [Organization](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-organization/)
+- [Subscription](https://apis.io/schemas/red-hat-satellite/red-hat-satellite-subscription/)
 
-#### Properties
+#### JSON Structure (13)
 
-- [Documentation](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index)
-- [OpenAPI](https://satellite.example.com/apidoc/v2.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](openapi/red-hat-satellite-api.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/red-hat-satellite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/red-hat-satellite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/red-hat-satellite-host-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-host-create-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-host-update-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-host-interface-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-host-interface-create-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-content-view-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-content-view-create-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-content-view-update-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-subscription-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-lifecycle-environment-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-organization-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/red-hat-satellite-foreman-task-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/red-hat-satellite-host-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-host-create-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-host-update-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-host-interface-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-host-interface-create-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-content-view-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-content-view-create-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-content-view-update-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-subscription-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-lifecycle-environment-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-organization-structure.json)
-- [JSON Structure](json-structure/red-hat-satellite-foreman-task-structure.json)
-- [Example](examples/red-hat-satellite-host-example.json)
-- [Example](examples/red-hat-satellite-host-create-example.json)
-- [Example](examples/red-hat-satellite-host-update-example.json)
-- [Example](examples/red-hat-satellite-host-interface-example.json)
-- [Example](examples/red-hat-satellite-host-interface-create-example.json)
-- [Example](examples/red-hat-satellite-content-view-example.json)
-- [Example](examples/red-hat-satellite-content-view-create-example.json)
-- [Example](examples/red-hat-satellite-content-view-update-example.json)
-- [Example](examples/red-hat-satellite-subscription-example.json)
-- [Example](examples/red-hat-satellite-lifecycle-environment-example.json)
-- [Example](examples/red-hat-satellite-organization-example.json)
-- [Example](examples/red-hat-satellite-foreman-task-example.json)
-- [JSON-LD](json-ld/red-hat-satellite-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Authentication](https://access.redhat.com/documentation/en-us/red_hat_satellite/6.14/html/api_guide/chap-api_guide-authentication)
-- [Getting Started](https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/introduction-to-satellite-api)
-- [API Reference](https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html/using_the_satellite_rest_api/index)
+Data models expressed in JSON Structure.
 
-### Red Hat Satellite Hammer CLI
+- [Red Hat Satellite Content View Create Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-content-view-create-structure/)
+- [Red Hat Satellite Content View Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-content-view-structure/)
+- [Red Hat Satellite Content View Update Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-content-view-update-structure/)
+- [Red Hat Satellite Foreman Task Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-foreman-task-structure/)
+- [Red Hat Satellite Host Create Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-host-create-structure/)
+- [Red Hat Satellite Host Interface Create Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-host-interface-create-structure/)
+- [Red Hat Satellite Host Interface Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-host-interface-structure/)
+- [Red Hat Satellite Host Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-host-structure/)
+- [Red Hat Satellite Host Update Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-host-update-structure/)
+- [Red Hat Satellite Lifecycle Environment Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-lifecycle-environment-structure/)
+- [Red Hat Satellite Organization Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-organization-structure/)
+- [Red Hat Satellite Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-structure/)
+- [Red Hat Satellite Subscription Structure](https://apis.io/json-structure/red-hat-satellite/red-hat-satellite-subscription-structure/)
 
-Command-line interface tool for Red Hat Satellite that provides scriptable access to Satellite functions including host management, content views, and provisioning.
+#### JSON-LD (1)
 
-- **Human URL:** [https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_hammer_cli_tool/index](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_hammer_cli_tool/index)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Red Hat Satellite Context](https://apis.io/jsonld/red-hat-satellite/red-hat-satellite-context/)
 
-- Automation
-- CLI
-- Command Line
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_hammer_cli_tool/index)
-- [Code Examples](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html/using_the_hammer_cli_tool/hammer-cheat-sheet)
-- [Authentication](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html/using_the_hammer_cli_tool/hammer-authentication)
-- [Postman Collection](collections/red-hat-satellite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/red-hat-satellite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Red Hat Satellite Domain Vocabulary](https://apis.io/vocabularies/red-hat-satellite/red-hat-satellite-vocabulary/)
 
-### Red Hat Satellite Foreman API
+#### Examples (32)
 
-Core Foreman API integrated into Red Hat Satellite for host lifecycle management, provisioning, and configuration management. This is the upstream project API that powers Satellite's core functionality including the web UI, users, organizations, and security.
+Example requests and responses.
 
-- **Human URL:** [https://theforeman.org/api.html](https://theforeman.org/api.html)
-- **Base URL:** `https://satellite.example.com/api`
+- [Red Hat Satellite Content View Create Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-content-view-create-example/)
+- [Red Hat Satellite Content View Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-content-view-example/)
+- [Red Hat Satellite Content View Update Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-content-view-update-example/)
+- [Red Hat Satellite Createcontentview Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-createcontentview-example/)
+- [Red Hat Satellite Createhost Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-createhost-example/)
+- [Red Hat Satellite Createlifecycleenvironment Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-createlifecycleenvironment-example/)
+- [Red Hat Satellite Deletesubscriptionmanifest Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-deletesubscriptionmanifest-example/)
+- [Red Hat Satellite Foreman Task Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-foreman-task-example/)
+- [Red Hat Satellite Host Create Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-host-create-example/)
+- [Red Hat Satellite Host Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-host-example/)
+- [Red Hat Satellite Host Interface Create Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-host-interface-create-example/)
+- [Red Hat Satellite Host Interface Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-host-interface-example/)
+- [Red Hat Satellite Host Update Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-host-update-example/)
+- [Red Hat Satellite Hostpoweraction Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-hostpoweraction-example/)
+- [Red Hat Satellite Lifecycle Environment Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-lifecycle-environment-example/)
+- [Red Hat Satellite Listcontentviews Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-listcontentviews-example/)
+- [Red Hat Satellite Listhosts Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-listhosts-example/)
+- [Red Hat Satellite Listlifecycleenvironmentpaths Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-listlifecycleenvironmentpaths-example/)
+- [Red Hat Satellite Listlifecycleenvironments Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-listlifecycleenvironments-example/)
+- [Red Hat Satellite Listorganizations Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-listorganizations-example/)
+- [Red Hat Satellite Listsubscriptions Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-listsubscriptions-example/)
+- [Red Hat Satellite Organization Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-organization-example/)
+- [Red Hat Satellite Promotecontentviewversion Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-promotecontentviewversion-example/)
+- [Red Hat Satellite Publishcontentview Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-publishcontentview-example/)
+- [Red Hat Satellite Refreshsubscriptionmanifest Example](https://apis.io/examples/red-hat-satellite/red-hat-satellite-refreshsubscriptionmanifest-example/)
+- …and 7 more published on APIs.io
 
-#### Tags
+#### Collections (11)
 
-- Foreman
-- Host Management
-- Provisioning
-- REST API
+Postman and Open Collection request collections.
 
-#### Properties
+- [Red Hat Satellite REST API](https://apis.io/collections/red-hat-satellite/open-red-hat-satellite-api/)
+- [Red Hat Satellite REST Content Views API](https://apis.io/collections/red-hat-satellite/open-red-hat-satellite-content-views-api/)
+- [Red Hat Satellite REST Content Views Hosts API](https://apis.io/collections/red-hat-satellite/open-red-hat-satellite-hosts-api/)
+- [Red Hat Satellite REST Content Views Lifecycle Environments API](https://apis.io/collections/red-hat-satellite/open-red-hat-satellite-lifecycle-environments-api/)
+- [Red Hat Satellite REST Content Views Organizations API](https://apis.io/collections/red-hat-satellite/open-red-hat-satellite-organizations-api/)
+- [Red Hat Satellite REST Content Views Subscriptions API](https://apis.io/collections/red-hat-satellite/open-red-hat-satellite-subscriptions-api/)
+- [Red Hat Satellite REST Content Views API](https://apis.io/collections/red-hat-satellite/postman-red-hat-satellite-content-views-api/)
+- [Red Hat Satellite REST Content Views Hosts API](https://apis.io/collections/red-hat-satellite/postman-red-hat-satellite-hosts-api/)
+- [Red Hat Satellite REST Content Views Lifecycle Environments API](https://apis.io/collections/red-hat-satellite/postman-red-hat-satellite-lifecycle-environments-api/)
+- [Red Hat Satellite REST Content Views Organizations API](https://apis.io/collections/red-hat-satellite/postman-red-hat-satellite-organizations-api/)
+- [Red Hat Satellite REST Content Views Subscriptions API](https://apis.io/collections/red-hat-satellite/postman-red-hat-satellite-subscriptions-api/)
 
-- [Documentation](https://apidocs.theforeman.org/)
-- [API Reference](https://apidocs.theforeman.org/foreman/latest/apidoc/v2.html)
-- [GitHub Organization](https://github.com/theforeman)
-- [GitHub Repository](https://github.com/theforeman/foreman)
-- [GitHub Repository](https://github.com/theforeman/apidocs)
-- [Postman Collection](collections/red-hat-satellite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/red-hat-satellite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (2)
 
-### Red Hat Satellite Katello API
+Spectral rulesets for the provider's contracts.
 
-Content management API for Red Hat Satellite handling repositories, content views, lifecycle environments, subscriptions, and errata. Katello is the upstream plugin that provides Satellite's content and subscription management capabilities.
+- [Red Hat Satellite — jsonschema rules](https://apis.io/rules/red-hat-satellite/red-hat-satellite-jsonschema-spectral-rules/)
+- [Red Hat Satellite API Rules](https://apis.io/rules/red-hat-satellite/red-hat-satellite-spectral-rules/)
 
-- **Human URL:** [https://theforeman.org/plugins/katello/](https://theforeman.org/plugins/katello/)
-- **Base URL:** `https://satellite.example.com/katello/api`
+#### Security (4)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Content Management
-- Lifecycle Environments
-- Repositories
-- REST API
-- Subscriptions
+- [Red Hat Satellite Authentication](https://apis.io/security/red-hat-satellite/red-hat-satellite-authentication/)
+- [Red Hat Satellite Domain Security](https://apis.io/security/red-hat-satellite/red-hat-satellite-domain-security/)
+- [Red Hat Satellite Trust Center](https://apis.io/security/red-hat-satellite/red-hat-satellite-trust-center/)
+- [Red Hat Satellite Vulnerability Disclosure](https://apis.io/security/red-hat-satellite/red-hat-satellite-vulnerability-disclosure/)
 
-#### Properties
+#### OAuth scopes (1)
 
-- [Documentation](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/using_the_satellite_rest_api/index)
-- [API Reference](https://apidocs.theforeman.org/katello/latest/apidoc/v2.html)
-- [Documentation](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/managing_content/index)
-- [GitHub Repository](https://github.com/Katello/katello)
-- [GitHub Organization](https://github.com/Katello)
-- [Postman Collection](collections/red-hat-satellite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/red-hat-satellite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The permissions the API asks for.
 
-### Red Hat Satellite Ansible Collection
+- [Red Hat Satellite Scopes](https://apis.io/scopes/red-hat-satellite/red-hat-satellite-scopes/)
 
-The redhat.satellite Ansible collection provides modules, roles, and plugins for automating Red Hat Satellite configuration and management through the Satellite API. Based on the theforeman.foreman community collection.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://catalog.redhat.com/en/software/collection/redhat/satellite](https://catalog.redhat.com/en/software/collection/redhat/satellite)
+Published plans, tiers and prices.
 
-#### Tags
+- [Red Hat Satellite Plans Pricing](https://apis.io/plans/red-hat-satellite/red-hat-satellite-plans-pricing/)
 
-- Ansible
-- Automation
-- Configuration Management
-- Infrastructure as Code
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://redhatsatellite.github.io/satellite-ansible-collection/develop/README.html)
-- [GitHub Repository](https://github.com/RedHatSatellite/satellite-ansible-collection)
-- [Marketplace](https://catalog.redhat.com/en/software/collection/redhat/satellite)
-- [GitHub Repository](https://github.com/theforeman/foreman-ansible-modules)
-- [Blog](https://www.redhat.com/en/blog/automating-red-hat-satellite-with-ansible)
-- [Postman Collection](collections/red-hat-satellite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/red-hat-satellite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Red Hat Satellite Rate Limits](https://apis.io/rate-limits/red-hat-satellite/red-hat-satellite-rate-limits/)
 
-## Common Properties
+#### FinOps (1)
 
-- [Portal](https://access.redhat.com/)
+What the API costs to run, by operation.
+
+- [Red Hat Satellite Finops](https://apis.io/finops/red-hat-satellite/red-hat-satellite-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.redhat.com/)
 - [Documentation](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16)
+- [API reference](https://apidocs.theforeman.org/)
 - [Support](https://access.redhat.com/support/)
-- [Status Page](https://status.redhat.com/)
 - [Blog](https://www.redhat.com/en/blog/channel/red-hat-satellite)
-- [GitHub Organization](https://github.com/theforeman)
-- [Knowledge Center](https://access.redhat.com/solutions/)
-- [Support](https://access.redhat.com/community/)
-- [Support](https://community.theforeman.org/)
-- [Release Notes](https://docs.redhat.com/en/documentation/red_hat_satellite/6.18/html-single/release_notes/index)
-- [Documentation](https://access.redhat.com/support/policy/updates/satellite)
-- [Documentation](https://access.redhat.com/articles/1365633)
-- [Documentation](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html/provisioning_hosts/index)
-- [Documentation](https://docs.redhat.com/en/documentation/red_hat_satellite/6.16/html-single/managing_content/index)
-- [API Reference](https://apidocs.theforeman.org/)
-- [C L I](https://github.com/theforeman/hammer-cli-foreman)
-- [GitHub Repository](https://github.com/theforeman/foreman-ansible-modules)
-- [Spectral Rules](rules/red-hat-satellite-spectral-rules.yml)
-- [Vocabulary](vocabulary/red-hat-satellite-vocabulary.yaml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [GitHub](https://github.com/theforeman)
+- [Status](https://status.redhat.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 46.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 48.2 |
+| Contract quality | 61.8 |
+| Contract governance | 27.3 |
+| Operational transparency | 50.0 |
+| Developer ergonomics | 65.5 |
+| Access clarity | 13.2 |
+
+**Agent readiness 25.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 37.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/red-hat-satellite/](https://apis.io/providers/red-hat-satellite/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Red Hat Satellite: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/red-hat-satellite/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
